@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import NavBar from '@/components/NavBar.vue'
-import IconSprite from "@/components/IconSprite.vue";
-
+import IconSprite from '@/components/IconSprite.vue'
 </script>
 
 <template>
@@ -9,6 +8,4 @@ import IconSprite from "@/components/IconSprite.vue";
   <NavBar />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

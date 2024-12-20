@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import NavItem from "@/components/NavItem.vue";
+import NavItem from '@/components/NavItem.vue'
 </script>
 
 <template>
-  <header class="fixed top-1/2 -translate-y-1/2 ml-2 ">
+  <header class="fixed top-1/2 ml-2 -translate-y-1/2">
     <nav>
       <ul class="flex flex-col items-start justify-center gap-y-2.5">
         <NavItem name="home" />
@@ -16,6 +16,4 @@ import NavItem from "@/components/NavItem.vue";
   </header>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

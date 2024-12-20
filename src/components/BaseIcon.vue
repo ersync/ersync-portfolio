@@ -1,18 +1,16 @@
 <script setup lang="ts">
-
-type NavigationIconName = "home" | "about" | "project" | "contact" | "services"
 interface Props {
-  name: NavigationIconName,
-  className?: string,
-  size?: number,
-  color?: string,
+  name: string
+  className?: string
+  size?: number
+  color?: string
   strokeWidth?: number
 }
 
-withDefaults(defineProps<Props>(),{
+withDefaults(defineProps<Props>(), {
   size: 20,
-  className: "",
-  color: "black",
+  className: '',
+  color: 'black',
   strokeWidth: 2
 })
 </script>
@@ -25,11 +23,10 @@ withDefaults(defineProps<Props>(),{
     :color="color"
     :stroke-width="strokeWidth"
     aria-hidden="true"
+    class="transition-all duration-100"
   >
     <use :href="`#${name}`" />
   </svg>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
