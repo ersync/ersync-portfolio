@@ -25,7 +25,7 @@ withDefaults(defineProps<Props>(), {
     aria-hidden="true"
     class="transition-all duration-100"
   >
-    <use :href="`#${name}`" />
+    <use :href="`#icon-${name}`" />
   </svg>
 </template>
 
