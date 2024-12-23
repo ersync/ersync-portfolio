@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import BaseIcon from '@/components/BaseIcon.vue'
+import BaseIcon from '@/components/base/BaseIcon.vue'
 import { useNavigationStore } from '@/stores/navigationStore'
 import type { NavItemName } from '@/stores/navigationStore'
 

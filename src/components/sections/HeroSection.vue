@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, onUnmounted } from 'vue'
 import Typed from 'typed.js'
-import BaseIcon from '@/components/BaseIcon.vue'
+import BaseIcon from '@/components/base/BaseIcon.vue'
 
 const typedElement = ref<HTMLElement | null>(null)
 let typedInstance: Typed | null = null

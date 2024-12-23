@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import NavBar from '@/components/NavBar.vue'
-import IconSprite from '@/components/IconSprite.vue'
-import HeroSection from '@/components/HeroSection.vue'
+import NavBar from '@/components/navigation/NavBar.vue'
+import IconSprite from '@/components/base/IconSprite.vue'
+import HeroSection from '@/components/sections/HeroSection.vue'
 </script>
 
 <template>
