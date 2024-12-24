@@ -1,5 +1,8 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    style="display: none"
+  >
     <symbol
       id="icon-home"
       xmlns="http://www.w3.org/2000/svg"
@@ -128,5 +131,50 @@
         d="M14.095479,10.316482L22.286354,1h-1.940718l-7.115352,8.087682L7.551414,1H1l8.589488,12.231093L1,23h1.940717  l7.509372-8.542861L16.448587,23H23L14.095479,10.316482z M11.436522,13.338465l-0.871624-1.218704l-6.924311-9.68815h2.981339  l5.58978,7.82155l0.867949,1.218704l7.26506,10.166271h-2.981339L11.436522,13.338465z"
       />
     </symbol>
+
+    <symbol id="icon-lightning"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1"
+        d="M13 10V3L4 14h7v7l9-11h-7z"
+      />
+    </symbol>
+
+
+    <symbol
+      id="icon-setting"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1"
+        d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+      />
+    </symbol>
+
+
+    <symbol
+      id="icon-clock"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1"
+        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </symbol>
+
+
   </svg>
 </template>

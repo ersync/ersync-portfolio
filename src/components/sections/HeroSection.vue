@@ -39,7 +39,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div id="home" class="relative h-screen w-full">
+  <div
+    id="home"
+    class="relative h-screen w-full"
+  >
     <!-- Background Image -->
     <div
       class="absolute inset-0 bg-cover bg-left-top bg-no-repeat"
@@ -49,28 +52,30 @@ onUnmounted(() => {
     <div class="absolute inset-0 bg-[#f5f5f5]/85">
       <!-- Content -->
       <div class="absolute left-[10.4rem] top-[23.5rem] text-charcoal antialiased">
-        <h1 class="font-Raleway text-[4rem] leading-[5rem]">Emad Rahimi</h1>
+        <h1 class="font-Raleway text-[4rem] leading-[5rem]">
+          Emad Rahimi
+        </h1>
         <p class="font-Poppins text-[1.6rem] font-medium">
-          I am <span class="typed-span text-sage" ref="typedElement" />
+          I am <span
+            class="typed-span text-sage"
+            ref="typedElement"
+          />
         </p>
 
         <div class="mt-8 flex items-center justify-start gap-8">
-          <a href="https://github.com/ersync"
-            ><base-icon
-              name="github"
-              class="h-auto w-9 p-2 text-charcoal transition-all hover:text-sage"
+          <a href="https://github.com/ersync"><base-icon
+            name="github"
+            class="h-auto w-9 p-2 text-charcoal transition-all hover:text-sage"
           /></a>
 
-          <a href="linkedin.com/"
-            ><base-icon
-              name="linkedin"
-              class="h-auto w-[34px] p-2 pb-[10px] text-charcoal transition-all hover:text-sage"
+          <a href="linkedin.com/"><base-icon
+            name="linkedin"
+            class="h-auto w-[34px] p-2 pb-[10px] text-charcoal transition-all hover:text-sage"
           /></a>
 
-          <a href="twitter.com/"
-            ><base-icon
-              name="x"
-              class="h-auto w-[33px] p-2 text-charcoal transition-all hover:text-sage"
+          <a href="twitter.com/"><base-icon
+            name="x"
+            class="h-auto w-[33px] p-2 text-charcoal transition-all hover:text-sage"
           /></a>
         </div>
       </div>

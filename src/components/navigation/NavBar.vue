@@ -3,7 +3,7 @@ import NavItem from '@/components/navigation/NavItem.vue'
 </script>
 
 <template>
-  <header class="fixed top-1/2 z-50 ml-3 -translate-y-1/2">
+  <header class="hidden md:block fixed top-1/2 z-50 ml-3 -translate-y-1/2">
     <nav>
       <ul class="flex flex-col items-start justify-center gap-y-2">
         <NavItem name="home" />

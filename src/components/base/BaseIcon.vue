@@ -5,13 +5,15 @@ interface Props {
   size?: number
   color?: string
   strokeWidth?: number
+  stroke?: string
 }
 
 withDefaults(defineProps<Props>(), {
   size: 20,
   className: '',
-  color: 'black',
-  strokeWidth: 2
+  color: '',
+  strokeWidth: 2,
+  stroke: ''
 })
 </script>
 
@@ -21,6 +23,7 @@ withDefaults(defineProps<Props>(), {
     :height="size"
     :class="className"
     :color="color"
+    :stroke="stroke"
     :stroke-width="strokeWidth"
     aria-hidden="true"
     class="transition-all duration-100"

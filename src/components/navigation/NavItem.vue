@@ -42,9 +42,16 @@ const labelClasses = computed(() => {
 </script>
 
 <template>
-  <li :class="navItemClasses" @click="handleClick">
+  <li
+    :class="navItemClasses"
+    @click="handleClick"
+  >
     <!-- Icon -->
-    <BaseIcon :name="name" color="currentColor" class="shrink-0" />
+    <BaseIcon
+      :name="name"
+      color="currentColor"
+      class="shrink-0"
+    />
 
     <!-- Label -->
     <span
