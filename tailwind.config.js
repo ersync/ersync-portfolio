@@ -15,15 +15,13 @@ export default {
           light: '#7bb8a7'
         },
         charcoal: '#45505b'
-      },
-      screens: {
-        'xs': '480px',
-        'sm': '640px',
-        'md': '768px',
-        'lg': '1024px',
-        'xl': '1280px'
-      },
-
+      }
+    },
+    screens: {
+      xs: '480px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px'
     }
   },
   plugins: []

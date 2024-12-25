@@ -32,6 +32,6 @@
     "types": ["vite/client", "node"],
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "strictNullChecks": true,
+    "strictNullChecks": true
   }
 }
