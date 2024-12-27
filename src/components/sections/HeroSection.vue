@@ -39,43 +39,46 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    id="home"
-    class="relative h-screen w-full"
-  >
+  <div id="home" class="relative h-screen w-full">
     <!-- Background Image -->
     <div
       class="absolute inset-0 bg-cover bg-left-top bg-no-repeat"
       style="background-image: url('/src/assets/background.jpg')"
     />
+
     <!-- Overlay -->
-    <div class="absolute inset-0 bg-[#f5f5f5]/85">
+    <div class="absolute inset-0 flex w-full items-center justify-center bg-[#f5f5f5]/85">
       <!-- Content -->
-      <div class="absolute left-[10.4rem] top-[23.5rem] text-charcoal antialiased">
-        <h1 class="font-Raleway text-[4rem] leading-[5rem]">
+      <div
+        class="ml-[18vw] custom-md:ml-[14vw] flex w-full flex-col items-start justify-center text-charcoal antialiased"
+      >
+        <h1
+          class="text-center font-Raleway text-[28px] xs:text-[38px] sm:text-[48px] md:text-[56px] custom-md:text-[64px]"
+        >
           Emad Rahimi
         </h1>
-        <p class="font-Poppins text-[1.6rem] font-medium">
-          I am <span
-            class="typed-span text-sage"
-            ref="typedElement"
-          />
+        <p
+          class="font-Poppins text-[17px] font-medium xs:text-[22px] sm:text-[25px] md:text-[28px]"
+        >
+          I am <span class="typed-span text-sage" ref="typedElement" />
         </p>
-
-        <div class="mt-8 flex items-center justify-start gap-8">
-          <a href="https://github.com/ersync"><base-icon
-            name="github"
-            class="h-auto w-9 p-2 text-charcoal transition-all hover:text-sage"
+        <div class="mt-8 flex items-center justify-center gap-8 md:justify-start">
+          <a href="https://github.com/ersync"
+            ><base-icon
+              name="github"
+              class="h-auto w-[34px] p-2 text-charcoal transition-all hover:text-sage sm:w-9"
           /></a>
 
-          <a href="linkedin.com/"><base-icon
-            name="linkedin"
-            class="h-auto w-[34px] p-2 pb-[10px] text-charcoal transition-all hover:text-sage"
+          <a href="linkedin.com/"
+            ><base-icon
+              name="linkedin"
+              class="h-auto w-[32px] p-2 pb-[10px] text-charcoal transition-all hover:text-sage sm:w-[34px]"
           /></a>
 
-          <a href="twitter.com/"><base-icon
-            name="x"
-            class="h-auto w-[33px] p-2 text-charcoal transition-all hover:text-sage"
+          <a href="twitter.com/"
+            ><base-icon
+              name="x"
+              class="h-auto w-[31px] p-2 text-charcoal transition-all hover:text-sage sm:w-[33px]"
           /></a>
         </div>
       </div>

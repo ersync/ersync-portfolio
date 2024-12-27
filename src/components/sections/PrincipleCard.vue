@@ -18,12 +18,7 @@ const props = defineProps<Props>()
       class="mb-4 flex size-12 items-center justify-center rounded-lg"
       :style="{ 'background-color': iconBgColor }"
     >
-      <base-icon
-        :name="props.iconName"
-        :color="[props.iconColor]"
-        size="24px"
-        stroke-width="1"
-      />
+      <base-icon :name="props.iconName" :color="[props.iconColor]" size="24px" stroke-width="1" />
     </div>
     <h4 class="mb-2 font-medium text-gray-900">
       {{ props.title }}

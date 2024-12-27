@@ -1,8 +1,5 @@
 <template>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    style="display: none"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
     <symbol
       id="icon-home"
       xmlns="http://www.w3.org/2000/svg"
@@ -132,12 +129,7 @@
       />
     </symbol>
 
-    <symbol
-      id="icon-lightning"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
+    <symbol id="icon-lightning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -146,12 +138,7 @@
       />
     </symbol>
 
-    <symbol
-      id="icon-setting"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
+    <symbol id="icon-setting" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -160,12 +147,7 @@
       />
     </symbol>
 
-    <symbol
-      id="icon-clock"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
+    <symbol id="icon-clock" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -174,30 +156,21 @@
       />
     </symbol>
 
-    <symbol
-      id="icon-rails"
-      viewBox="0 0 24 24"
-    >
+    <symbol id="icon-rails" viewBox="0 0 24 24">
       <path
         fill="currentColor"
         d="M20.156.083c3.033.525 3.893 2.598 3.829 4.77L24 4.822 22.635 22.71 4.89 23.926h-.016c.109-3.82 5.588-6.574 5.588-6.574l-2.557-7.902 9.285-1.354"
       />
     </symbol>
 
-    <symbol
-      id="icon-vue"
-      viewBox="0 0 24 24"
-    >
+    <symbol id="icon-vue" viewBox="0 0 24 24">
       <path
         fill="currentColor"
         d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z"
       />
     </symbol>
 
-    <symbol
-      id="icon-typescript"
-      viewBox="0 0 24 24"
-    >
+    <symbol id="icon-typescript" viewBox="0 0 24 24">
       <path
         fill="currentColor"
         d="M0 12v12h24V0H0zm19.341-.956c.61.152 1.074.423 1.501.865.221.236.549.666.575.77.008.03-1.036.73-1.668 1.123-.023.015-.115-.084-.217-.236-.31-.45-.633-.644-1.128-.678-.728-.05-1.196.331-1.192.967a.88.88 0 0 0 .102.45c.16.331.458.53 1.39.933 1.719.74 2.454 1.227 2.911 1.92.51.773.625 2.008.278 2.926-.38.998-1.325 1.676-2.655 1.9-.411.073-1.386.062-1.828-.018-.964-.172-1.878-.648-2.442-1.273-.221-.243-.652-.88-.625-.925.011-.016.11-.077.22-.141.108-.061.511-.294.892-.515l.69-.4.145.214c.202.308.643.731.91.872.766.404 1.817.347 2.335-.118a.883.883 0 0 0 .313-.72c0-.278-.035-.4-.18-.61-.186-.266-.567-.49-1.649-.96-1.238-.533-1.771-.864-2.259-1.39a3.165 3.165 0 0 1-.659-1.2c-.091-.339-.114-1.189-.042-1.531.255-1.197 1.158-2.03 2.461-2.278.423-.08 1.406-.05 1.821.053zm-5.634 1.002l.008.983H10.59v8.876H8.38v-8.876H5.258v-.964c0-.534.011-.98.026-.99.012-.016 1.913-.024 4.217-.02l4.195.012z"
@@ -271,18 +244,11 @@
         <path
           d="M350.676,123.432c0.863,15.994-3.445,26.888-3.988,43.914c-0.804,24.748,11.799,53.074-7.191,81.435"
         />
-        <path
-          style="stroke-width: 3"
-          d="M0,60.232"
-        />
+        <path style="stroke-width: 3" d="M0,60.232" />
       </g>
     </symbol>
 
-
-    <symbol
-      id="decorative-wave"
-      viewBox="0 0 500 800"
-    >
+    <symbol id="decorative-wave" viewBox="0 0 500 800">
       <!-- Define gradient with unique ID and stronger opacity -->
       <defs>
         <linearGradient
@@ -293,58 +259,23 @@
           y2="100%"
           gradientUnits="userSpaceOnUse"
         >
-          <stop
-            offset="0%"
-            style="stop-color:#14b8a6;stop-opacity:0.3"
-          />
-          <stop
-            offset="100%"
-            style="stop-color:#14b8a6;stop-opacity:0.4"
-          />
+          <stop offset="0%" style="stop-color: #14b8a6; stop-opacity: 0.3" />
+          <stop offset="100%" style="stop-color: #14b8a6; stop-opacity: 0.4" />
         </linearGradient>
       </defs>
 
       <!-- Main wave shapes with increased opacity -->
-      <path
-        d="M250,0 L500,0 L500,180 C400,150 300,140 250,0"
-        fill="url(#wave-gradient-enhanced)"
-      />
+      <path d="M250,0 L500,0 L500,180 C400,150 300,140 250,0" fill="url(#wave-gradient-enhanced)" />
 
-      <path
-        d="M300,0 L500,0 L500,140 C420,120 350,100 300,0"
-        fill="#14b8a6"
-        fill-opacity="0.2"
-      />
+      <path d="M300,0 L500,0 L500,140 C420,120 350,100 300,0" fill="#14b8a6" fill-opacity="0.2" />
 
       <!-- Circles with increased opacity -->
-      <circle
-        cx="450"
-        cy="50"
-        r="3"
-        fill="#14b8a6"
-        fill-opacity="0.3"
-      />
-      <circle
-        cx="470"
-        cy="70"
-        r="2"
-        fill="#14b8a6"
-        fill-opacity="0.3"
-      />
-      <circle
-        cx="430"
-        cy="40"
-        r="2"
-        fill="#14b8a6"
-        fill-opacity="0.3"
-      />
+      <circle cx="450" cy="50" r="3" fill="#14b8a6" fill-opacity="0.3" />
+      <circle cx="470" cy="70" r="2" fill="#14b8a6" fill-opacity="0.3" />
+      <circle cx="430" cy="40" r="2" fill="#14b8a6" fill-opacity="0.3" />
     </symbol>
 
-    <symbol
-      id="bottom-wave"
-      viewBox="0 0 1440 320"
-      preserveAspectRatio="none"
-    >
+    <symbol id="bottom-wave" viewBox="0 0 1440 320" preserveAspectRatio="none">
       <path
         fill="#14b8a6"
         fill-opacity="0.06"

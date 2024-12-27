@@ -26,11 +26,11 @@ const handleClick = () => {
 
 const hoverClasses = 'hover:w-full hover:bg-sage-light hover:text-white'
 const activeClasses = 'text-white bg-sage-light'
-const inactiveClasses = 'text-charcoal bg-white'
+const inactiveClasses = 'text-charcoal bg-[#fcfcfc]'
 
 const navItemClasses = computed(() => {
   return [
-    'group flex size-14 cursor-pointer items-center justify-start overflow-hidden rounded-full p-[1.1rem] transition-[width] duration-300 ',
+    'group shadow-[0_3px_8px_2px_rgba(178,215,209,0.35)] flex size-14 cursor-pointer items-center justify-start overflow-hidden rounded-full p-[1.1rem] transition-[width] duration-300 ',
     isActive.value ? activeClasses : inactiveClasses,
     hoverClasses
   ].join(' ')
@@ -42,16 +42,9 @@ const labelClasses = computed(() => {
 </script>
 
 <template>
-  <li
-    :class="navItemClasses"
-    @click="handleClick"
-  >
+  <li :class="navItemClasses" @click="handleClick">
     <!-- Icon -->
-    <BaseIcon
-      :name="name"
-      color="currentColor"
-      class="shrink-0"
-    />
+    <BaseIcon :name="name" color="currentColor" class="shrink-0" />
 
     <!-- Label -->
     <span

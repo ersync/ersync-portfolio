@@ -27,10 +27,9 @@ const shadowClass = computed((): string => {
 })
 
 const shortTitle = computed(() => {
-  if (props.title === 'Ruby on Rails') return 'RoR';
-  return props.title;
-});
-
+  if (props.title === 'Ruby on Rails') return 'RoR'
+  return props.title
+})
 </script>
 
 <template>
@@ -43,11 +42,7 @@ const shortTitle = computed(() => {
       class="flex size-10 items-center justify-center rounded-lg"
       :style="{ 'background-color': iconBgColor }"
     >
-      <base-icon
-        :name="iconName"
-        :color="iconColor"
-        size="24px"
-      />
+      <base-icon :name="iconName" :color="iconColor" size="24px" />
     </div>
     <div>
       <div class="hidden font-medium text-gray-900 min-[420px]:block">

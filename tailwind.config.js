@@ -21,7 +21,21 @@ export default {
       xs: '480px',
       sm: '640px',
       md: '768px',
-      lg: '1024px'
+      'custom-md': '900px',
+      lg: '1024px',
+      'custom-lg': '1200px'
+    },
+    container: {
+      padding: {
+        DEFAULT: '1.5rem',
+        xs: '2rem',
+        sm: '2rem',
+        md: '5rem',
+        'custom-md': '5rem',
+        lg: '5rem',
+        'custom-lg': '5rem'
+      },
+      center: true
     }
   },
   plugins: []

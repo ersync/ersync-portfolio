@@ -3,6 +3,7 @@ import NavBar from '@/components/navigation/NavBar.vue'
 import IconSprite from '@/components/base/IconSprite.vue'
 import HeroSection from '@/components/sections/HeroSection.vue'
 import AboutSection from '@/components/sections/AboutSection.vue'
+import ProjectsSection from '@/components/sections/ProjectsSection.vue'
 </script>
 
 <template>
@@ -10,12 +11,7 @@ import AboutSection from '@/components/sections/AboutSection.vue'
   <NavBar />
   <HeroSection />
   <AboutSection />
-  <div
-    id="services"
-    class="h-screen w-full bg-blue-400"
-  />
-  <div
-    id="contact"
-    class="h-screen w-full bg-teal-300"
-  />
+  <ProjectsSection />
+  <div id="services" class="h-screen w-full bg-blue-400" />
+  <div id="contact" class="h-screen w-full bg-teal-300" />
 </template>
