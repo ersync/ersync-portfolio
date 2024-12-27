@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, onUnmounted } from 'vue'
 import Typed from 'typed.js'
-import BaseIcon from '@/components/base/BaseIcon.vue'
+import BaseIcon from '@/ui/base/BaseIcon.vue'
 
 const typedElement = ref<HTMLElement | null>(null)
 let typedInstance: Typed | null = null
@@ -50,7 +50,7 @@ onUnmounted(() => {
     <div class="absolute inset-0 flex w-full items-center justify-center bg-[#f5f5f5]/85">
       <!-- Content -->
       <div
-        class="ml-[18vw] custom-md:ml-[14vw] flex w-full flex-col items-start justify-center text-charcoal antialiased"
+        class="ml-[18vw] flex w-full flex-col items-start justify-center text-charcoal antialiased custom-md:ml-[14vw]"
       >
         <h1
           class="text-center font-Raleway text-[28px] xs:text-[38px] sm:text-[48px] md:text-[56px] custom-md:text-[64px]"

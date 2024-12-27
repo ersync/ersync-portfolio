@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import NavBar from '@/components/navigation/NavBar.vue'
-import IconSprite from '@/components/base/IconSprite.vue'
-import HeroSection from '@/components/sections/HeroSection.vue'
-import AboutSection from '@/components/sections/AboutSection.vue'
-import ProjectsSection from '@/components/sections/ProjectsSection.vue'
+import TheNavigation from '@/components/navigation/TheNavigation.vue'
+import IconSprite from '@/ui/base/IconSprite.vue'
+import TheHero from '@/components/sections/TheHero.vue'
+import TheAbout from '@/components/sections/TheAbout.vue'
+import TheProjects from '@/components/sections/TheProjects.vue'
 </script>
 
 <template>
   <IconSprite />
-  <NavBar />
-  <HeroSection />
-  <AboutSection />
-  <ProjectsSection />
+  <TheNavigation />
+  <TheHero />
+  <TheAbout />
+  <TheProjects />
   <div id="services" class="h-screen w-full bg-blue-400" />
   <div id="contact" class="h-screen w-full bg-teal-300" />
 </template>

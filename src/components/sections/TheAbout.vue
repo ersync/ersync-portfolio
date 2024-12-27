@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import PrincipleCard from '@/ui/PrincipleCard.vue'
+import SkillCard from '@/ui/SkillCard.vue'
+</script>
+
 <template>
   <div
     id="about"
@@ -54,11 +59,18 @@
         <!-- Text Content -->
         <div class="space-y-5">
           <p class="leading-relaxed text-gray-600">
-            Hi! I'm <strong>Emad</strong>, a web developer from Iran with a passion for crafting digital experiences. I specialize in <span class="bg-gray-200/60 rounded-md px-1 py-0.5">Ruby on Rails</span> and <span class="bg-gray-200/60 rounded-md px-1 py-0.5">Vue.js</span>, spending my time squashing bugs and building features to solve tricky problems and make life easier. My work blends Middle Eastern creativity with modern web technologies for a unique perspective on every project.
+            Hi! I'm <strong>Emad</strong>, a web developer from Iran with a passion for crafting
+            digital experiences. I specialize in
+            <span class="rounded-md bg-gray-200/60 px-1 py-0.5">Ruby on Rails</span> and
+            <span class="rounded-md bg-gray-200/60 px-1 py-0.5">Vue.js</span>, spending my time
+            squashing bugs and building features to solve tricky problems and make life easier. My
+            work blends Middle Eastern creativity with modern web technologies for a unique
+            perspective on every project.
           </p>
           <p class="leading-relaxed text-gray-600">
-            Outside of coding, you'll catch me cheering at live sporting events, learning from developer communities, and exploring new technologies. I enjoy helping others when I can, as I believe we grow better together.
-
+            Outside of coding, you'll catch me cheering at live sporting events, learning from
+            developer communities, and exploring new technologies. I enjoy helping others when I
+            can, as I believe we grow better together.
           </p>
         </div>
 
@@ -74,9 +86,9 @@
             <div class="text-2xl font-bold text-teal-600">
               Fu<span class="relative font-bold text-red-400/90"
                 >ll
-                <span class="absolute left-[2px] top-[7.2px] w-[8px] h-[2px] bg-red-400/50" />
-                <span class="absolute left-[2px] top-[12.4px] w-[8px] h-[2px] bg-red-400/50" />
-                <span class="absolute left-[2px] top-[17.5px] w-[8px] h-[2px] bg-red-400/50" />
+                <span class="absolute left-[2px] top-[7.2px] h-[2px] w-[8px] bg-red-400/50" />
+                <span class="absolute left-[2px] top-[12.4px] h-[2px] w-[8px] bg-red-400/50" />
+                <span class="absolute left-[2px] top-[17.5px] h-[2px] w-[8px] bg-red-400/50" />
               </span>
               Stack
             </div>
@@ -175,7 +187,3 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import PrincipleCard from '@/components/sections/PrincipleCard.vue'
-import SkillCard from '@/components/sections/SkillCard.vue'
-</script>

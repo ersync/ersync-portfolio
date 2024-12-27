@@ -1,25 +1,26 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { Project } from '@/types/project'
 import { projects } from '@/data/projects'
-import type { Project } from '@/types/project'
-import type {ProjectCategory, FilterCategory} from '@/types/projectCategory'
-import  {isProjectCategory, categories} from '@/types/projectCategory'
+import type { FilterCategory } from '@/types/projectCategory'
+import { isProjectCategory, categories } from '@/types/projectCategory'
 
 const selectedCategory = ref<FilterCategory>('all')
 
-const filteredProjects = computed(() => {
+const filteredProjects = computed<Project[]>(() => {
   const category = selectedCategory.value
   if (category === 'all') return projects
-  if(isProjectCategory(category)){
-  return projects.filter((project) => project.category.includes(category))
+  if (isProjectCategory(category)) {
+    return projects.filter((project) => project.category.includes(category))
   }
+  return projects
 })
 </script>
 
 <template>
   <section
     id="projects"
-    class="relative w-full overflow-hidden bg-gray-50 bg-gradient-to-br from-[#fbfbfb] via-gray-50 to-gray-300 py-16"
+    class="relative min-h-screen w-full overflow-hidden bg-gray-50 bg-gradient-to-br from-[#fbfbfb] via-gray-50 to-gray-300 py-16"
   >
     <div class="container relative z-10 mx-auto">
       <!--  Title  -->
@@ -28,9 +29,7 @@ const filteredProjects = computed(() => {
           <div class="h-7 w-[2.5px] rounded-md bg-teal-500" />
           <h2 class="font-VarelaRound text-3xl font-bold text-gray-800">Projects</h2>
         </div>
-        <p class="mb-8 mt-1 text-sm text-gray-600 sm:text-base">
-          Exploring innovation through code and creativity
-        </p>
+        <p class="mb-8 mt-1 text-sm text-gray-600 sm:text-base">Personal development journey</p>
       </div>
 
       <!-- Category Filter -->
@@ -68,14 +67,14 @@ const filteredProjects = computed(() => {
               :alt="project.title"
               class="size-full object-cover object-left"
             />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent" />
           </div>
 
           <div class="p-6 md:p-4 custom-md:p-5">
             <h3 class="mb-3 text-xl font-semibold text-gray-800">
               {{ project.title }}
             </h3>
-            <p class="mb-4 line-clamp-4 text-[13px] text-gray-600 md:text-[14px]">
+            <p class="mb-4 line-clamp-4 text-[13px] text-gray-600 md:leading-[19px]">
               {{ project.description }}
             </p>
 

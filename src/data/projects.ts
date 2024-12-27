@@ -42,7 +42,7 @@ export const projects: Project[] = [
     demoLink: 'your-api-endpoint', // if public
     githubLink: 'your-github-repo-url',
     image: '/src/assets/images/projects/persogen-api.png',
-    category: 'backend'
+    category: ['backend']
   },
   {
     id: 5,

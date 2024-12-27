@@ -1,4 +1,4 @@
-import type {ProjectCategory} from '@/types/projectCategory'
+import type { ProjectCategory } from '@/types/projectCategory'
 
 export interface Project {
   id: number

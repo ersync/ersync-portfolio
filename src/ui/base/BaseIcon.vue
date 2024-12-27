@@ -2,14 +2,14 @@
 interface Props {
   name: string
   className?: string
-  size?: number
+  size?: string
   color?: string
   strokeWidth?: number
   stroke?: string
 }
 
 withDefaults(defineProps<Props>(), {
-  size: 20,
+  size: '20px',
   className: '',
   color: '',
   strokeWidth: 2,
