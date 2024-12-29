@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import PrincipleCard from '@/ui/PrincipleCard.vue'
 import SkillCard from '@/ui/SkillCard.vue'
+import SectionHeader from '@/ui/SectionHeader.vue'
 </script>
 
 <template>
@@ -45,10 +46,7 @@ import SkillCard from '@/ui/SkillCard.vue'
     <!-- Content -->
     <div class="container relative z-10">
       <!-- Section Title -->
-      <div class="flex items-center justify-start gap-2">
-        <div class="h-7 w-[2.5px] rounded-md bg-teal-500" />
-        <h2 class="font-VarelaRound text-3xl font-bold text-gray-800">About Me</h2>
-      </div>
+      <SectionHeader title="About Me" subtitle="" />
 
       <!-- Main Content -->
 

@@ -4,6 +4,7 @@ import { Project } from '@/types/project'
 import { projects } from '@/data/projects'
 import type { FilterCategory } from '@/types/projectCategory'
 import { isProjectCategory, categories } from '@/types/projectCategory'
+import SectionHeader from '@/ui/SectionHeader.vue'
 
 const selectedCategory = ref<FilterCategory>('all')
 
@@ -24,14 +25,7 @@ const filteredProjects = computed<Project[]>(() => {
   >
     <div class="container relative z-10 mx-auto">
       <!--  Title  -->
-      <div>
-        <div class="flex items-center justify-start gap-2">
-          <div class="h-7 w-[2.5px] rounded-md bg-teal-500" />
-          <h2 class="font-VarelaRound text-3xl font-bold text-gray-800">Projects</h2>
-        </div>
-        <p class="mb-8 mt-1 text-sm text-gray-600 sm:text-base">Personal development journey</p>
-      </div>
-
+      <SectionHeader title="Projects" subtitle="Personal development journey" />
       <!-- Category Filter -->
       <div class="mb-12 flex gap-4">
         <button
@@ -51,7 +45,7 @@ const filteredProjects = computed<Project[]>(() => {
 
       <!-- Projects Container -->
       <div
-        class="flex flex-wrap justify-center justify-items-center gap-6 md:gap-4 custom-md:gap-6 custom-lg:justify-start custom-lg:pl-[50px]"
+        class="flex flex-wrap justify-center justify-items-center gap-6 md:gap-4 custom-md:gap-6 custom-lg:justify-start"
       >
         <div
           v-for="project in filteredProjects"
