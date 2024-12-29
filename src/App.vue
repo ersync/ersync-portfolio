@@ -4,6 +4,7 @@ import IconSprite from '@/ui/base/IconSprite.vue'
 import TheHero from '@/components/sections/TheHero.vue'
 import TheAbout from '@/components/sections/TheAbout.vue'
 import TheProjects from '@/components/sections/TheProjects.vue'
+import TheJourney from '@/components/sections/TheJourney.vue'
 </script>
 
 <template>
@@ -12,6 +13,5 @@ import TheProjects from '@/components/sections/TheProjects.vue'
   <TheHero />
   <TheAbout />
   <TheProjects />
-  <div id="services" class="h-screen w-full bg-blue-400" />
-  <div id="contact" class="h-screen w-full bg-teal-300" />
+  <TheJourney />
 </template>

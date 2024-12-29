@@ -17,4 +17,18 @@ module.exports = {
     ecmaVersion: 2022,
     sourceType: 'module'
   },
+  settings: {
+    'import/resolver': {
+      typescript: {}
+}
+  },
+  ignorePatterns: ['.eslintrc.cjs'],
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx', '*.vue'],
+      parserOptions: {
+        project: ['./tsconfig.json']
+      }
+    }
+  ]
 }

@@ -11,7 +11,7 @@ import type { NavItemName } from '@/stores/navigationStore'
 const navigation = useNavigationStore()
 
 // Define our section names with proper typing
-const sections: NavItemName[] = ['home', 'about', 'projects', 'services', 'contact']
+const sections: NavItemName[] = ['home', 'about', 'projects', 'journey', 'contact']
 
 // Define our scroll handler with explicit return type
 const handleScroll = (): void => {

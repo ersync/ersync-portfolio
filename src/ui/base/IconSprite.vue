@@ -45,7 +45,7 @@
       />
     </symbol>
     <symbol
-      id="icon-services"
+      id="icon-journey"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -122,7 +122,6 @@
       xmlns:xlink="http://www.w3.org/1999/xlink"
       version="1.1"
       viewBox="0 0 24 24"
-      style="enable-background: new 0 0 24 24"
       xml:space="preserve"
     >
       <path
