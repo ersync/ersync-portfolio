@@ -118,7 +118,7 @@ import SectionHeader from '@/ui/SectionHeader.vue'
         <h3 class="mb-6 text-center text-xl font-semibold text-gray-800 sm:text-left">
           Technical Skills
         </h3>
-        <div class="grid grid-cols-2 gap-6 lg:grid-cols-4">
+        <div class="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
           <!-- Rails -->
           <SkillCard
             title="Ruby on Rails"

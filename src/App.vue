@@ -6,6 +6,7 @@ import TheAbout from '@/components/sections/TheAbout.vue'
 import TheProjects from '@/components/sections/TheProjects.vue'
 import TheJourney from '@/components/sections/TheJourney.vue'
 import TheContactMe from '@/components/sections/TheContactMe.vue'
+import TheFooter from '@/components/sections/TheFooter.vue'
 </script>
 
 <template>
@@ -16,4 +17,5 @@ import TheContactMe from '@/components/sections/TheContactMe.vue'
   <TheProjects />
   <TheJourney />
   <TheContactMe />
+  <TheFooter></TheFooter>
 </template>

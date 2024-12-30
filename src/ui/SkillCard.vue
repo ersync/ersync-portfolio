@@ -26,10 +26,6 @@ const shadowClass = computed((): string => {
   return shadowVariants[props.shadowColor]
 })
 
-const shortTitle = computed(() => {
-  if (props.title === 'Ruby on Rails') return 'RoR'
-  return props.title
-})
 </script>
 
 <template>
@@ -45,13 +41,11 @@ const shortTitle = computed(() => {
       <base-icon :name="iconName" :color="iconColor" size="24px" />
     </div>
     <div>
-      <div class="hidden font-medium text-gray-900 min-[420px]:block">
+      <div class="max-sm:text-[12px] font-medium text-gray-900 ">
         {{ title }}
       </div>
-      <div class="font-medium text-gray-900 min-[420px]:hidden">
-        {{ shortTitle }}
-      </div>
-      <div class="text-sm text-gray-500">
+
+      <div class="max-sm:text-[12px] text-sm text-gray-500/90">
         {{ description }}
       </div>
     </div>

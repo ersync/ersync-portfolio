@@ -3,7 +3,7 @@ import { MapPinIcon, EnvelopeIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <template>
-  <section id="contact" class="relative min-h-screen w-full overflow-hidden bg-[#F7F9FB] py-16">
+  <section id="contact" class="relative  w-full overflow-hidden bg-[#F7F9FB] py-16">
     <div
       class="absolute inset-0"
       style="
@@ -34,8 +34,8 @@ import { MapPinIcon, EnvelopeIcon } from '@heroicons/vue/24/outline'
               </div>
               <div>
                 <h3 class="font-semibold text-gray-800">Email</h3>
-                <p class="bg-gradient-to-r from-teal-500 to-teal-700 bg-clip-text text-transparent">
-                  emad@ersync.dev
+                <p class="bg-gradient-to-r from-teal-600 to-teal-700 bg-clip-text text-transparent">
+                  contact@emadrahimi.dev
                 </p>
               </div>
             </div>
