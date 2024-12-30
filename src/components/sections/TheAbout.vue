@@ -5,10 +5,20 @@ import SectionHeader from '@/ui/SectionHeader.vue'
 </script>
 
 <template>
-  <div
-    id="about"
-    class="relative h-screen min-h-min w-full overflow-hidden bg-gradient-to-br from-[#fbfbfb] via-gray-50 to-gray-300 py-16"
-  >
+  <div id="about" class="relative min-h-screen w-full overflow-hidden bg-[#F7F9FB] py-16">
+    <div
+      class="absolute inset-0"
+      style="
+        background: linear-gradient(160deg, #f4fcfc 0%, #efeff2 35%, #f0f2f2 55%, #e4f1f2 100%);
+        filter: blur(80px);
+      "
+    />
+
+    <!-- Subtle gradient overlay -->
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-[#F1F5F9]/30 via-transparent to-[#E6FFF9]/20"
+    />
+
     <!-- Decorative Background -->
     <div class="absolute inset-0 overflow-hidden">
       <!-- Top decoration -->
@@ -57,13 +67,13 @@ import SectionHeader from '@/ui/SectionHeader.vue'
         <!-- Text Content -->
         <div class="space-y-5">
           <p class="leading-relaxed text-gray-600">
-            Hi! I'm <strong>Emad</strong>, a web developer from Iran with a passion for crafting
-            digital experiences. I specialize in
+            Hi! I'm <strong class="font-VarelaRound">Emad</strong>, a web developer from Iran with a
+            passion for crafting digital experiences. I specialize in
             <span class="rounded-md bg-gray-200/60 px-1 py-0.5">Ruby on Rails</span> and
-            <span class="rounded-md bg-gray-200/60 px-1 py-0.5">Vue.js</span>, spending my time
-            squashing bugs and building features to solve tricky problems and make life easier. My
-            work blends Middle Eastern creativity with modern web technologies for a unique
-            perspective on every project.
+            <span class="rounded-md bg-gray-200/60 px-1 py-0.5">Vue.js</span>, bringing ideas to
+            life by building features that solve problems and make things better. With every
+            project, I combine technical precision and creative problem-solving to deliver solutions
+            that leave a lasting impact.
           </p>
           <p class="leading-relaxed text-gray-600">
             Outside of coding, you'll catch me cheering at live sporting events, learning from
@@ -122,7 +132,7 @@ import SectionHeader from '@/ui/SectionHeader.vue'
 
           <SkillCard
             title="Vue.js"
-            description="front"
+            description="frontend"
             icon-name="vue"
             icon-color="#059669"
             icon-bg-color="#ecfdf5"

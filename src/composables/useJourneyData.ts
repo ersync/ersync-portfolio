@@ -1,4 +1,4 @@
-import { ref, computed, Component } from 'vue'
+import { ref, computed } from 'vue'
 import {
   BeakerIcon,
   CodeBracketIcon,
@@ -7,38 +7,15 @@ import {
   RocketLaunchIcon,
   WindowIcon
 } from '@heroicons/vue/24/outline'
+import type { PhaseSummary, PhaseId, PhaseDetails } from '@/types/journey'
 
-interface Technology {
-  name: string
-  icon: Component
-}
-
-interface JourneyItem {
-  title: string
-  status: 'Completed' | 'In Progress' | 'Not Started'
-  description: string
-  technologies: string[]
-  timeframe: string
-}
-
-export interface PhaseContent {
-  items: JourneyItem[]
-  tools: Technology[]
-}
-
-interface JourneyPoint {
-  id: string
-  label: string
-  icon: Component
-  period: string
-  progress: number
-  color: string
-}
+export type JourneyStatus = 'Completed' | 'In Progress' | 'Not Started'
+export type getStatusClass = (status: JourneyStatus) => string
 
 export const useJourneyData = () => {
-  const selectedPhase = ref('')
+  const selectedPhase = ref<PhaseId>('frontend')
 
-  const journeyPoints: JourneyPoint[] = [
+  const phasesSummaries: PhaseSummary[] = [
     {
       id: 'basics',
       label: 'Web Basics',
@@ -65,9 +42,9 @@ export const useJourneyData = () => {
     }
   ]
 
-  const phaseContent: Record<string, PhaseContent> = {
+  const phasesContent: Record<PhaseId, PhaseDetails> = {
     basics: {
-      items: [
+      milestones: [
         {
           title: 'HTML & CSS',
           status: 'Completed',
@@ -105,7 +82,7 @@ export const useJourneyData = () => {
       ]
     },
     frontend: {
-      items: [
+      milestones: [
         {
           title: 'Tailwind CSS',
           status: 'Completed',
@@ -143,7 +120,7 @@ export const useJourneyData = () => {
       ]
     },
     backend: {
-      items: [
+      milestones: [
         {
           title: 'PostgreSQL',
           status: 'Completed',
@@ -183,10 +160,10 @@ export const useJourneyData = () => {
   }
 
   const selectedPhaseContent = computed(() =>
-    selectedPhase.value ? phaseContent[selectedPhase.value] : null
+    selectedPhase.value ? phasesContent[selectedPhase.value] : null
   )
 
-  const getStatusClass = (status: string) => {
+  const getStatusClass: getStatusClass = (status) => {
     switch (status) {
       case 'Completed':
         return 'bg-green-100 text-green-700'
@@ -200,9 +177,9 @@ export const useJourneyData = () => {
   }
 
   return {
+    phasesSummaries,
+    phasesContent,
     selectedPhase,
-    journeyPoints,
-    phaseContent,
     selectedPhaseContent,
     getStatusClass
   }

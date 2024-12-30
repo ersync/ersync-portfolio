@@ -9,7 +9,7 @@ defineProps<{
   <div>
     <div class="flex items-center justify-start gap-2">
       <div class="h-7 w-[2.5px] rounded-md bg-teal-500" />
-      <h2 class="font-VarelaRound text-3xl font-bold text-gray-800">
+      <h2 class="font-VarelaRound text-2xl font-bold text-gray-800 sm:text-3xl">
         {{ title }}
       </h2>
     </div>

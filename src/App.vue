@@ -5,6 +5,7 @@ import TheHero from '@/components/sections/TheHero.vue'
 import TheAbout from '@/components/sections/TheAbout.vue'
 import TheProjects from '@/components/sections/TheProjects.vue'
 import TheJourney from '@/components/sections/TheJourney.vue'
+import TheContactMe from '@/components/sections/TheContactMe.vue'
 </script>
 
 <template>
@@ -14,4 +15,5 @@ import TheJourney from '@/components/sections/TheJourney.vue'
   <TheAbout />
   <TheProjects />
   <TheJourney />
+  <TheContactMe />
 </template>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { inject } from 'vue'
-import TimelineCard from '@/components/sections/journey/JourneyTimeline/TimelineCard.vue'
+import MileStoneCard from '@/components/sections/journey/JourneyTimeline/MileStoneCard.vue'
 
-import type { PhaseContent } from '@/composables/useJourneyData'
+import type { PhaseDetails } from '@/types/journey'
 
-const phaseContent = inject<PhaseContent>('selectedPhaseContent', {
-  items: [],
+const phaseContent = inject<PhaseDetails>('selectedPhaseContent', {
+  milestones: [],
   tools: []
 })
 </script>
@@ -14,14 +14,14 @@ const phaseContent = inject<PhaseContent>('selectedPhaseContent', {
   <div class="relative overflow-x-auto px-4">
     <div class="relative">
       <!-- Main horizontal line -->
-      <div class="absolute top-[234px] h-1 w-full -translate-y-1/2 bg-emerald-100" />
+      <div class="absolute top-[234px] h-1 w-full -translate-y-1/2 bg-emerald-300" />
 
       <!-- Timeline content container -->
       <div class="relative flex min-h-[500px] items-center justify-start pb-8 lg:justify-between">
         <!-- Timeline items -->
         <div
-          v-for="(item, index) in phaseContent?.items"
-          :key="item.title"
+          v-for="(milestone, index) in phaseContent?.milestones"
+          :key="milestone.title"
           class="relative w-[170px] first:ml-[60px] last:mr-[60px]"
         >
           <!-- Timeline node/point -->
@@ -38,11 +38,11 @@ const phaseContent = inject<PhaseContent>('selectedPhaseContent', {
             class="absolute left-1/2 w-[290px] -translate-x-1/2 custom-md:w-[270px] lg:w-[290px]"
             :class="[index % 2 === 0 ? '-top-8 -translate-y-full' : 'top-8']"
           >
-            <TimelineCard :item="item" />
+            <MileStoneCard :milestone-data="milestone" />
 
             <!-- Connector line -->
             <div
-              class="absolute left-1/2 w-px bg-emerald-200"
+              class="absolute left-1/2 w-px bg-emerald-300"
               :class="[index % 2 === 0 ? 'top-full h-8' : 'bottom-full h-8']"
             />
           </div>

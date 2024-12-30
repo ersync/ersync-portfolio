@@ -10,9 +10,9 @@ const { selectedPhase, selectedPhaseContent, getStatusClass } = useJourneyData()
 
 const stats = [
   { value: '10+', label: 'Technologies Mastered' },
-  { value: '10+', label: 'Projects Completed' },
+  { value: '15+', label: 'Projects Completed' },
   { value: '1000+', label: 'Learning Hours' },
-  { value: '500+', label: 'GitHub Contributions' }
+  { value: '300+', label: 'GitHub Contributions' }
 ]
 
 provide('getStatusClass', getStatusClass)
@@ -20,7 +20,14 @@ provide('selectedPhaseContent', selectedPhaseContent)
 </script>
 
 <template>
-  <section id="journey" class="min-h-screen bg-gradient-to-b from-gray-100 to-white px-4 py-16">
+  <section id="journey" class="relative min-h-screen w-full overflow-hidden bg-[#F7F9FB] py-16">
+    <div
+      class="absolute inset-0"
+      style="
+        background: linear-gradient(160deg, #f4fcfc 0%, #efeff2 35%, #f0f2f2 55%, #e4f1f2 100%);
+        filter: blur(80px);
+      "
+    />
     <div class="container relative z-10 mx-auto">
       <SectionHeader
         title="Learning Journey & Growth"

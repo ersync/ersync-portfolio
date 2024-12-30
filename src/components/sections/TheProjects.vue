@@ -19,10 +19,15 @@ const filteredProjects = computed<Project[]>(() => {
 </script>
 
 <template>
-  <section
-    id="projects"
-    class="relative min-h-screen w-full overflow-hidden bg-gray-50 bg-gradient-to-br from-[#fbfbfb] via-gray-50 to-gray-300 py-16"
-  >
+  <section id="projects" class="relative min-h-screen w-full overflow-hidden bg-[#F7F9FB] py-16">
+    <div
+      class="absolute inset-0"
+      style="
+        background: linear-gradient(160deg, #f4fcfc 0%, #efeff2 35%, #f0f2f2 55%, #e4f1f2 100%);
+        filter: blur(80px);
+      "
+    />
+
     <div class="container relative z-10 mx-auto">
       <!--  Title  -->
       <SectionHeader title="Projects" subtitle="Personal development journey" />
@@ -50,11 +55,11 @@ const filteredProjects = computed<Project[]>(() => {
         <div
           v-for="project in filteredProjects"
           :key="project.id"
-          class="w-[308px] overflow-hidden rounded-lg bg-white shadow-sm transition-all duration-300 hover:shadow-lg sm:w-[280px] md:w-[295px] custom-md:w-[308px]"
+          class="w-[330px] overflow-hidden rounded-lg bg-white shadow-sm transition-all duration-300 hover:shadow-lg md:w-[295px] custom-md:w-[308px]"
         >
           <!-- Project Image container  -->
           <div
-            class="relative h-[181px] overflow-hidden bg-gray-100 shadow-sm sm:h-[164px] md:h-[173px] custom-md:h-[181px]"
+            class="relative h-[200px] overflow-hidden bg-gray-100 shadow-sm md:h-[173px] custom-md:h-[194px]"
           >
             <img
               :src="project.image"

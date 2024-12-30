@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="mb-16 grid grid-cols-1 gap-6 md:grid-cols-4">
+  <div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-4">
     <div
       v-for="stat in stats"
       :key="stat.label"

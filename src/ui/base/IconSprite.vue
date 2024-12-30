@@ -249,37 +249,10 @@
       </g>
     </symbol>
 
-    <symbol id="decorative-wave" viewBox="0 0 500 800">
-      <!-- Define gradient with unique ID and stronger opacity -->
-      <defs>
-        <linearGradient
-          id="wave-gradient-enhanced"
-          x1="0%"
-          y1="0%"
-          x2="100%"
-          y2="100%"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0%" style="stop-color: #14b8a6; stop-opacity: 0.3" />
-          <stop offset="100%" style="stop-color: #14b8a6; stop-opacity: 0.4" />
-        </linearGradient>
-      </defs>
-
-      <!-- Main wave shapes with increased opacity -->
-      <path d="M250,0 L500,0 L500,180 C400,150 300,140 250,0" fill="url(#wave-gradient-enhanced)" />
-
-      <path d="M300,0 L500,0 L500,140 C420,120 350,100 300,0" fill="#14b8a6" fill-opacity="0.2" />
-
-      <!-- Circles with increased opacity -->
-      <circle cx="450" cy="50" r="3" fill="#14b8a6" fill-opacity="0.3" />
-      <circle cx="470" cy="70" r="2" fill="#14b8a6" fill-opacity="0.3" />
-      <circle cx="430" cy="40" r="2" fill="#14b8a6" fill-opacity="0.3" />
-    </symbol>
-
     <symbol id="bottom-wave" viewBox="0 0 1440 320" preserveAspectRatio="none">
       <path
         fill="#14b8a6"
-        fill-opacity="0.06"
+        fill-opacity="0.04"
         d="M0,160L48,144C96,128,192,96,288,85.3C384,75,480,85,576,112C672,139,768,181,864,176C960,171,1056,117,1152,90.7C1248,64,1344,64,1392,64L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
       />
     </symbol>
