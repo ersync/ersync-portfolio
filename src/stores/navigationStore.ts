@@ -7,7 +7,6 @@ export const useNavigationStore = defineStore('navigation', () => {
   const activeSection = ref<NavItemName>('home')
 
   const setActiveSection = (section: NavItemName) => {
-    console.log('Setting active section:', section) // Debug log
     activeSection.value = section
   }
 

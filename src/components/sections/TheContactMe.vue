@@ -3,7 +3,7 @@ import { MapPinIcon, EnvelopeIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <template>
-  <section id="contact" class="relative  w-full overflow-hidden bg-[#F7F9FB] py-16">
+  <section id="contact" class="relative w-full overflow-hidden bg-[#F7F9FB] py-16">
     <div
       class="absolute inset-0"
       style="

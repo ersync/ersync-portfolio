@@ -25,7 +25,6 @@ const shadowVariants: Record<ShadowColor, string> = {
 const shadowClass = computed((): string => {
   return shadowVariants[props.shadowColor]
 })
-
 </script>
 
 <template>
@@ -41,11 +40,11 @@ const shadowClass = computed((): string => {
       <base-icon :name="iconName" :color="iconColor" size="24px" />
     </div>
     <div>
-      <div class="max-sm:text-[12px] font-medium text-gray-900 ">
+      <div class="font-medium text-gray-900 max-sm:text-[12px]">
         {{ title }}
       </div>
 
-      <div class="max-sm:text-[12px] text-sm text-gray-500/90">
+      <div class="text-sm text-gray-500/90 max-sm:text-[12px]">
         {{ description }}
       </div>
     </div>

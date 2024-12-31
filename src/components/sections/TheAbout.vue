@@ -62,7 +62,7 @@ import SectionHeader from '@/ui/SectionHeader.vue'
 
       <!-- Intro Section -->
       <div
-        class="mt-8 flex flex-wrap items-start justify-center gap-8 lg:flex-nowrap lg:justify-between"
+        class="mt-1 flex flex-wrap items-start justify-center gap-8 lg:flex-nowrap lg:justify-between"
       >
         <!-- Text Content -->
         <div class="space-y-5">

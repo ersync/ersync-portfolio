@@ -7,9 +7,11 @@ import TheProjects from '@/components/sections/TheProjects.vue'
 import TheJourney from '@/components/sections/TheJourney.vue'
 import TheContactMe from '@/components/sections/TheContactMe.vue'
 import TheFooter from '@/components/sections/TheFooter.vue'
+import MobileMenu from '@/components/navigation/MobileMenu.vue'
 </script>
 
 <template>
+  <MobileMenu />
   <IconSprite />
   <TheNavigation />
   <TheHero />
@@ -17,5 +19,5 @@ import TheFooter from '@/components/sections/TheFooter.vue'
   <TheProjects />
   <TheJourney />
   <TheContactMe />
-  <TheFooter></TheFooter>
+  <TheFooter />
 </template>
