@@ -24,20 +24,20 @@ const handleClick = () => {
   }
 }
 
-const hoverClasses = 'hover:w-full hover:bg-sage-light hover:text-white'
-const activeClasses = 'text-white bg-sage-light'
-const inactiveClasses = 'text-charcoal bg-[#fcfcfc]'
+const hoverClasses = 'hover:w-full hover:bg-sage-light hover:text-white dark:hover:bg-teal-400'
+const activeClasses = 'text-white bg-sage-light dark:bg-teal-400'
+const inactiveClasses = 'text-charcoal bg-[#fcfcfc] dark:bg-[#2d3748] dark:text-white'
 
 const navItemClasses = computed(() => {
   return [
-    'group shadow-[0_3px_8px_2px_rgba(178,215,209,0.35)] flex size-14 cursor-pointer items-center justify-start overflow-hidden rounded-full p-[1.1rem] transition-[width] duration-300 ',
+    'group shadow-[0_2px_3px_1px_rgba(178,215,209,0.25)] dark:shadow-[0_2px_3px_1px_rgba(45,212,191,0.25)] flex size-14 cursor-pointer items-center justify-start overflow-hidden rounded-full p-[1.1rem] transition-[width] duration-300',
     isActive.value ? activeClasses : inactiveClasses,
     hoverClasses
   ].join(' ')
 })
 
 const labelClasses = computed(() => {
-  return isActive.value ? 'text-sage-light' : 'text-white'
+  return isActive.value ? 'text-sage-light dark:text-teal-400' : 'text-white dark:text-[#2d3748]'
 })
 </script>
 
@@ -48,7 +48,7 @@ const labelClasses = computed(() => {
 
     <!-- Label -->
     <span
-      class="pl-2 font-OpenSans text-[0.9rem] font-semibold transition-all duration-0 group-hover:inline-block group-hover:bg-sage-light group-hover:text-white"
+      class="pl-2 font-OpenSans text-[0.9rem] font-semibold transition-all duration-0 group-hover:inline-block group-hover:bg-sage-light group-hover:text-white dark:group-hover:bg-teal-400"
       :class="labelClasses"
     >
       {{ capitalizedName }}
