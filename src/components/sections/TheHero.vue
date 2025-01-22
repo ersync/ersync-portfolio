@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, onUnmounted, nextTick } from 'vue'
+import bgDesktop from '@/assets/images/hero/bg-desktop.png'
+import bgMobile from '@/assets/images/hero/bg-mobile.png'
 import Typed from 'typed.js'
 import BaseIcon from '@/ui/base/BaseIcon.vue'
 
@@ -9,8 +11,6 @@ let typedInstance: Typed | null = null
 
 const initializeTyped = () => {
   if (typedElement.value) {
-    console.log(typedElement.value)
-
     typedInstance = new Typed(typedElement.value, {
       strings: [
         'a Developer',
@@ -55,11 +55,11 @@ onUnmounted(() => {
     <!-- Background Image -->
     <div
       class="absolute inset-0 hidden bg-cover bg-no-repeat md:block md:bg-right lg:bg-left-bottom"
-      style="background-image: url('/src/assets/images/hero/bg-desktop.png')"
+      :style="{ backgroundImage: `url(${bgDesktop})` }"
     />
     <div
       class="absolute inset-0 bg-cover bg-left-bottom bg-no-repeat md:hidden"
-      style="background-image: url('/src/assets/images/hero/bg-mobile.png')"
+      :style="{ backgroundImage: `url(${bgMobile})` }"
     />
 
     <!-- Overlay -->

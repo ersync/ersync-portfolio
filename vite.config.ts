@@ -1,4 +1,3 @@
-// vite.config.ts
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -32,6 +31,26 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  build: {
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (!assetInfo.name) return 'assets/[name]-[hash][extname]'
+
+          const info = assetInfo.name.split('.')
+          const extType = info[info.length - 1]
+
+          if (/png|jpe?g|svg|gif|tiff|webp/i.test(extType)) {
+            return `assets/images/[name]-[hash][extname]`
+          }
+          return `assets/[name]-[hash][extname]`
+        },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+      },
+    },
   },
   server: {
     host: '0.0.0.0'

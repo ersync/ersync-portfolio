@@ -1,4 +1,14 @@
+// Import all images at the top
+import skeletonLoader from '@/assets/images/projects/skeleton-loader.png'
+import tmdbClone from '@/assets/images/projects/tmdb-clone.png'
+import portfolio from '@/assets/images/projects/portfolio.png'
+import portfolioDark from '@/assets/images/projects/portfolio-dark.png'
+import persogenApi from '@/assets/images/projects/persogen-api.png'
+import persianCoffeeshop from '@/assets/images/projects/persian-coffeeshop.png'
+import vueChatlog from '@/assets/images/projects/vue-chatlog.png'
+
 import type { Project } from '@/types/project'
+
 export const projects: Project[] = [
   {
     id: 1,
@@ -7,7 +17,7 @@ export const projects: Project[] = [
     technologies: ['Ruby', 'Ruby on Rails', 'CSS', 'Javascript'],
     demoLink: 'https://rubygems.org/gems/skeleton-loader',
     githubLink: 'https://github.com/ersync/skeleton-loader',
-    image: '/src/assets/images/projects/skeleton-loader.png',
+    image: skeletonLoader,
     category: ['backend']
   },
   {
@@ -18,7 +28,7 @@ export const projects: Project[] = [
     technologies: ['Vue.js', 'Ruby on Rails', 'Tailwind CSS', 'PostgreSQL'],
     demoLink: 'https://github.com/ersync/',
     githubLink: 'https://github.com/ersync/',
-    image: '/src/assets/images/projects/tmdb-clone.png',
+    image: tmdbClone,
     category: ['backend', 'frontend']
   },
   {
@@ -28,10 +38,7 @@ export const projects: Project[] = [
     technologies: ['Vue.js', 'Tailwind CSS', 'TypeScript', 'Vite'],
     demoLink: 'https://emadrahimi.dev',
     githubLink: 'https://github.com/ersync/',
-    image: [
-      '/src/assets/images/projects/portfolio.png',
-      '/src/assets/images/projects/portfolio-dark.png'
-    ],
+    image: [portfolio, portfolioDark],
     category: ['frontend']
   },
   {
@@ -41,7 +48,7 @@ export const projects: Project[] = [
     technologies: ['Ruby on Rails', 'REST API', 'RSpec', 'JWT Auth'],
     demoLink: 'https://github.com/ersync/persogen',
     githubLink: 'https://github.com/ersync/persogen',
-    image: '/src/assets/images/projects/persogen-api.png',
+    image: persogenApi,
     category: ['backend']
   },
   {
@@ -52,7 +59,7 @@ export const projects: Project[] = [
     technologies: ['HTML', 'Tailwind CSS', 'JavaScript', 'Git'],
     demoLink: 'https://coffeeshop-ersync.vercel.app/',
     githubLink: 'https://github.com/ersync/coffeeshop-responsive-website',
-    image: '/src/assets/images/projects/persian-coffeeshop.png',
+    image: persianCoffeeshop,
     category: ['frontend']
   },
   {
@@ -62,7 +69,7 @@ export const projects: Project[] = [
     technologies: ['Vue.js', 'HTML', 'Tailwind CSS', 'Vite'],
     demoLink: 'https://vue-chatlog.vercel.app/',
     githubLink: 'https://github.com/ersync?tab=repositories',
-    image: '/src/assets/images/projects/vue-chatlog.png',
+    image: vueChatlog,
     category: ['frontend']
   }
 ]

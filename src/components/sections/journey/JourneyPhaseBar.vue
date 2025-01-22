@@ -10,7 +10,6 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
 }>()
 
-console.log(phase.phasesSummaries)
 </script>
 
 <template>
