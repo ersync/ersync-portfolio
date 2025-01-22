@@ -27,8 +27,8 @@ const themeStore = useThemeStore()
 
 onMounted(async () => {
   try {
-    const MIN_TIME = 2000
-    const MAX_TIME = 6000
+    const MIN_TIME = 1000
+    const MAX_TIME = 7000
 
     const allImages = [
       bgDesktop, bgMobile, skeletonLoader, tmdbClone,

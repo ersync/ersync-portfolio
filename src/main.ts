@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
+import { VueReCaptcha } from 'vue-recaptcha-v3'
 import { MotionPlugin } from '@vueuse/motion'
 import './assets/main.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -22,5 +23,11 @@ const pinia = createPinia()
 
 app.use(MotionPlugin)
 app.use(pinia)
+app.use(VueReCaptcha, {
+  siteKey: import.meta.env.VITE_RECAPTCHA_SITE_KEY,
+  loaderOptions: {
+    autoHideBadge: true
+  }
+})
 app.component('FontAwesomeIcon', FontAwesomeIcon)
 app.mount('#app')

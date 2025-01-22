@@ -9,7 +9,7 @@ import ContactForm from '@/components/sections/contact-me/ContactForm.vue'
 <template>
   <section
     id="contact"
-    class="relative w-full overflow-hidden bg-[#F7F9FB] py-20 dark:bg-[#1b1b1f]"
+    class="relative w-full overflow-hidden bg-[#F7F9FB] pt-20 pb-8 dark:bg-[#1b1b1f]"
   >
     <div
       class="absolute inset-0"

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useReCaptcha } from 'vue-recaptcha-v3'
 
 const isSubmitted = ref(false)
 const isLoading = ref(false)
+const { executeRecaptcha, recaptchaLoaded } = useReCaptcha()!
 
 const handleSubmit = async (e: Event) => {
   e.preventDefault()
@@ -12,9 +14,17 @@ const handleSubmit = async (e: Event) => {
   if (!form) return
 
   try {
+    // Execute reCAPTCHA first
+    await recaptchaLoaded()
+    const token = await executeRecaptcha('contact_form')
+
+    // Create FormData and append reCAPTCHA token
+    const formData = new FormData(form)
+    formData.append('g-recaptcha-response', token)
+
     const response = await fetch('https://formspree.io/f/xnnnewqv', {
       method: 'POST',
-      body: new FormData(form),
+      body: formData,
       headers: {
         Accept: 'application/json'
       }
@@ -62,7 +72,7 @@ const handleSubmit = async (e: Event) => {
       </div>
       <div>
         <label class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >Message</label
+        >Message</label
         >
         <textarea
           name="message"
@@ -73,17 +83,28 @@ const handleSubmit = async (e: Event) => {
       </div>
       <button
         type="submit"
+        :disabled="isLoading"
         class="w-full rounded-lg bg-teal-500 px-4 py-2 text-white transition-colors duration-300 hover:bg-teal-600 dark:bg-teal-600 dark:hover:bg-teal-500"
       >
-        Send Message
+        {{ isLoading ? 'Sending...' : 'Send Message' }}
       </button>
 
       <p
         v-if="isSubmitted"
-        class="animate-fade-in text-center font-medium text-teal-500 dark:text-teal-400"
+        class="animate-fade-in text-center font-medium text-[13px] text-teal-500 dark:text-teal-400"
       >
         Thank you! Your message has been sent successfully.
       </p>
+
+      <!-- reCAPTCHA notice -->
+      <small class="block text-center text-[11px] text-gray-500 dark:text-gray-400">
+        Bad robots not allowed! Protected by reCAPTCHA - <br/>
+        <a href="https://policies.google.com/privacy"
+        class="text-teal-500 hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-500"
+        target="_blank"
+        rel="noopener noreferrer"
+        >boring legal stuff</a>
+      </small>
     </div>
   </form>
 </template>
