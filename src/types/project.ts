@@ -7,6 +7,6 @@ export interface Project {
   technologies: string[]
   demoLink: string
   githubLink: string
-  image: string
+  image: string | [string, string]
   category: ProjectCategory[]
 }
