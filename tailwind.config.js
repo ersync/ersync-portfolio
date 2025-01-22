@@ -16,6 +16,9 @@ export default {
           light: '#7bb8a7'
         },
         charcoal: '#45505b'
+      },
+      boxShadow: {
+        teal: '0 0 15px rgba(20,184,166,0.15)'
       }
     },
     screens: {

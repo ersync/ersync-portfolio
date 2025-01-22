@@ -2,21 +2,25 @@
 import PrincipleCard from '@/ui/PrincipleCard.vue'
 import SkillCard from '@/ui/SkillCard.vue'
 import SectionHeader from '@/ui/SectionHeader.vue'
+import HighlightGrid from '@/ui/base/HighlightGrid.vue'
+import FadeUpOnScroll from '@/ui/FadeUpOnScroll.vue'
 </script>
 
 <template>
-  <div id="about" class="relative min-h-screen w-full overflow-hidden bg-[#F7F9FB] py-16">
+  <div
+    id="about"
+    class="relative min-h-screen w-full overflow-hidden bg-[#F7F9FB] py-20 dark:bg-[#1b1b1f]"
+  >
+    <!-- Light Mode Specific Background -->
     <div
-      class="absolute inset-0"
+      class="absolute inset-0 dark:hidden"
       style="
         background: linear-gradient(160deg, #f4fcfc 0%, #efeff2 35%, #f0f2f2 55%, #e4f1f2 100%);
         filter: blur(80px);
       "
     />
-
-    <!-- Subtle gradient overlay -->
     <div
-      class="absolute inset-0 bg-gradient-to-br from-[#F1F5F9]/30 via-transparent to-[#E6FFF9]/20"
+      class="absolute inset-0 bg-gradient-to-br from-[#F1F5F9]/30 via-transparent to-[#E6FFF9]/20 dark:hidden"
     />
 
     <!-- Decorative Background -->
@@ -40,14 +44,9 @@ import SectionHeader from '@/ui/SectionHeader.vue'
           fill="#14b8a6"
           fill-opacity="0.03"
         />
-
-        <circle cx="450" cy="50" r="3" fill="#14b8a6" fill-opacity="0.1" />
-        <circle cx="470" cy="70" r="2" fill="#14b8a6" fill-opacity="0.1" />
-        <circle cx="430" cy="40" r="2" fill="#14b8a6" fill-opacity="0.1" />
       </svg>
 
       <!-- Bottom wave -->
-
       <svg class="absolute bottom-0 left-0 h-[200px] w-full">
         <use xlink:href="#bottom-wave" />
       </svg>
@@ -55,143 +54,103 @@ import SectionHeader from '@/ui/SectionHeader.vue'
 
     <!-- Content -->
     <div class="container relative z-10">
-      <!-- Section Title -->
-      <SectionHeader title="About Me" subtitle="" />
-
-      <!-- Main Content -->
+      <FadeUpOnScroll>
+        <SectionHeader title="About Me" subtitle="" />
+      </FadeUpOnScroll>
 
       <!-- Intro Section -->
-      <div
-        class="mt-1 flex flex-wrap items-start justify-center gap-8 lg:flex-nowrap lg:justify-between"
-      >
-        <!-- Text Content -->
-        <div class="space-y-5">
-          <p class="leading-relaxed text-gray-600">
-            Hi! I'm <strong class="font-VarelaRound">Emad</strong>, a web developer from Iran with a
-            passion for crafting digital experiences. I specialize in
-            <span class="rounded-md bg-gray-200/60 px-1 py-0.5">Ruby on Rails</span> and
-            <span class="rounded-md bg-gray-200/60 px-1 py-0.5">Vue.js</span>, bringing ideas to
-            life by building features that solve problems and make things better. With every
-            project, I combine technical precision and creative problem-solving to deliver solutions
-            that leave a lasting impact.
-          </p>
-          <p class="leading-relaxed text-gray-600">
-            Outside of coding, you'll catch me cheering at live sporting events, learning from
-            developer communities, and exploring new technologies. I enjoy helping others when I
-            can, as I believe we grow better together.
-          </p>
-        </div>
-
-        <!-- Grid Content -->
+      <FadeUpOnScroll :delay="200">
         <div
-          class="flex h-full flex-wrap items-stretch justify-center gap-4 sm:shrink-0 lg:max-w-[50%]"
+          class="mt-1 flex flex-wrap items-start justify-center gap-8 lg:flex-nowrap lg:justify-between"
         >
-          <div class="w-[47%] rounded-lg bg-[#fff]/90 p-4 shadow-sm backdrop-blur">
-            <div class="text-2xl font-bold text-teal-600">2+ Years</div>
-            <div class="text-sm text-gray-500">Experience</div>
+          <!-- Text Content -->
+          <div class="space-y-5 text-gray-600 dark:text-[#E0E0E0]">
+            <p class="leading-relaxed">
+              Hi! I'm <strong class="font-VarelaRound">Emad</strong>, a web developer from Iran with
+              a passion for crafting digital experiences. I specialize in
+              <span class="rounded-md bg-gray-200/60 px-1 py-0.5 dark:bg-gray-500/25"
+                >Ruby on Rails</span
+              >
+              and
+              <span class="rounded-md bg-gray-200/60 px-1 py-0.5 dark:bg-gray-500/25">Vue.js</span>,
+              bringing ideas to life by building features that solve problems and make things
+              better. With every project, I combine technical precision and creative problem-solving
+              to deliver solutions that leave a lasting impact.
+            </p>
+            <p class="leading-relaxed">
+              Outside of coding, you'll catch me cheering at live sporting events, learning from
+              developer communities, and exploring new technologies. I enjoy helping others when I
+              can, as I believe we grow better together.
+            </p>
           </div>
-          <div class="w-[47%] rounded-lg bg-[#fff]/90 p-4 shadow-sm backdrop-blur">
-            <div class="text-2xl font-bold text-teal-600">
-              Fu<span class="relative font-bold text-red-400/90"
-                >ll
-                <span class="absolute left-[2px] top-[7.2px] h-[2px] w-[8px] bg-red-400/50" />
-                <span class="absolute left-[2px] top-[12.4px] h-[2px] w-[8px] bg-red-400/50" />
-                <span class="absolute left-[2px] top-[17.5px] h-[2px] w-[8px] bg-red-400/50" />
-              </span>
-              Stack
-            </div>
-            <div class="text-sm text-gray-500">Developer</div>
-          </div>
-          <div class="w-[47%] rounded-lg bg-[#fff]/90 p-4 shadow-sm backdrop-blur">
-            <div class="text-2xl font-bold text-teal-600">Problem</div>
-            <div class="text-sm text-gray-500">Solver</div>
-          </div>
-          <div class="w-[47%] rounded-lg bg-[#fff]/90 p-4 shadow-sm backdrop-blur">
-            <div class="text-2xl font-bold text-teal-600">Team</div>
-            <div class="text-sm text-gray-500">Player</div>
-          </div>
+
+          <!-- Grid Content -->
+          <HighlightGrid />
         </div>
-      </div>
+      </FadeUpOnScroll>
 
       <!-- Skills Section -->
-      <div class="mt-12">
-        <h3 class="mb-6 text-center text-xl font-semibold text-gray-800 sm:text-left">
-          Technical Skills
-        </h3>
-        <div class="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-          <!-- Rails -->
-          <SkillCard
-            title="Ruby on Rails"
-            description="backend"
-            icon-name="rails"
-            icon-color="#e11d48"
-            icon-bg-color="#fff1f2"
-            background-color="#fff7f7d9"
-            shadow-color="red"
-          />
-
-          <SkillCard
-            title="Vue.js"
-            description="frontend"
-            icon-name="vue"
-            icon-color="#059669"
-            icon-bg-color="#ecfdf5"
-            background-color="#f9fff9d9"
-            shadow-color="green"
-          />
-
-          <SkillCard
-            title="TypeScript"
-            description="language"
-            icon-name="typescript"
-            icon-color="#2563eb"
-            icon-bg-color="#eff6ff"
-            background-color="#eff6ffd9"
-            shadow-color="blue"
-          />
-
-          <SkillCard
-            title="PostgreSQL"
-            description="database"
-            icon-name="postgresql"
-            icon-color="#e11d48"
-            icon-bg-color="#eef2ff"
-            background-color="#f5fefea7"
-            shadow-color="cyan"
-          />
+      <FadeUpOnScroll :delay="400">
+        <div class="mt-12">
+          <h3
+            class="mb-6 text-center text-xl font-semibold text-gray-800 dark:text-gray-200 sm:text-left"
+          >
+            Core Technologies
+          </h3>
+          <div class="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+            <SkillCard
+              title="Ruby on Rails"
+              description="backend"
+              icon-name="rails"
+              variant="red"
+            />
+            <SkillCard title="Vue.js" description="frontend" icon-name="vue" variant="green" />
+            <SkillCard
+              title="TypeScript"
+              description="language"
+              icon-name="typescript"
+              variant="blue"
+            />
+            <SkillCard
+              title="PostgreSQL"
+              description="database"
+              icon-name="postgresql"
+              variant="cyan"
+            />
+          </div>
         </div>
-      </div>
+      </FadeUpOnScroll>
+
       <!-- Development Principles Section -->
-      <div class="mt-20">
-        <h3 class="mb-6 text-center text-xl font-semibold text-gray-800 sm:text-left">
-          Development Principles
-        </h3>
-        <div class="grid gap-6 md:grid-cols-3">
-          <principle-card
-            title="Clean Code"
-            icon-name="lightning"
-            description="Writing maintainable, well-documented code that stads the test of time"
-            icon-color="#0d9488"
-            icon-bg-color="#f0fdfa"
-          />
-
-          <principle-card
-            title="Problem Solving"
-            icon-name="setting"
-            description="Breaking down complex challenges into manageable solutions."
-            icon-color="#e11d48"
-            icon-bg-color="#fff1f288"
-          />
-
-          <principle-card
-            title="Continuous Learning"
-            icon-name="clock"
-            description="Staying current with best practices and emerging technologies."
-            icon-color="#2563eb"
-            icon-bg-color="#dbeafe88"
-          />
+      <FadeUpOnScroll :delay="600">
+        <div class="mt-20">
+          <h3
+            class="mb-6 text-center text-xl font-semibold text-gray-800 dark:text-gray-200 sm:text-left"
+          >
+            Development Principles
+          </h3>
+          <div class="grid gap-6 md:grid-cols-3">
+            <PrincipleCard
+              title="Clean Code"
+              icon-name="lightning"
+              description="Writing maintainable, well-documented code that stands the test of time"
+              variant="teal"
+            />
+            <PrincipleCard
+              title="Problem Solving"
+              icon-name="setting"
+              description="Breaking down complex challenges into manageable solutions."
+              variant="rose"
+            />
+            <PrincipleCard
+              title="Continuous Learning"
+              icon-name="clock"
+              description="Staying current with best practices and emerging technologies."
+              variant="blue"
+            />
+          </div>
         </div>
-      </div>
+      </FadeUpOnScroll>
     </div>
   </div>
 </template>
