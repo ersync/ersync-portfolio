@@ -1,6 +1,6 @@
 // Import all images at the top
 import skeletonLoader from '@/assets/images/projects/skeleton-loader.png'
-import tmdbClone from '@/assets/images/projects/tmdb-clone.png'
+import cinemad from '@/assets/images/projects/cinemad.png'
 import portfolio from '@/assets/images/projects/portfolio.png'
 import portfolioDark from '@/assets/images/projects/portfolio-dark.png'
 import persogenApi from '@/assets/images/projects/persogen-api.png'
@@ -10,29 +10,20 @@ import vueChatlog from '@/assets/images/projects/vue-chatlog.png'
 import type { Project } from '@/types/project'
 
 export const projects: Project[] = [
+
   {
     id: 1,
-    title: 'Skeleton Loader Gem',
-    description: 'Customizable skeleton loading screens for Ruby on Rails applications',
-    technologies: ['Ruby', 'Ruby on Rails', 'CSS', 'Javascript'],
-    demoLink: 'https://rubygems.org/gems/skeleton-loader',
-    githubLink: 'https://github.com/ersync/skeleton-loader',
-    image: skeletonLoader,
-    category: ['backend']
-  },
-  {
-    id: 2,
-    title: 'TMDB Clone',
+    title: 'Cinemad',
     description:
-      'Full-stack TMDB clone built with Rails and Vue, featuring personalized user experience',
-    technologies: ['Vue.js', 'Ruby on Rails', 'Tailwind CSS', 'PostgreSQL'],
-    demoLink: 'https://github.com/ersync/',
-    githubLink: 'https://github.com/ersync/',
-    image: tmdbClone,
+      'Feature-rich film discovery application built with Ruby on Rails and Vue.js, offering comprehensive movie database and personalized user experience',
+    technologies: ['Vue.js', 'Ruby on Rails', 'PostgreSQL', 'Vite'],
+    demoLink: 'https://cinemad.emadrahimi.dev',
+    githubLink: 'https://github.com/ersync/cinemad',
+    image: cinemad,
     category: ['backend', 'frontend']
   },
   {
-    id: 3,
+    id: 2,
     title: 'Personal Portfolio',
     description: 'Responsive Vue portfolio featuring dark mode and smooth animated transitions',
     technologies: ['Vue.js', 'Tailwind CSS', 'TypeScript', 'Vite'],
@@ -40,6 +31,16 @@ export const projects: Project[] = [
     githubLink: 'https://github.com/ersync/',
     image: [portfolio, portfolioDark],
     category: ['frontend']
+  },
+  {
+    id: 3,
+    title: 'Skeleton Loader Gem',
+    description: 'A Ruby gem that generates skeleton loading screens directly from backend code without JavaScript dependencies',
+    technologies: ['Ruby', 'Ruby on Rails', 'CSS', 'Javascript'],
+    demoLink: 'https://rubygems.org/gems/skeleton-loader',
+    githubLink: 'https://github.com/ersync/skeleton-loader',
+    image: skeletonLoader,
+    category: ['backend']
   },
   {
     id: 4,

@@ -12,10 +12,10 @@ import TheFooter from '@/components/sections/TheFooter.vue'
 import MobileNavigation from '@/components/mobile-navigation/MobileNavigation.vue'
 
 import bgDesktop from '@/assets/images/hero/bg-desktop.png'
-import bgMobile from '@/assets/images/hero/bg-mobile.png'
+import bgMobile from '@/assets/images/hero/bg-mobile.jpg'
 
 import skeletonLoader from '@/assets/images/projects/skeleton-loader.png'
-import tmdbClone from '@/assets/images/projects/tmdb-clone.png'
+import cinemad from '@/assets/images/projects/cinemad.png'
 import portfolio from '@/assets/images/projects/portfolio.png'
 import portfolioDark from '@/assets/images/projects/portfolio-dark.png'
 import persogenApi from '@/assets/images/projects/persogen-api.png'
@@ -27,11 +27,11 @@ const themeStore = useThemeStore()
 
 onMounted(async () => {
   try {
-    const MIN_TIME = 1000
+    const MIN_TIME = 2000
     const MAX_TIME = 7000
 
     const allImages = [
-      bgDesktop, bgMobile, skeletonLoader, tmdbClone,
+      bgDesktop, bgMobile, skeletonLoader, cinemad,
       portfolio, portfolioDark, persogenApi,
       persianCoffeeshop, vueChatlog
     ]

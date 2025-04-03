@@ -5,8 +5,11 @@ import type { DebouncedFunc } from 'lodash'
 import NavigationItem from '@/components/desktop-navigation/NavigationItem.vue'
 import { useNavigationStore } from '@/stores/navigationStore'
 import type { NavItemName } from '@/stores/navigationStore'
+import { useDeviceDetection } from '@/composables/useDeviceDetection'
 
 const navigation = useNavigationStore()
+
+const { isMobileDevice } = useDeviceDetection()
 
 const sections: NavItemName[] = ['home', 'about', 'projects', 'journey', 'contact']
 
@@ -36,7 +39,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <header class="fixed top-1/2 z-50 ml-3 hidden -translate-y-1/2 md:block">
+  <header v-show="!isMobileDevice" class="fixed top-1/2 z-50 ml-3 hidden -translate-y-1/2 md:block">
     <nav>
       <ul class="flex flex-col items-start justify-center gap-y-2">
         <NavigationItem v-for="section in sections" :key="section" :name="section" />

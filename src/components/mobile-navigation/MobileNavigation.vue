@@ -2,7 +2,7 @@
   <div>
     <!-- Mobile Navigation Bar -->
     <nav
-      class="mobile-nav fixed inset-x-0 z-50 flex h-[60px] items-center justify-between bg-white/75 px-4 shadow-[0_0_15px_rgba(20,184,166,0.1)] backdrop-blur-lg dark:bg-[#1b1b1fdd] md:flex-row-reverse"
+      class="mobile-nav fixed inset-x-0 z-50 flex h-[60px] items-center justify-between bg-white/85 px-4 shadow-[0_0_15px_rgba(20,184,166,0.1)] backdrop-blur-lg dark:bg-[#1b1b1fdd] md:flex-row-reverse"
       :class="{ 'nav-up': !isVisible }"
     >
       <!-- Theme Toggle -->

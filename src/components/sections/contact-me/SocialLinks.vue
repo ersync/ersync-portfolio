@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const socialLinks = [
   { icon: 'github', url: 'https://github.com/ersync' },
-  { icon: 'linkedin', url: 'https://linkedin.com/' },
-  { icon: 'x-twitter', url: 'https://x.com/' }
+  { icon: 'linkedin', url: 'https://linkedin.com/in/erahimidev' },
+  { icon: 'x-twitter', url: 'https://x.com/emadrahimidev' }
 ]
 </script>
 

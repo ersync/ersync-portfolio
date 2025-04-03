@@ -8,7 +8,8 @@ export default {
         OpenSans: ['Open Sans', 'sans-sarif'],
         Raleway: ['Raleway', 'sans-sarif'],
         Poppins: ['Poppins', 'sans-sarif'],
-        VarelaRound: ['Varela Round', 'sans-sarif']
+        VarelaRound: ['Varela Round', 'sans-sarif'],
+        Outfit: ['Outfit', 'sans-sarif']
       },
       colors: {
         sage: {

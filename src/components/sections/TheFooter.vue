@@ -15,7 +15,7 @@
 
         <!-- Copyright Section -->
         <div class="text-center">
-          <p class="mb-1 text-[11px] text-gray-600 dark:text-gray-400 sm:mb-2 sm:text-[15px]">
+          <p class="mb-1 text-[11px] text-gray-600 dark:text-gray-400 sm:mb-2 sm:text-[14px]">
             Designed & Crafted with
             <span class="inline-block animate-pulse text-pink-500 dark:text-pink-400"
               ><font-awesome-icon class="w-3" :icon="['fas', 'heart']"

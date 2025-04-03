@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, onUnmounted, nextTick } from 'vue'
 import bgDesktop from '@/assets/images/hero/bg-desktop.png'
-import bgMobile from '@/assets/images/hero/bg-mobile.png'
+import bgMobile from '@/assets/images/hero/bg-mobile.jpg'
 import Typed from 'typed.js'
 import BaseIcon from '@/ui/base/BaseIcon.vue'
 
@@ -54,11 +54,11 @@ onUnmounted(() => {
   <div id="home" class="relative h-screen w-full overflow-hidden">
     <!-- Background Image -->
     <div
-      class="absolute inset-0 hidden bg-cover bg-no-repeat md:block md:bg-right lg:bg-left-bottom"
+      class="absolute inset-0 hidden bg-cover bg-no-repeat md:block  lg:bg-left-bottom"
       :style="{ backgroundImage: `url(${bgDesktop})` }"
     />
     <div
-      class="absolute inset-0 bg-cover bg-left-bottom bg-no-repeat md:hidden"
+      class="absolute inset-0 bg-cover bg-[50%_50%] bg-no-repeat md:hidden"
       :style="{ backgroundImage: `url(${bgMobile})` }"
     />
 
@@ -71,10 +71,10 @@ onUnmounted(() => {
 
       <!-- Animated orbs -->
       <div
-        class="animate-pulse-slow absolute left-0 top-[-20%] z-[1] size-[50%] rounded-full bg-teal-400/20 blur-3xl dark:bg-teal-200/25"
+        class="animate-pulse-slow absolute left-0 top-[-20%] z-[1] size-[50%] rounded-full bg-teal-400/20 blur-3xl dark:hidden"
       />
       <div
-        class="animate-pulse-slow absolute bottom-[-20%] right-0 z-[1] size-[50%] rounded-full bg-teal-300/20 blur-3xl dark:bg-pink-200/25"
+        class="animate-pulse-slow absolute bottom-[-20%] right-0 z-[1] size-[50%] rounded-full bg-teal-300/20 blur-3xl dark:hidden"
       />
 
       <!-- Content -->
@@ -84,17 +84,17 @@ onUnmounted(() => {
           class="relative z-[2] ml-[18vw] flex w-full select-none flex-col items-start justify-center custom-md:ml-[16vw]"
         >
           <h1
-            class="text-center font-Raleway text-[28px] font-bold text-black/100 drop-shadow-sm dark:text-white/85 dark:drop-shadow-lg xs:text-[38px] sm:text-[48px] md:text-[56px] custom-md:text-[64px]"
+            class="text-center font-Outfit text-[28px] font-normal text-black/100 drop-shadow-sm dark:text-white/95 dark:drop-shadow-lg xs:text-[38px] sm:text-[48px] md:text-[56px] custom-md:text-[64px]"
           >
             Emad Rahimi
           </h1>
 
           <p
-            class="font-Poppins text-[17px] font-bold text-gray-900 dark:font-medium dark:text-white/85 xs:text-[22px] sm:text-[25px] md:text-[28px]"
+            class="font-Poppins text-[17px] font-bold text-gray-900 dark:font-medium dark:text-white/95 xs:text-[22px] sm:text-[25px] md:text-[28px]"
           >
             I am
             <span
-              class="typed-span text-shadow-sm font-extrabold text-teal-800 dark:font-semibold dark:text-[#4c927e]"
+              class="typed-span text-shadow-sm  text-teal-800 dark:text-[#4a927f] dark:text-shadow-sm"
               ref="typedElement"
             />
           </p>
@@ -107,14 +107,14 @@ onUnmounted(() => {
               />
             </a>
 
-            <a href="linkedin.com/" class="transition-all duration-300 hover:scale-110">
+            <a href="https://linkedin.com/in/erahimidev" class="transition-all duration-300 hover:scale-110">
               <base-icon
                 name="linkedin"
                 class="h-auto w-[32px] p-2 pb-[10px] text-[#101010] transition-all hover:text-teal-600 dark:text-[#ffffffe4] dark:hover:text-[#4c927e] sm:w-[34px]"
               />
             </a>
 
-            <a href="twitter.com/" class="transition-all duration-300 hover:scale-110">
+            <a href="https://x.com/emadrahimidev" class="transition-all duration-300 hover:scale-110">
               <base-icon
                 name="x"
                 class="h-auto w-[31px] p-2 text-[#121212] transition-all hover:text-teal-600 dark:text-[#ffffffe4] dark:hover:text-[#4c927e] sm:w-[33px]"
@@ -161,7 +161,7 @@ onUnmounted(() => {
 }
 
 .animate-pulse-slow {
-  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: pulse-slow 1400s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .typed-span,
@@ -179,24 +179,7 @@ onUnmounted(() => {
   transition: opacity 1400ms ease;
 }
 
-@media (max-width: 640px) {
-  .light-gradient {
-    background: linear-gradient(
-      -54deg,
-      #ffffff00 0%,
-      #ffffff31 20%,
-      #ffffff21 40%,
-      #ffffff60 50%,
-      #ffffff89 57%,
-      #ffffff60 58%,
-      #ffffff71 62%,
-      #ffffff17 75%,
-      #ffffff1a 100%
-    );
-  }
-}
-
-@media (min-width: 641px) {
+@media (min-width: 768px) {
   .light-gradient {
     background: linear-gradient(
       -11deg,
@@ -219,27 +202,27 @@ onUnmounted(() => {
   transition: opacity 1400ms ease;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   .dark-gradient {
     background: linear-gradient(
-      to bottom left,
-      rgba(18, 18, 18, 0.03),
-      rgba(18, 18, 18, 0.6),
-      rgba(18, 18, 18, 0.75),
-      rgba(18, 18, 18, 0.6)
+      -132deg,
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.62),
+      rgba(0, 0, 0, 0.62)
     );
   }
 }
 
-@media (min-width: 641px) {
+@media (min-width: 768px) {
   .dark-gradient {
     background: linear-gradient(
-      -121deg,
-      rgba(255, 255, 255, 0.01),
-      rgba(18, 18, 18, 0.35),
-      rgba(18, 18, 18, 0.55),
-      rgba(18, 18, 18, 0.65),
-      rgba(18, 18, 18, 0.19)
+      -144deg,
+      rgba(8, 18, 18, 0.91),
+      rgba(18, 18, 18, 0.5),
+      rgba(18, 18, 18, 0.66),
+      rgba(18, 18, 18, 0.77),
+      rgba(18, 18, 18, 0.75),
+      rgba(18, 18, 18, 0.82)
     );
   }
 }
@@ -253,7 +236,11 @@ onUnmounted(() => {
 }
 
 .text-shadow-sm {
-  text-shadow: 0 0 1.7px rgba(210, 210, 210, 1);
+  text-shadow: 0 0 2.4px rgba(210, 230, 210, 1)!important;
+}
+
+:where(.dark) .text-shadow-sm  {
+  text-shadow: 0 0 1.4px rgba(40, 40, 40, 1)!important;
 }
 
 @media (min-width: 1810px) {
