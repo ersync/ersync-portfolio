@@ -1,39 +1,54 @@
-# ersync-portfolio
+# Emad Rahimi - Portfolio Website
 
-This template should help get you started developing with Vue 3 in Vite.
+[![Website](https://img.shields.io/badge/Website-emadrahimi.dev-brightgreen)](https://emadrahimi.dev)
+[![GitHub](https://img.shields.io/github/stars/ersync?style=social)](https://github.com/ersync)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](https://linkedin.com/in/erahimidev)
 
-## Recommended IDE Setup
+A modern, responsive personal portfolio website showcasing my skills, projects, and journey as a web developer.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Technologies
 
-## Type Support for `.vue` Imports in TS
+This website is built using a modern tech stack, emphasizing performance and maintainability:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+* **Frontend:** Vue.js 3, TypeScript, Tailwind CSS, Vite
+* **State Management:** Pinia
+* **Additional Libraries:** VueUse, Vue ReCaptcha v3, Font Awesome
 
-## Customize configuration
+## Features
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+* **Responsive Design:** Optimized for all devices from mobile to desktop
+* **Dark/Light Mode:** Toggle between themes with system preference detection
+* **Interactive Sections:** Home, About, Projects, Journey, and Contact
+* **Project Showcase:** Filterable project gallery with live demos
+* **Journey Timeline:** Visual representation of my learning and development path
+* **Smooth Animations:** Scroll-triggered animations for enhanced UX
+* **Contact Form:** Integrated with Formspree and protected by reCAPTCHA
 
-## Project Setup
+## Project Highlights
 
-```sh
-npm install
-```
+Here are a few featured projects showcased on the site:
 
-### Compile and Hot-Reload for Development
+* **Cinemad:** Film discovery application with comprehensive movie database built with Ruby on Rails and Vue.js
+* **Skeleton Loader Gem:** A Ruby gem that generates skeleton loading screens directly from backend code
+* **Persogen API:** Rails API service for generating realistic personal testing data
+* **Persian Coffeeshop:** Modern Persian coffee shop website featuring RTL design
+* **(And more - see the Projects section on the website!)**
 
-```sh
-npm run dev
-```
+## Roadmap
 
-### Type-Check, Compile and Minify for Production
+I'm planning to expand this portfolio with the following additions:
 
-```sh
-npm run build
-```
+* **Technical Blog:** A dedicated blog section where I'll share:
+  * Detailed technical tutorials and solutions
+  * Insights from my learning journey
+  * Deep dives into interesting programming concepts
+  * Code snippets and practical examples
+* **Resource Collection:** Curated list of learning resources that have helped me grow
 
-### Lint with [ESLint](https://eslint.org/)
+## License
 
-```sh
-npm run lint
-```
+[MIT](LICENSE)
+
+## Contact
+
+Emad Rahimi - [contact@emadrahimi.dev](mailto:contact@emadrahimi.dev)
