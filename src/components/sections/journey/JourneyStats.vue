@@ -3,25 +3,46 @@ interface Stat {
   value: string
   label: string
 }
-
 defineProps<{
   stats: Stat[]
 }>()
 </script>
 
 <template>
-  <div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-4">
+  <div class="my-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
     <div
       v-for="stat in stats"
       :key="stat.label"
-      class="rounded-xl bg-white/90 p-6 text-center shadow-lg shadow-emerald-500/5 backdrop-blur transition-all duration-300 hover:shadow-lg dark:bg-[#1A1A1A]/80 dark:backdrop-blur-xl"
+      class="rounded-xl bg-slate-800/30 p-6 text-center shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:transform hover:-translate-y-1 border border-slate-700/50 glow-container"
     >
-      <div class="mb-2 text-3xl font-bold text-teal-500 dark:text-teal-400">
+      <div class="mb-2 text-3xl font-bold text-teal-400">
         {{ stat.value }}
       </div>
-      <div class="text-gray-600 dark:text-gray-400">
+      <div class="text-slate-300">
         {{ stat.label }}
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.glow-container {
+  position: relative;
+}
+.glow-container::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.08) 0%, transparent 70%);
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(20px);
+}
+.glow-container:hover::after {
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.15) 0%, transparent 70%);
+}
+</style>

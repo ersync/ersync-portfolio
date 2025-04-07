@@ -1,28 +1,74 @@
 <script setup lang="ts">
-import { onMounted, ref, onUnmounted, nextTick } from 'vue'
-import bgDesktop from '@/assets/images/hero/bg-desktop.png'
-import bgMobile from '@/assets/images/hero/bg-mobile.jpg'
+import { onMounted, ref, onUnmounted, nextTick, computed } from 'vue'
 import Typed from 'typed.js'
 import BaseIcon from '@/ui/base/BaseIcon.vue'
+import { useNavigationStore } from '@/stores/navigationStore'
+import type { NavItemName } from '@/stores/navigationStore'
 
-const shouldShow = ref(false)
+// Import navigation store
+const navigation = useNavigationStore()
+
+// Component state
+const heroVisible = ref(false)
 const typedElement = ref<HTMLElement | null>(null)
+const isMobile = ref(window.innerWidth < 768)
+const mousePosition = ref({ x: 0, y: 0 })
 let typedInstance: Typed | null = null
+
+// Social links configuration
+const socialLinks = [
+  {
+    icon: 'github',
+    url: 'https://github.com/ersync',
+    label: 'GitHub',
+    color: 'from-slate-700 to-slate-800',
+    hoverGlow: 'rgba(20, 184, 166, 0.2)'
+  },
+  {
+    icon: 'linkedin',
+    url: 'https://linkedin.com/in/erahimidev',
+    label: 'LinkedIn',
+    color: 'from-teal-800 to-teal-900',
+    hoverGlow: 'rgba(20, 184, 166, 0.2)'
+  },
+  {
+    icon: 'x',
+    url: 'https://x.com/emadrahimidev',
+    label: 'Twitter',
+    color: 'from-slate-700 to-slate-800',
+    hoverGlow: 'rgba(20, 184, 166, 0.2)'
+  }
+]
+
+// Handle window resize for responsive behavior
+const handleResize = () => {
+  isMobile.value = window.innerWidth < 768
+}
+
+// Mouse tracking for interactive elements
+const handleMouseMove = (e: MouseEvent) => {
+  mousePosition.value = {
+    x: (e.clientX / window.innerWidth) * 2 - 1,
+    y: (e.clientY / window.innerHeight) * 2 - 1
+  }
+}
 
 const initializeTyped = () => {
   if (typedElement.value) {
     typedInstance = new Typed(typedElement.value, {
       strings: [
-        'a Developer',
-        'a Nature Explorer',
+        'a Full-Stack Developer',
+        'a Vue.js Artist',
+        'a Rails Architect',
         'a Problem Solver',
-        'a Lifelong Learner',
-        'Turning Coffee into Code'
+        'a Nature Explorer',
+        'Turning coffee into code'
       ],
-      typeSpeed: 110,
-      backSpeed: 70,
-      backDelay: 2000,
-      loop: true
+      typeSpeed: 80,
+      backSpeed: 60,
+      backDelay: 2500,
+      loop: true,
+      smartBackspace: true
     })
   }
 }
@@ -32,220 +78,969 @@ const destroyTyped = () => {
   typedInstance = null
 }
 
-const initializeWithDelay = () => {
-  shouldShow.value = true
-  void nextTick(() => {
-    if (typedElement.value) {
-      initializeTyped()
-    }
-  })
+// Animation sequence
+const initializeWithSequence = async () => {
+  heroVisible.value = true
+  await nextTick()
+
+  if (typedElement.value) {
+    setTimeout(initializeTyped, isMobile.value ? 600 : 1000)
+  }
 }
 
+// Scroll to section function - used for buttons
+const scrollToSection = (sectionId: NavItemName): void => {
+  const element = document.getElementById(sectionId)
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' })
+    navigation.setActiveSection(sectionId)
+  }
+}
+
+// Lifecycle hooks
 onMounted(() => {
-  setTimeout(initializeWithDelay, 100)
+  handleResize() // Set initial mobile state
+  window.addEventListener('resize', handleResize)
+  window.addEventListener('mousemove', handleMouseMove)
+
+  setTimeout(initializeWithSequence, 100)
 })
 
 onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
+  window.removeEventListener('mousemove', handleMouseMove)
   destroyTyped()
+})
+
+// Animation delay utility
+const getAnimationDelay = (index: number) => {
+  return { '--el-index': isMobile.value ? index * 0.5 : index }
+}
+
+// Calculate background movement based on mouse position
+const bgOffset = computed(() => {
+  if (isMobile.value) return { transform: 'none' }
+
+  const offsetX = mousePosition.value.x * 5
+  const offsetY = mousePosition.value.y * 5
+
+  return {
+    transform: `translate(${offsetX}px, ${offsetY}px)`
+  }
 })
 </script>
 
 <template>
-  <div id="home" class="relative h-screen w-full overflow-hidden">
-    <!-- Background Image -->
-    <div
-      class="absolute inset-0 hidden bg-cover bg-no-repeat md:block  lg:bg-left-bottom"
-      :style="{ backgroundImage: `url(${bgDesktop})` }"
-    />
-    <div
-      class="absolute inset-0 bg-cover bg-[50%_50%] bg-no-repeat md:hidden"
-      :style="{ backgroundImage: `url(${bgMobile})` }"
-    />
+  <section id="home" class="hero-section">
+    <!-- Background elements -->
+    <div class="hero-background">
+      <!-- Ambient gradient -->
+      <div class="gradient-bg"></div>
 
-    <!-- Overlay -->
-    <div class="absolute inset-0 flex w-full items-center justify-center">
-      <!-- Theme-based overlay with gradient -->
+      <!-- Subtle grid -->
+      <div class="grid-pattern"></div>
 
-      <div class="light-gradient absolute inset-0" />
-      <div class="dark-gradient absolute inset-0" />
-
-      <!-- Animated orbs -->
+      <!-- Enhanced floating orbs with mouse parallax - from About page -->
       <div
-        class="animate-pulse-slow absolute left-0 top-[-20%] z-[1] size-[50%] rounded-full bg-teal-400/20 blur-3xl dark:hidden"
-      />
+        class="absolute left-20 top-10 md:h-64 md:w-64 h-32 w-32 rounded-full bg-teal-400/10 blur-3xl animate-float-reverse glow"
+        :style="bgOffset"
+      ></div>
       <div
-        class="animate-pulse-slow absolute bottom-[-20%] right-0 z-[1] size-[50%] rounded-full bg-teal-300/20 blur-3xl dark:hidden"
-      />
+        class="absolute -right-2 bottom-1/4 md:h-72 md:w-72 h-40 w-40 rounded-full bg-indigo-500/10 blur-3xl animate-float-delay glow indigo-glow"
+        :style="bgOffset"
+      ></div>
 
-      <!-- Content -->
-      <Transition appear name="zoom-in">
-        <div
-          v-if="shouldShow"
-          class="relative z-[2] ml-[18vw] flex w-full select-none flex-col items-start justify-center custom-md:ml-[16vw]"
-        >
-          <h1
-            class="text-center font-Outfit text-[28px] font-normal text-black/100 drop-shadow-sm dark:text-white/95 dark:drop-shadow-lg xs:text-[38px] sm:text-[48px] md:text-[56px] custom-md:text-[64px]"
-          >
-            Emad Rahimi
-          </h1>
+      <div class="orb orb-accent" :style="bgOffset"></div>
 
-          <p
-            class="font-Poppins text-[17px] font-bold text-gray-900 dark:font-medium dark:text-white/95 xs:text-[22px] sm:text-[25px] md:text-[28px]"
-          >
-            I am
-            <span
-              class="typed-span text-shadow-sm  text-teal-800 dark:text-[#4a927f] dark:text-shadow-sm"
-              ref="typedElement"
-            />
-          </p>
+      <div class="backdrop-mesh"></div>
+    </div>
 
-          <div class="social-media mt-8 flex items-center justify-center gap-8 md:justify-start">
-            <a href="https://github.com/ersync" class="transition-all duration-300 hover:scale-110">
+    <!-- Hero content -->
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-split sm:mt-24">
+          <div class="hero-left">
+            <transition-group appear name="stagger-fade" tag="div" class="content-wrapper">
+              <!-- Badge -->
+              <div
+                v-if="heroVisible"
+                key="badge"
+                class="hero-badge px-2 py-1 sm:px-4 sm:py-2 -mb-2"
+                :style="getAnimationDelay(0)"
+              >
+                <div class="flex justify-center items-center badge-text">
+                  <span
+                    class="w-1 h-1 bg-teal-400 rounded-full mr-1 sm:-mb-0.5 inline-block animate-pulse"
+                  ></span>
+                  <span class="max-sm:text-[11px]">Available for Work</span>
+                </div>
+              </div>
+
+              <!-- Name -->
+              <h1 v-if="heroVisible" key="name" class="hero-name" :style="getAnimationDelay(1)">
+                Emad Rahimi
+              </h1>
+
+              <!-- Role with typing animation -->
+              <div v-if="heroVisible" key="role" class="hero-role" :style="getAnimationDelay(2)">
+                I'm&nbsp<span ref="typedElement" class="typed-text"></span>
+              </div>
+
+              <!-- Concise description -->
+              <p
+                v-if="heroVisible"
+                key="description"
+                class="hero-description"
+                :style="getAnimationDelay(3)"
+              >
+                Crafting exceptional digital experiences that combine
+                <span class="highlight">elegant design</span> with
+                <span class="highlight">powerful functionality</span>.
+              </p>
+
+              <!-- CTA buttons - Modified to use scrollToSection -->
+              <div v-if="heroVisible" key="cta" class="hero-cta" :style="getAnimationDelay(4)">
+                <button @click="scrollToSection('projects')" class="btn-primary">
+                  <span>View Projects</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+                <button @click="scrollToSection('contact')" class="btn-secondary">
+                  Contact Me
+                </button>
+              </div>
+            </transition-group>
+          </div>
+
+          <!-- Right content area - visual element -->
+          <div class="hero-right">
+            <div v-if="heroVisible" class="hero-visual" :style="getAnimationDelay(1)">
+              <div class="code-container">
+                <div class="code-header">
+                  <div class="code-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div class="code-title">developer.js</div>
+                </div>
+                <div class="code-content">
+                  <pre><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {
+  <span class="code-property">name</span>: <span class="code-string">'Emad Rahimi'</span>,
+  <span class="code-property">role</span>: <span class="code-string">'Full-Stack Dev'</span>,
+  <span class="code-property">expertise</span>: [<span class="code-string">'Ruby On Rails'</span>, <span class="code-string">'Vue'</span>],
+  <span class="code-property">available</span>: <span class="code-boolean">true</span>
+};</code></pre>
+                </div>
+              </div>
+              <div class="visual-decoration"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social links in footer -->
+        <div v-if="heroVisible" :style="getAnimationDelay(6)">
+          <div class="social-links">
+            <a
+              v-for="{ icon, url, label, color, hoverGlow } in socialLinks"
+              :key="url"
+              :href="url"
+              :aria-label="label"
+              rel="noopener noreferrer"
+              target="_blank"
+              class="social-link group relative flex items-center justify-center overflow-hidden rounded-xl border border-slate-700/50 bg-slate-800/30 backdrop-blur-sm transition-all duration-300 hover:border-teal-400/30"
+              :style="`--hover-glow: ${hoverGlow}`"
+            >
+              <!-- Background gradient that appears on hover -->
+              <div
+                class="absolute inset-0 opacity-0 transition-all duration-500 group-hover:opacity-20"
+                :class="`bg-gradient-to-br ${color}`"
+              ></div>
+              <!-- Icon with hover animation -->
               <base-icon
-                name="github"
-                class="h-auto w-[34px] p-2 text-[#121212] transition-all hover:text-teal-600 dark:text-[#ffffffe4] dark:hover:text-[#4c927e] sm:w-9"
+                :name="icon"
+                class="relative z-10 text-slate-300 transition-all duration-300 group-hover:text-teal-400"
               />
-            </a>
+              <!-- Subtle corner accent effects -->
 
-            <a href="https://linkedin.com/in/erahimidev" class="transition-all duration-300 hover:scale-110">
-              <base-icon
-                name="linkedin"
-                class="h-auto w-[32px] p-2 pb-[10px] text-[#101010] transition-all hover:text-teal-600 dark:text-[#ffffffe4] dark:hover:text-[#4c927e] sm:w-[34px]"
-              />
-            </a>
-
-            <a href="https://x.com/emadrahimidev" class="transition-all duration-300 hover:scale-110">
-              <base-icon
-                name="x"
-                class="h-auto w-[31px] p-2 text-[#121212] transition-all hover:text-teal-600 dark:text-[#ffffffe4] dark:hover:text-[#4c927e] sm:w-[33px]"
-              />
+              <!-- Circular ripple effect on hover -->
+              <div
+                class="absolute inset-0 rounded-xl bg-teal-500/5 opacity-0 transition-transform duration-700 ease-out group-hover:opacity-100 group-hover:scale-[2.5]"
+              ></div>
             </a>
           </div>
         </div>
-      </Transition>
+
+        <div class="scroll-indicator cursor-pointer mt-2" @click="scrollToSection('about')">
+          <span>Scroll Down</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 5v14M19 12l-7 7-7-7" />
+          </svg>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
-
 <style scoped>
-.typed-cursor {
-  color: #0f766e !important;
+/* Main layout */
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.dark .typed-cursor {
-  color: #4c927e !important;
+/* Background elements */
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
 }
 
-.zoom-in-enter-from {
-  opacity: 0;
-  transform: scale(0.89);
+.gradient-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 10% 20%, #0f172a 0%, #020617 100%);
 }
 
-.zoom-in-enter-active {
-  transition: all 1s ease-out;
+.grid-pattern {
+  position: absolute;
+  inset: 0;
+  background:
+    /* Gradient mesh */
+    conic-gradient(
+      from 0deg at 50% 50%,
+      rgba(56, 189, 248, 0.03) 0%,
+      rgba(20, 184, 166, 0.03) 25%,
+      rgba(168, 85, 247, 0.03) 50%,
+      rgba(244, 114, 182, 0.03) 75%,
+      rgba(56, 189, 248, 0.03) 100%
+    ),
+    /* Modern dot matrix */
+      repeating-linear-gradient(
+        to right,
+        transparent,
+        transparent calc(3vmin - 1px),
+        rgba(255, 255, 255, 0.03) calc(3vmin - 1px),
+        rgba(255, 255, 255, 0.03) 3vmin
+      ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(3vmin - 1px),
+      rgba(255, 255, 255, 0.03) calc(3vmin - 1px),
+      rgba(255, 255, 255, 0.03) 3vmin
+    );
+
+  /* Depth effect */
+  mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.8) 70%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  /* Subtle animation */
+  animation: grid-rotate 60s linear infinite;
 }
 
-.zoom-in-enter-to {
-  opacity: 1;
-  transform: scale(1);
+@keyframes grid-rotate {
+  0% {
+    background-position:
+      0% 0%,
+      0 0,
+      0 0;
+  }
+  100% {
+    background-position:
+      100% 0%,
+      50px 50px,
+      50px 50px;
+  }
+}
+.grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    /* Variable density grid */
+    radial-gradient(
+      circle at 50% 50%,
+      transparent 0%,
+      transparent 80%,
+      rgba(20, 184, 166, 0.05) 80%,
+      rgba(20, 184, 166, 0.05) 100%
+    ),
+    radial-gradient(
+      circle at 0% 0%,
+      transparent 0%,
+      transparent 80%,
+      rgba(56, 189, 248, 0.05) 80%,
+      rgba(56, 189, 248, 0.05) 100%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      transparent 0%,
+      transparent 80%,
+      rgba(168, 85, 247, 0.05) 80%,
+      rgba(168, 85, 247, 0.05) 100%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      transparent 0%,
+      transparent 80%,
+      rgba(244, 114, 182, 0.05) 80%,
+      rgba(244, 114, 182, 0.05) 100%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      transparent 0%,
+      transparent 80%,
+      rgba(251, 146, 60, 0.05) 80%,
+      rgba(251, 146, 60, 0.05) 100%
+    ),
+    /* 3D grid effect */ linear-gradient(to right, rgba(226, 232, 240, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 232, 240, 0.02) 1px, transparent 1px);
+
+  background-size:
+    150% 150%,
+    150% 150%,
+    150% 150%,
+    150% 150%,
+    150% 150%,
+    clamp(10px, 2vw, 20px) clamp(10px, 2vw, 20px);
+
+  opacity: 0.6;
+
+  /* Perspective animation */
+  animation: perspective-shift 25s ease-in-out infinite alternate;
+  transform-origin: center;
+  transform-style: preserve-3d;
 }
 
-@keyframes pulse-slow {
+@keyframes perspective-shift {
   0%,
   100% {
-    opacity: 0.5;
+    background-position:
+      0% 0%,
+      0% 0%,
+      0% 0%,
+      0% 0%,
+      0% 0%,
+      0 0;
+    background-size:
+      150% 150%,
+      150% 150%,
+      150% 150%,
+      150% 150%,
+      150% 150%,
+      clamp(10px, 2vw, 20px) clamp(10px, 2vw, 20px);
   }
   50% {
-    opacity: 0.2;
+    background-position:
+      100% 100%,
+      100% 0%,
+      0% 100%,
+      100% 100%,
+      0% 0%,
+      5px 5px;
+    background-size:
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      clamp(15px, 2.5vw, 25px) clamp(15px, 2.5vw, 25px);
   }
 }
 
-.animate-pulse-slow {
-  animation: pulse-slow 1400s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.5;
+  transition: transform 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-.typed-span,
+.orb-primary {
+  width: 50vh;
+  height: 50vh;
+  top: -15vh;
+  right: -15vh;
+  background: radial-gradient(circle at center, rgba(14, 165, 233, 0.15), rgba(56, 189, 248, 0));
+  animation: float-slow 20s infinite alternate;
+}
+
+.orb-secondary {
+  width: 40vh;
+  height: 40vh;
+  bottom: -10vh;
+  left: -10vh;
+  background: radial-gradient(circle at center, rgba(20, 184, 166, 0.15), rgba(45, 212, 191, 0));
+  animation: float-slow 25s infinite alternate-reverse;
+}
+
+.orb-accent {
+  width: 30vh;
+  height: 30vh;
+  top: 40%;
+  left: 60%;
+  background: radial-gradient(circle at center, rgba(168, 85, 247, 0.1), rgba(192, 132, 252, 0));
+  animation: float-slow 18s infinite alternate;
+}
+
+.backdrop-mesh {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(226, 232, 240, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  background-position: -15px -15px;
+  opacity: 0.3;
+}
+
+/* Content layout */
+.hero-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1rem;
+  z-index: 10;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .hero-container {
+    padding-left: calc(60px + 1.5rem);
+    padding-right: 1.5rem;
+  }
+}
+
+.hero-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-split {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .content-wrapper {
+    gap: 1.5rem;
+  }
+}
+
+/* Typography and elements */
+.hero-badge {
+  display: inline-flex;
+  background: rgba(20, 184, 166, 0.1);
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  width: fit-content;
+}
+
+.badge-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #2dd4bf;
+}
+
+.hero-name {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  background: linear-gradient(to right, #2dd4bf, #5eead4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .hero-name {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-name {
+    font-size: 3.5rem;
+  }
+}
+
+.hero-role {
+  display: flex;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+@media (min-width: 640px) {
+  .hero-role {
+    font-size: 1.5rem;
+  }
+}
+
+.typed-text {
+  color: #2dd4bf;
+  font-weight: 600;
+}
+
+.hero-description {
+  max-width: 36rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #94a3b8;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .hero-description {
+    font-size: 1.125rem;
+  }
+}
+
+.highlight {
+  color: #2dd4bf;
+  font-weight: 500;
+  position: relative;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.25rem;
+  background: rgba(45, 212, 191, 0.2);
+  border-radius: 4px;
+  z-index: -1;
+}
+
+/* Buttons */
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: linear-gradient(to right, #0f766e, #0d9488);
+  color: white;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 15px -3px rgba(15, 118, 110, 0.2);
+  position: relative;
+  overflow: hidden;
+  font-size: 0.875rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+@media (min-width: 640px) {
+  .btn-primary {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 20px -3px rgba(15, 118, 110, 0.3);
+}
+
+.btn-primary:hover::after {
+  animation: shine 1.5s ease;
+}
+
+.btn-secondary {
+  padding: 0.625rem 1.25rem;
+  background: rgba(30, 41, 59, 0.5);
+  color: #e2e8f0;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(71, 85, 105, 0.3);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  font-size: 0.875rem;
+  cursor: pointer;
+  outline: none;
+}
+
+@media (min-width: 640px) {
+  .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+.btn-secondary:hover {
+  background: rgba(30, 41, 59, 0.7);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Code visual */
+.hero-visual {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  opacity: 0;
+  animation: fade-in-up 1s forwards;
+  animation-delay: 0.3s;
+  scale: 0.85;
+  transform-origin: center;
+}
+
+@media (min-width: 480px) {
+  .hero-visual {
+    scale: 0.9;
+  }
+}
+
+@media (min-width: 640px) {
+  .hero-visual {
+    scale: 0.95;
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-visual {
+    scale: 1;
+    max-width: 420px;
+  }
+}
+
+.code-container {
+  background: rgba(15, 23, 42, 0.7);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+  transition: transform 0.3s ease;
+}
+
+.code-container:hover {
+  transform: perspective(1000px) rotateY(-2deg) rotateX(1deg) translateY(-5px);
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.625rem 0.75rem;
+  background: rgba(30, 41, 59, 0.7);
+  border-bottom: 1px solid rgba(51, 65, 85, 0.7);
+}
+
+@media (min-width: 640px) {
+  .code-header {
+    padding: 0.75rem 1rem;
+  }
+}
+
+.code-dots {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.code-dots span {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+}
+
+@media (min-width: 640px) {
+  .code-dots span {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
+.code-dots span:nth-child(1) {
+  background-color: #f87171;
+}
+
+.code-dots span:nth-child(2) {
+  background-color: #facc15;
+}
+
+.code-dots span:nth-child(3) {
+  background-color: #4ade80;
+}
+
+.code-title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #cbd5e1;
+}
+
+@media (min-width: 640px) {
+  .code-title {
+    font-size: 0.875rem;
+  }
+}
+
+.code-content {
+  padding: 1rem;
+  font-family: 'Monaco', 'Consolas', monospace;
+  font-size: 0.75rem;
+  line-height: 1.7;
+  color: #e2e8f0;
+}
+
+@media (min-width: 640px) {
+  .code-content {
+    padding: 1.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+.code-keyword {
+  color: #c084fc;
+}
+
+.code-variable {
+  color: #38bdf8;
+}
+
+.code-property {
+  color: #4ade80;
+}
+
+.code-string {
+  color: #fb7185;
+}
+
+.code-boolean {
+  color: #fb923c;
+}
+
+.visual-decoration {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: linear-gradient(to bottom right, rgba(20, 184, 166, 0.2), rgba(56, 189, 248, 0.2));
+  border-radius: 0.75rem;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.social-link {
+  width: 3rem;
+  height: 3rem;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transform: translateY(0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.social-link:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 10px 15px -3px var(--hover-glow),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Subtle pulse animation for icons on hover */
+.group:hover svg {
+  animation: icon-pulse 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes icon-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@media (min-width: 640px) {
+  .social-link {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  animation: bounce 2s infinite;
+}
+
+@media (min-width: 640px) {
+  .scroll-indicator {
+    font-size: 0.875rem;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(20px, -20px);
+  }
+}
+
+@keyframes shine {
+  0% {
+    opacity: 1;
+    transform: translateX(-100%) rotate(30deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%) rotate(30deg);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered animations */
+.stagger-fade-enter-active {
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--el-index, 0) * 0.1s);
+}
+
+.stagger-fade-enter-from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Typed.js cursor styling */
 .typed-cursor {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.dark .typed-span,
-.dark .typed-cursor {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.light-gradient {
-  opacity: 1;
-  transition: opacity 1400ms ease;
-}
-
-@media (min-width: 768px) {
-  .light-gradient {
-    background: linear-gradient(
-      -11deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.01) 10%,
-      rgba(255, 255, 255, 0.01) 20%,
-      rgba(255, 255, 255, 0.4) 52%,
-      rgba(255, 255, 255, 0.53) 59%,
-      rgba(255, 255, 255, 0.62) 60%,
-      rgba(255, 255, 255, 0.4) 70%,
-      rgba(255, 255, 255, 0.3) 79%,
-      rgba(255, 255, 255, 0.31) 100%,
-      transparent 100%
-    );
-  }
-}
-
-.dark-gradient {
-  opacity: 0;
-  transition: opacity 1400ms ease;
-}
-
-@media (max-width: 767px) {
-  .dark-gradient {
-    background: linear-gradient(
-      -132deg,
-      rgba(0, 0, 0, 0.55),
-      rgba(0, 0, 0, 0.62),
-      rgba(0, 0, 0, 0.62)
-    );
-  }
-}
-
-@media (min-width: 768px) {
-  .dark-gradient {
-    background: linear-gradient(
-      -144deg,
-      rgba(8, 18, 18, 0.91),
-      rgba(18, 18, 18, 0.5),
-      rgba(18, 18, 18, 0.66),
-      rgba(18, 18, 18, 0.77),
-      rgba(18, 18, 18, 0.75),
-      rgba(18, 18, 18, 0.82)
-    );
-  }
-}
-
-:is(.dark .light-gradient) {
-  opacity: 0;
-}
-
-:is(.dark .dark-gradient) {
-  opacity: 1;
-}
-
-.text-shadow-sm {
-  text-shadow: 0 0 2.4px rgba(210, 230, 210, 1)!important;
-}
-
-:where(.dark) .text-shadow-sm  {
-  text-shadow: 0 0 1.4px rgba(40, 40, 40, 1)!important;
-}
-
-@media (min-width: 1810px) {
-  .social-media {
-    margin-left: 82px;
-  }
+  color: #2dd4bf !important;
+  font-weight: 600;
 }
 </style>

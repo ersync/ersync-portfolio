@@ -7,7 +7,6 @@ const phase = usePhaseStore()
 const timelineRef = ref<HTMLElement | null>(null)
 const isVisible = ref(false)
 
-// Watch for phase changes to reset animations
 watch(
   () => phase.selectedPhase.value,
   () => {
@@ -42,21 +41,20 @@ onMounted(() => {
     :class="{ 'timeline-visible': isVisible }"
   >
     <div class="relative">
-      <!-- Main horizontal line -->
       <div
         class="timeline-line absolute top-[234px] h-1 w-full -translate-y-1/2"
         :style="{ backgroundColor: phase.currentPhaseColor.value }"
       />
 
-      <!-- Timeline content container -->
-      <div class="relative flex min-h-[500px] items-center justify-start pb-8 lg:justify-between">
+      <div
+        class="relative flex min-h-[500px] items-center justify-start pb-8 lg:justify-between mt-10"
+      >
         <div
           v-for="(milestone, index) in phase.currentPhaseContent.value?.milestones"
           :key="milestone.title"
           class="milestone-item relative w-[170px] first:ml-[60px] last:mr-[60px]"
           :style="{ animationDelay: `${index * 100 + 200}ms` }"
         >
-          <!-- Timeline node/point -->
           <div class="absolute left-[50%] top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
             <div
               class="relative size-4 rounded-full"
@@ -71,7 +69,7 @@ onMounted(() => {
 
           <!-- Card Container -->
           <div
-            class="milestone-card absolute left-1/2 w-[290px] -translate-x-1/2 custom-md:w-[270px] lg:w-[290px]"
+            class="milestone-card absolute left-1/2 w-[295px] -translate-x-1/2 custom-md:w-[275px] lg:w-[295px]"
             :class="[index % 2 === 0 ? '-top-8 -translate-y-full' : 'top-8']"
             :style="{ animationDelay: `${index * 120 + 250}ms` }"
           >
@@ -100,7 +98,6 @@ onMounted(() => {
   scrollbar-width: none;
 }
 
-/* Timeline animations */
 .timeline-line {
   transform: scaleX(0);
   transform-origin: left;
@@ -121,7 +118,6 @@ onMounted(() => {
   transform-origin: top;
 }
 
-/* Animation triggers when timeline becomes visible */
 .timeline-visible .timeline-line {
   animation: growLine 0.3s ease-out forwards;
 }

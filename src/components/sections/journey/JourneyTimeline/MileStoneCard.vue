@@ -4,43 +4,36 @@ const phase = usePhaseStore()
 defineProps<{
   milestoneData: Milestone
 }>()
-
 import type { Milestone } from '@/types/journey'
 </script>
 
 <template>
   <div
-    class="rounded-lg bg-white/90 p-4 pb-2 shadow-md backdrop-blur transition-all duration-300 hover:shadow-lg dark:bg-[#1A1A1A]/80 dark:shadow-[0_0_11px_rgba(20,184,166,0.11)] dark:backdrop-blur-xl"
+    class="rounded-xl bg-slate-800/30 py-5 px-4 shadow-[0_0_11px_rgba(20,184,166,0.11)] backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:transform hover:-translate-y-1 border border-slate-700/50"
   >
     <div class="mb-4 flex items-start justify-between">
-      <h3
-        class="font-VarelaRound text-sm font-semibold tracking-normal text-gray-600 dark:text-gray-200"
-      >
+      <h3 class="font-semibold tracking-normal text-slate-200">
         {{ milestoneData.title }}
       </h3>
       <span
         :class="[
-          'rounded-full px-2 py-0.5 text-xs',
+          'rounded-full px-2 py-1 text-[10px]',
           phase.getMilestoneStatusClass(milestoneData.status),
-          'dark:bg-opacity-20 dark:text-opacity-90'
+          'bg-opacity-20 text-opacity-90'
         ]"
       >
         {{ milestoneData.status }}
       </span>
     </div>
-    <p class="mb-2 line-clamp-2 text-[13px] text-gray-600 dark:text-gray-300">
+    <p class="mb-3 line-clamp-2 text-sm leading-relaxed text-slate-300">
       {{ milestoneData.description }}
     </p>
-    <div class="flex flex-wrap gap-1">
-      <span
-        v-for="tech in milestoneData.technologies"
-        :key="tech"
-        class="shrink-0 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
-      >
+    <div class="flex flex-wrap gap-1.5">
+      <span v-for="tech in milestoneData.technologies" :key="tech" class="tag-highlight">
         {{ tech }}
       </span>
     </div>
-    <div class="mt-2 text-center text-[12px] text-gray-500 dark:text-gray-400">
+    <div class="mt-3 text-center text-xs text-slate-400">
       {{ milestoneData.timeframe }}
     </div>
   </div>
@@ -52,5 +45,20 @@ import type { Milestone } from '@/types/journey'
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+.tag-highlight {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  background: rgba(45, 212, 191, 0.1);
+  border: 1px solid rgba(45, 212, 191, 0.2);
+  border-radius: 0.375rem;
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: #2dd4bf;
+  transition: all 0.2s ease;
+}
+.tag-highlight:hover {
+  background: rgba(45, 212, 191, 0.15);
+  transform: translateY(-1px);
 }
 </style>

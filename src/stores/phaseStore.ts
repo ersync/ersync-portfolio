@@ -9,7 +9,7 @@ import {
   RocketLaunchIcon
 } from '@heroicons/vue/24/outline'
 
-const selectedPhase = ref<PhaseId>('backend')
+const selectedPhase = ref<PhaseId>('frontend')
 export type JourneyStatus = 'Completed' | 'In Progress' | 'Not Started'
 
 const phasesSummaries = ref<PhaseSummary[]>([
@@ -174,12 +174,12 @@ export function usePhaseStore() {
   const getMilestoneStatusClass = (status: JourneyStatus): string => {
     switch (status) {
       case 'Completed':
-        return 'bg-green-100 text-green-700 dark:bg-gray-700/60 dark:text-green-300'
+        return 'bg-gray-700/60 text-green-300'
       case 'In Progress':
-        return 'bg-yellow-100 text-yellow-700 dark:bg-gray-700/60 dark:text-yellow-300'
+        return 'bg-gray-700/60 text-yellow-300'
       case 'Not Started':
       default:
-        return 'bg-gray-100 text-gray-700 dark:bg-gray-700/60 dark:text-gray-300'
+        return 'bg-gray-700/60 text-gray-300'
     }
   }
 

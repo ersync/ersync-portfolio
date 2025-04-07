@@ -2,7 +2,6 @@
 import skeletonLoader from '@/assets/images/projects/skeleton-loader.png'
 import cinemad from '@/assets/images/projects/cinemad.png'
 import portfolio from '@/assets/images/projects/portfolio.png'
-import portfolioDark from '@/assets/images/projects/portfolio-dark.png'
 import persogenApi from '@/assets/images/projects/persogen-api.png'
 import persianCoffeeshop from '@/assets/images/projects/persian-coffeeshop.png'
 import vueChatlog from '@/assets/images/projects/vue-chatlog.png'
@@ -10,7 +9,6 @@ import vueChatlog from '@/assets/images/projects/vue-chatlog.png'
 import type { Project } from '@/types/project'
 
 export const projects: Project[] = [
-
   {
     id: 1,
     title: 'Cinemad',
@@ -29,13 +27,14 @@ export const projects: Project[] = [
     technologies: ['Vue.js', 'Tailwind CSS', 'TypeScript', 'Vite'],
     demoLink: 'https://emadrahimi.dev',
     githubLink: 'https://github.com/ersync/',
-    image: [portfolio, portfolioDark],
+    image: portfolio,
     category: ['frontend']
   },
   {
     id: 3,
     title: 'Skeleton Loader Gem',
-    description: 'A Ruby gem that generates skeleton loading screens directly from backend code without JavaScript dependencies',
+    description:
+      'A Ruby gem that generates skeleton loading screens directly from backend code without JavaScript dependencies',
     technologies: ['Ruby', 'Ruby on Rails', 'CSS', 'Javascript'],
     demoLink: 'https://rubygems.org/gems/skeleton-loader',
     githubLink: 'https://github.com/ersync/skeleton-loader',

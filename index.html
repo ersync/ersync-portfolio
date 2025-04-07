@@ -1,30 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emad Rahimi | Web Developer</title>
-      <link rel="icon" href="/favicon.ico">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Raleway:wght@740&family=Varela+Round&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Nunito+Sans:wght@200;400&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <script>
-      const themeSettings = JSON.parse(localStorage.getItem('theme-settings') || '{"dark": false}');
-
-      if (themeSettings.dark) {
-        document.documentElement.classList.add('dark');
-      }
-    </script>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Raleway:wght@740&family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Nunito+Sans:wght@200;400&family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="
+    https://cdn.jsdelivr.net/npm/gotham-fonts@1.0.3/css/gotham-rounded.min.css
+    "
+      rel="stylesheet"
+    />
     <style>
-        html, body { background-color: #fff !important; }
-        html.dark { background-color: #000 !important; }
+      html,
+      body {
+        background: linear-gradient(to bottom, #111827, #0f172a) !important;
+        min-height: 100vh;
+      }
     </style>
   </head>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
-
 </html>

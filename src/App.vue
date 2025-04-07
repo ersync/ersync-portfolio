@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useThemeStore } from '@/stores/themeStore'
 import TheNavigation from '@/components/desktop-navigation/TheNavigation.vue'
 import IconSprite from '@/ui/base/IconSprite.vue'
 import TheHero from '@/components/sections/TheHero.vue'
@@ -10,32 +9,27 @@ import TheJourney from '@/components/sections/TheJourney.vue'
 import TheContactMe from '@/components/sections/TheContactMe.vue'
 import TheFooter from '@/components/sections/TheFooter.vue'
 import MobileNavigation from '@/components/mobile-navigation/MobileNavigation.vue'
-
-import bgDesktop from '@/assets/images/hero/bg-desktop.png'
-import bgMobile from '@/assets/images/hero/bg-mobile.jpg'
-
+import portfolio from '@/assets/images/projects/portfolio.png'
 import skeletonLoader from '@/assets/images/projects/skeleton-loader.png'
 import cinemad from '@/assets/images/projects/cinemad.png'
-import portfolio from '@/assets/images/projects/portfolio.png'
-import portfolioDark from '@/assets/images/projects/portfolio-dark.png'
 import persogenApi from '@/assets/images/projects/persogen-api.png'
 import persianCoffeeshop from '@/assets/images/projects/persian-coffeeshop.png'
 import vueChatlog from '@/assets/images/projects/vue-chatlog.png'
 
 const isLoading = ref(true)
-const themeStore = useThemeStore()
 
 onMounted(async () => {
   try {
     const MIN_TIME = 2000
     const MAX_TIME = 7000
-
     const allImages = [
-      bgDesktop, bgMobile, skeletonLoader, cinemad,
-      portfolio, portfolioDark, persogenApi,
-      persianCoffeeshop, vueChatlog
+      skeletonLoader,
+      cinemad,
+      portfolio,
+      persogenApi,
+      persianCoffeeshop,
+      vueChatlog
     ]
-
     const loadSingleImage = (src: string): Promise<boolean> => {
       return new Promise((resolve) => {
         const img: HTMLImageElement = new Image()
@@ -44,29 +38,11 @@ onMounted(async () => {
         img.src = src
       })
     }
-
-    const loadAllImages = Promise.all(
-      allImages.map(src => loadSingleImage(src))
-    )
-
-    const minWaitTime = new Promise(
-      resolve => setTimeout(resolve, MIN_TIME)
-    )
-
-    const maxWaitTime = new Promise(
-      resolve => setTimeout(resolve, MAX_TIME)
-    )
-
-    const successCondition = Promise.all([
-      loadAllImages,
-      minWaitTime
-    ])
-
-    await Promise.race([
-      successCondition,
-      maxWaitTime
-    ])
-
+    const loadAllImages = Promise.all(allImages.map((src) => loadSingleImage(src)))
+    const minWaitTime = new Promise((resolve) => setTimeout(resolve, MIN_TIME))
+    const maxWaitTime = new Promise((resolve) => setTimeout(resolve, MAX_TIME))
+    const successCondition = Promise.all([loadAllImages, minWaitTime])
+    await Promise.race([successCondition, maxWaitTime])
     isLoading.value = false
   } catch (error) {
     console.error('Loading error:', error)
@@ -74,16 +50,11 @@ onMounted(async () => {
   }
 })
 </script>
-
 <template>
   <!-- Loading Screen -->
   <div
     v-if="isLoading"
     class="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500"
-    :class="[
-      themeStore.isDark ? 'bg-[#121212]' : 'bg-white',
-      { 'opacity-100': isLoading, 'opacity-0 pointer-events-none': !isLoading }
-    ]"
   >
     <div class="flex flex-col items-center space-y-4">
       <div class="relative size-16">
@@ -93,10 +64,9 @@ onMounted(async () => {
           class="absolute inset-4 animate-spin rounded-full border-2 border-transparent border-t-teal-500"
         />
       </div>
-      <p :class="themeStore.isDark ? 'text-gray-400' : 'text-gray-500'">Loading amazing stuff...</p>
+      <p class="text-gray-500">Loading amazing stuff...</p>
     </div>
   </div>
-
   <!-- Main Content -->
   <div
     v-else
@@ -114,7 +84,6 @@ onMounted(async () => {
     <TheFooter />
   </div>
 </template>
-
 <style scoped>
 .pointer-events-none {
   pointer-events: none;

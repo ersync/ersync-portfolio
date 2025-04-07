@@ -7,7 +7,6 @@ const phase = usePhaseStore()
 const timelineRef = ref<HTMLElement | null>(null)
 const isVisible = ref(false)
 
-// Reset animations on phase change
 watch(
   () => phase.selectedPhase.value,
   () => {
@@ -37,7 +36,6 @@ onMounted(() => {
 
 <template>
   <div ref="timelineRef" class="relative" :class="{ 'timeline-visible': isVisible }">
-    <!-- Main vertical line -->
     <div
       class="timeline-line absolute inset-y-0 left-4 w-1"
       :style="{ backgroundColor: `${phase.currentPhaseColor.value}80` }"
@@ -82,7 +80,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* Initial states */
 .timeline-line {
   transform: scaleY(0);
   transform-origin: top;
@@ -110,7 +107,6 @@ onMounted(() => {
   transform: translateX(-10px);
 }
 
-/* Animation triggers */
 .timeline-visible .timeline-line {
   animation: growLine 0.5s linear forwards;
 }
