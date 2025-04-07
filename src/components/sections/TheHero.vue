@@ -5,17 +5,14 @@ import BaseIcon from '@/ui/base/BaseIcon.vue'
 import { useNavigationStore } from '@/stores/navigationStore'
 import type { NavItemName } from '@/stores/navigationStore'
 
-// Import navigation store
 const navigation = useNavigationStore()
 
-// Component state
 const heroVisible = ref(false)
 const typedElement = ref<HTMLElement | null>(null)
 const isMobile = ref(window.innerWidth < 768)
 const mousePosition = ref({ x: 0, y: 0 })
 let typedInstance: Typed | null = null
 
-// Social links configuration
 const socialLinks = [
   {
     icon: 'github',
@@ -40,12 +37,10 @@ const socialLinks = [
   }
 ]
 
-// Handle window resize for responsive behavior
 const handleResize = () => {
   isMobile.value = window.innerWidth < 768
 }
 
-// Mouse tracking for interactive elements
 const handleMouseMove = (e: MouseEvent) => {
   mousePosition.value = {
     x: (e.clientX / window.innerWidth) * 2 - 1,
@@ -78,7 +73,6 @@ const destroyTyped = () => {
   typedInstance = null
 }
 
-// Animation sequence
 const initializeWithSequence = async () => {
   heroVisible.value = true
   await nextTick()
@@ -88,7 +82,6 @@ const initializeWithSequence = async () => {
   }
 }
 
-// Scroll to section function - used for buttons
 const scrollToSection = (sectionId: NavItemName): void => {
   const element = document.getElementById(sectionId)
   if (element) {
@@ -97,9 +90,8 @@ const scrollToSection = (sectionId: NavItemName): void => {
   }
 }
 
-// Lifecycle hooks
 onMounted(() => {
-  handleResize() // Set initial mobile state
+  handleResize()
   window.addEventListener('resize', handleResize)
   window.addEventListener('mousemove', handleMouseMove)
 
@@ -112,12 +104,10 @@ onUnmounted(() => {
   destroyTyped()
 })
 
-// Animation delay utility
 const getAnimationDelay = (index: number) => {
   return { '--el-index': isMobile.value ? index * 0.5 : index }
 }
 
-// Calculate background movement based on mouse position
 const bgOffset = computed(() => {
   if (isMobile.value) return { transform: 'none' }
 
@@ -131,16 +121,14 @@ const bgOffset = computed(() => {
 </script>
 
 <template>
-  <section id="home" class="hero-section">
+  <section id="home" class="hero-section min-h-screen">
     <!-- Background elements -->
     <div class="hero-background">
-      <!-- Ambient gradient -->
       <div class="gradient-bg"></div>
 
       <!-- Subtle grid -->
       <div class="grid-pattern"></div>
 
-      <!-- Enhanced floating orbs with mouse parallax - from About page -->
       <div
         class="absolute left-20 top-10 md:h-64 md:w-64 h-32 w-32 rounded-full bg-teal-400/10 blur-3xl animate-float-reverse glow"
         :style="bgOffset"
@@ -158,7 +146,7 @@ const bgOffset = computed(() => {
     <!-- Hero content -->
     <div class="hero-container">
       <div class="hero-content">
-        <div class="hero-split sm:mt-24">
+        <div class="hero-split mt-10 sm:mt-24">
           <div class="hero-left">
             <transition-group appear name="stagger-fade" tag="div" class="content-wrapper">
               <!-- Badge -->
@@ -176,21 +164,18 @@ const bgOffset = computed(() => {
                 </div>
               </div>
 
-              <!-- Name -->
               <h1 v-if="heroVisible" key="name" class="hero-name" :style="getAnimationDelay(1)">
                 Emad Rahimi
               </h1>
 
-              <!-- Role with typing animation -->
               <div v-if="heroVisible" key="role" class="hero-role" :style="getAnimationDelay(2)">
                 I'm&nbsp<span ref="typedElement" class="typed-text"></span>
               </div>
 
-              <!-- Concise description -->
               <p
                 v-if="heroVisible"
                 key="description"
-                class="hero-description"
+                class="hero-description hidden sm:block"
                 :style="getAnimationDelay(3)"
               >
                 Crafting exceptional digital experiences that combine
@@ -198,7 +183,17 @@ const bgOffset = computed(() => {
                 <span class="highlight">powerful functionality</span>.
               </p>
 
-              <!-- CTA buttons - Modified to use scrollToSection -->
+              <!-- Mobile version -->
+              <p
+                v-if="heroVisible"
+                key="description-mobile"
+                class="hero-description-mobile block sm:hidden"
+                :style="getAnimationDelay(3)"
+              >
+                Crafting exceptional <span class="highlight">digital experiences</span>.
+              </p>
+
+              <!-- CTA buttons -->
               <div v-if="heroVisible" key="cta" class="hero-cta" :style="getAnimationDelay(4)">
                 <button @click="scrollToSection('projects')" class="btn-primary">
                   <span>View Projects</span>
@@ -244,6 +239,32 @@ const bgOffset = computed(() => {
   <span class="code-property">available</span>: <span class="code-boolean">true</span>
 };</code></pre>
                 </div>
+                <div class="cv-download-container code-footer">
+                  <a href="/emad_rahimi_cv.pdf" download class="cv-download-button group">
+                    <div class="cv-download-frame"></div>
+                    <div class="cv-download-content">
+                      <div class="cv-download-glow"></div>
+                      <div class="cv-download-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                          <polyline points="7 10 12 15 17 10"></polyline>
+                          <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                      </div>
+                      <span class="cv-download-text">Download CV</span>
+                    </div>
+                  </a>
+                </div>
               </div>
               <div class="visual-decoration"></div>
             </div>
@@ -263,17 +284,14 @@ const bgOffset = computed(() => {
               class="social-link group relative flex items-center justify-center overflow-hidden rounded-xl border border-slate-700/50 bg-slate-800/30 backdrop-blur-sm transition-all duration-300 hover:border-teal-400/30"
               :style="`--hover-glow: ${hoverGlow}`"
             >
-              <!-- Background gradient that appears on hover -->
               <div
                 class="absolute inset-0 opacity-0 transition-all duration-500 group-hover:opacity-20"
                 :class="`bg-gradient-to-br ${color}`"
               ></div>
-              <!-- Icon with hover animation -->
               <base-icon
                 :name="icon"
                 class="relative z-10 text-slate-300 transition-all duration-300 group-hover:text-teal-400"
               />
-              <!-- Subtle corner accent effects -->
 
               <!-- Circular ripple effect on hover -->
               <div
@@ -283,7 +301,7 @@ const bgOffset = computed(() => {
           </div>
         </div>
 
-        <div class="scroll-indicator cursor-pointer mt-2" @click="scrollToSection('about')">
+        <div class="scroll-indicator cursor-pointer" @click="scrollToSection('about')">
           <span>Scroll Down</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -308,14 +326,11 @@ const bgOffset = computed(() => {
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Background elements */
 .hero-background {
   position: absolute;
   inset: 0;
@@ -332,9 +347,7 @@ const bgOffset = computed(() => {
 .grid-pattern {
   position: absolute;
   inset: 0;
-  background:
-    /* Gradient mesh */
-    conic-gradient(
+  background: conic-gradient(
       from 0deg at 50% 50%,
       rgba(56, 189, 248, 0.03) 0%,
       rgba(20, 184, 166, 0.03) 25%,
@@ -342,14 +355,13 @@ const bgOffset = computed(() => {
       rgba(244, 114, 182, 0.03) 75%,
       rgba(56, 189, 248, 0.03) 100%
     ),
-    /* Modern dot matrix */
-      repeating-linear-gradient(
-        to right,
-        transparent,
-        transparent calc(3vmin - 1px),
-        rgba(255, 255, 255, 0.03) calc(3vmin - 1px),
-        rgba(255, 255, 255, 0.03) 3vmin
-      ),
+    repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent calc(3vmin - 1px),
+      rgba(255, 255, 255, 0.03) calc(3vmin - 1px),
+      rgba(255, 255, 255, 0.03) 3vmin
+    ),
     repeating-linear-gradient(
       to bottom,
       transparent,
@@ -358,7 +370,6 @@ const bgOffset = computed(() => {
       rgba(255, 255, 255, 0.03) 3vmin
     );
 
-  /* Depth effect */
   mask-image: radial-gradient(
     ellipse at center,
     rgba(0, 0, 0, 1) 0%,
@@ -366,7 +377,6 @@ const bgOffset = computed(() => {
     rgba(0, 0, 0, 0) 100%
   );
 
-  /* Subtle animation */
   animation: grid-rotate 60s linear infinite;
 }
 
@@ -387,9 +397,7 @@ const bgOffset = computed(() => {
 .grid-pattern {
   position: absolute;
   inset: 0;
-  background-image:
-    /* Variable density grid */
-    radial-gradient(
+  background-image: radial-gradient(
       circle at 50% 50%,
       transparent 0%,
       transparent 80%,
@@ -424,7 +432,7 @@ const bgOffset = computed(() => {
       rgba(251, 146, 60, 0.05) 80%,
       rgba(251, 146, 60, 0.05) 100%
     ),
-    /* 3D grid effect */ linear-gradient(to right, rgba(226, 232, 240, 0.02) 1px, transparent 1px),
+    linear-gradient(to right, rgba(226, 232, 240, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(226, 232, 240, 0.02) 1px, transparent 1px);
 
   background-size:
@@ -437,7 +445,6 @@ const bgOffset = computed(() => {
 
   opacity: 0.6;
 
-  /* Perspective animation */
   animation: perspective-shift 25s ease-in-out infinite alternate;
   transform-origin: center;
   transform-style: preserve-3d;
@@ -523,7 +530,6 @@ const bgOffset = computed(() => {
   opacity: 0.3;
 }
 
-/* Content layout */
 .hero-container {
   position: relative;
   width: 100%;
@@ -531,7 +537,6 @@ const bgOffset = computed(() => {
   padding: 0 1rem;
   z-index: 10;
   margin: 0 auto;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -588,7 +593,6 @@ const bgOffset = computed(() => {
   }
 }
 
-/* Typography and elements */
 .hero-badge {
   display: inline-flex;
   background: rgba(20, 184, 166, 0.1);
@@ -677,7 +681,6 @@ const bgOffset = computed(() => {
   z-index: -1;
 }
 
-/* Buttons */
 .hero-cta {
   display: flex;
   flex-wrap: wrap;
@@ -928,22 +931,44 @@ const bgOffset = computed(() => {
   width: 3rem;
   height: 3rem;
   box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transform: translateY(0);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.social-link:hover {
-  transform: translateY(-5px);
-  box-shadow:
     0 10px 15px -3px var(--hover-glow),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-5px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(8px);
 }
 
-/* Subtle pulse animation for icons on hover */
-.group:hover svg {
+.social-link svg {
+  color: #2dd4bf;
   animation: icon-pulse 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  position: relative;
+  z-index: 10;
+}
+
+.social-link .absolute {
+  opacity: 0.2;
+}
+
+.social-link .bg-gradient-to-br {
+  position: absolute;
+  inset: 0;
+  opacity: 0.2;
+}
+
+.social-link .rounded-xl {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 184, 166, 0.05);
+  opacity: 1;
+  transform: scale(2.5);
 }
 
 @keyframes icon-pulse {
@@ -960,6 +985,20 @@ const bgOffset = computed(() => {
   .social-link {
     width: 2.5rem;
     height: 2.5rem;
+  }
+}
+
+.group:hover svg {
+  animation: icon-pulse 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes icon-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
   }
 }
 
@@ -1027,7 +1066,6 @@ const bgOffset = computed(() => {
   }
 }
 
-/* Staggered animations */
 .stagger-fade-enter-active {
   transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: calc(var(--el-index, 0) * 0.1s);
@@ -1038,9 +1076,171 @@ const bgOffset = computed(() => {
   transform: translateY(20px);
 }
 
-/* Typed.js cursor styling */
 .typed-cursor {
   color: #2dd4bf !important;
   font-weight: 600;
+}
+
+.cv-download-container {
+  position: relative;
+  margin-top: 1.5rem;
+  width: 100%;
+  perspective: 1000px;
+}
+
+.cv-download-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: fit-content;
+  transform: rotate(-5deg);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cv-download-button:hover {
+  transform: rotate(-8deg) translateY(-5px);
+}
+
+.cv-download-frame {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 1px dashed rgba(20, 184, 166, 0.4);
+  border-radius: 12px;
+  transform: rotate(2deg);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cv-download-button:hover .cv-download-frame {
+  transform: rotate(-1deg) scale(1.05);
+  border-color: rgba(20, 184, 166, 0.8);
+}
+
+.cv-download-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.4));
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  box-shadow:
+    0 4px 15px -3px rgba(0, 0, 0, 0.1),
+    0 2px 8px -2px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.cv-download-button:hover .cv-download-content {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.5));
+  border-color: rgba(20, 184, 166, 0.3);
+}
+
+.cv-download-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.cv-download-button:hover .cv-download-glow {
+  opacity: 1;
+}
+
+.cv-download-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(20, 184, 166, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  color: #2dd4bf;
+  transition: all 0.3s ease;
+}
+
+.cv-download-button:hover .cv-download-icon {
+  background: rgba(20, 184, 166, 0.2);
+  border-color: rgba(20, 184, 166, 0.4);
+  transform: translateY(-2px);
+}
+
+.cv-download-text {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+}
+
+.cv-download-button:hover .cv-download-text {
+  color: #2dd4bf;
+}
+
+.cv-download-button:hover .cv-download-icon svg {
+  animation: pulse-download 1.5s infinite;
+}
+
+@keyframes pulse-download {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+}
+
+@media (max-width: 640px) {
+  .cv-download-container {
+    margin-top: 0.75rem;
+  }
+
+  .cv-download-content {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .cv-download-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cv-download-text {
+    font-size: 0.75rem;
+  }
+}
+
+.code-footer {
+  margin-top: 0;
+  padding: 0.75rem;
+  border-top: 1px solid rgba(51, 65, 85, 0.7);
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  justify-content: center;
+}
+
+.code-footer .cv-download-container {
+  margin-top: 0;
+  width: auto;
+}
+
+.cv-download-button {
+  transform: none;
+}
+
+.cv-download-button:hover {
+  transform: translateY(-2px);
 }
 </style>
