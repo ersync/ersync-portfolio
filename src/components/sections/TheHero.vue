@@ -52,12 +52,12 @@ const initializeTyped = () => {
   if (typedElement.value) {
     typedInstance = new Typed(typedElement.value, {
       strings: [
-        'a Full-Stack Developer',
-        'a Vue.js Artist',
-        'a Rails Architect',
-        'a Problem Solver',
-        'a Nature Explorer',
-        'Turning coffee into code'
+        'Full-Stack Developer',
+        'Vue.js Artist',
+        'Rails Architect',
+        'Problem Solver',
+        'Nature Explorer',
+        'Coffee-to-Code Converter'
       ],
       typeSpeed: 80,
       backSpeed: 60,
@@ -169,7 +169,7 @@ const bgOffset = computed(() => {
               </h1>
 
               <div v-if="heroVisible" key="role" class="hero-role" :style="getAnimationDelay(2)">
-                I'm&nbsp<span ref="typedElement" class="typed-text"></span>
+                I'm a&nbsp;<span ref="typedElement" class="typed-text"></span>
               </div>
 
               <p
@@ -229,7 +229,7 @@ const bgOffset = computed(() => {
                     <span></span>
                     <span></span>
                   </div>
-                  <div class="code-title">developer.js</div>
+                  <div class="code-title">talent.js</div>
                 </div>
                 <div class="code-content">
                   <pre><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {

@@ -66,47 +66,52 @@ onMounted(() => {
         <div
           class="mt-4 flex flex-wrap items-start justify-center gap-8 lg:flex-nowrap lg:justify-between"
         >
-          <!-- Text Content -->
           <div
             class="space-y-4 sm:space-y-5 backdrop-blur-sm rounded-xl p-4 sm:p-6 bg-slate-800/30 border border-slate-700/50 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] hover:shadow-[0_15px_30px_-5px_rgba(15,118,110,0.1),0_10px_15px_-6px_rgba(15,118,110,0.05)] transition-shadow duration-300"
           >
-            <p
-              class="text-base sm:text-lg leading-relaxed text-slate-300"
-              style="font-family: 'Gotham Rounded', sans-serif"
-            >
-              <div class="flex text-xl sm:text-2xl font-bold mb-2 sm:mb-3">
+            <div class="space-y-3">
+              <div
+                class="flex items-center text-lg sm:text-xl"
+                style="font-family: 'Plus Jakarta Sans', sans-serif"
+              >
                 Hello there! I'm
                 <span
-                  class="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-400"
+                  class="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-400 mx-1 font-medium"
                 >
-                  &nbspEmad</span
-                >
-                <span class="block text-teal-500 max-sm:text-[14px] ml-1.5">👋🏻</span>
+                  Emad
+                </span>
+                <span class="text-teal-500 ml-0.5">👋🏻</span>
               </div>
-              A web developer from Iran with a passion for transforming ideas into elegant digital
-              experiences. I craft
-              <span class="relative inline-block px-1 sm:px-2 py-0.5 mx-0.5 group">
-                <span
-                  class="absolute inset-0 bg-teal-500/10 rounded-md transform group-hover:scale-105 transition duration-200"
-                ></span>
-                <span class="relative text-teal-400 font-medium">Ruby on Rails</span>
-              </span>
-              and
-              <span class="relative inline-block px-1 sm:px-2 py-0.5 mx-0.5 group">
-                <span
-                  class="absolute inset-0 bg-teal-500/10 rounded-md transform group-hover:scale-105 transition duration-200"
-                ></span>
-                <span class="relative text-teal-400 font-medium">Vue.js</span>
-              </span>
-              solutions that solve real problems and enhance user experiences.
-            </p>
+
+              <p
+                class="text-base leading-relaxed text-slate-300"
+                style="font-family: 'Inter', sans-serif"
+              >
+                A web developer from Iran with a passion for transforming ideas into elegant digital
+                experiences. I craft
+                <span class="relative inline-block px-1.5 py-0.5 mx-0.5 group">
+                  <span
+                    class="absolute inset-0 bg-teal-500/10 rounded-md transform group-hover:scale-105 transition duration-200"
+                  ></span>
+                  <span class="relative text-teal-400">Ruby on Rails</span>
+                </span>
+                and
+                <span class="relative inline-block px-1.5 py-0.5 mx-0.5 group">
+                  <span
+                    class="absolute inset-0 bg-teal-500/10 rounded-md transform group-hover:scale-105 transition duration-200"
+                  ></span>
+                  <span class="relative text-teal-400">Vue.js</span>
+                </span>
+                solutions that solve real problems and enhance user experiences.
+              </p>
+            </div>
 
             <p
-              class="text-sm sm:text-base leading-relaxed text-slate-300"
-              style="font-family: 'Gotham Rounded', sans-serif"
+              class="text-sm leading-relaxed text-slate-400"
+              style="font-family: 'Inter', sans-serif"
             >
-              My approach combines <span class="font-medium">technical precision</span> with
-              <span class="font-medium">creative problem-solving</span>, resulting in code that's
+              My approach combines <span class="text-slate-300">technical precision</span> with
+              <span class="text-slate-300">creative problem-solving</span>, resulting in code that's
               not just functional but thoughtfully crafted. When I'm not immersed in code, you'll
               find me cheering at live sporting events, engaging with developer communities, and
               exploring emerging technologies that push the boundaries of what's possible on the
