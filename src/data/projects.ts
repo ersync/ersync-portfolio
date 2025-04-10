@@ -26,7 +26,7 @@ export const projects: Project[] = [
     description: 'Responsive Vue portfolio featuring dark mode and smooth animated transitions',
     technologies: ['Vue.js', 'Tailwind CSS', 'TypeScript', 'Vite'],
     demoLink: 'https://emadrahimi.dev',
-    githubLink: 'https://github.com/ersync/',
+    githubLink: 'https://github.com/ersync',
     image: portfolio,
     category: ['frontend']
   },
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     description:
       'Modern Persian coffee shop website featuring RTL design and responsive Tailwind layouts',
     technologies: ['HTML', 'Tailwind CSS', 'JavaScript', 'Git'],
-    demoLink: 'https://coffeeshop-ersync.vercel.app/',
+    demoLink: 'https://coffeeshop.emadrahimi.dev',
     githubLink: 'https://github.com/ersync/coffeeshop-responsive-website',
     image: persianCoffeeshop,
     category: ['frontend']
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     title: 'Vue Chatlog',
     description: 'Vue demo showcasing mobile chat UI with customizable themes',
     technologies: ['Vue.js', 'HTML', 'Tailwind CSS', 'Vite'],
-    demoLink: 'https://vue-chatlog.vercel.app/',
+    demoLink: 'https://chatlog.emadrahimi.dev',
     githubLink: 'https://github.com/ersync?tab=repositories',
     image: vueChatlog,
     category: ['frontend']
