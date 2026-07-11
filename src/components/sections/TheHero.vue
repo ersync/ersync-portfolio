@@ -1,1254 +1,259 @@
 <script setup lang="ts">
-import { onMounted, ref, onUnmounted, nextTick, computed } from 'vue'
-import Typed from 'typed.js'
 import BaseIcon from '@/ui/base/BaseIcon.vue'
-import { useNavigationStore } from '@/stores/navigationStore'
-import type { NavItemName } from '@/stores/navigationStore'
-
-const navigation = useNavigationStore()
-
-const heroVisible = ref(false)
-const typedElement = ref<HTMLElement | null>(null)
-const isMobile = ref(window.innerWidth < 768)
-const mousePosition = ref({ x: 0, y: 0 })
-let typedInstance: Typed | null = null
-let entranceTimer: number | undefined
-let typingTimer: number | undefined
 
 const socialLinks = [
-  {
-    icon: 'github',
-    url: 'https://github.com/ersync',
-    label: 'GitHub',
-    color: 'from-slate-700 to-slate-800',
-    hoverGlow: 'rgba(20, 184, 166, 0.2)'
-  },
-  {
-    icon: 'linkedin',
-    url: 'https://linkedin.com/in/erahimidev',
-    label: 'LinkedIn',
-    color: 'from-teal-800 to-teal-900',
-    hoverGlow: 'rgba(20, 184, 166, 0.2)'
-  },
-  {
-    icon: 'x',
-    url: 'https://x.com/emadrahimidev',
-    label: 'Twitter',
-    color: 'from-slate-700 to-slate-800',
-    hoverGlow: 'rgba(20, 184, 166, 0.2)'
-  }
+  { icon: 'github', url: 'https://github.com/ersync', label: 'GitHub' },
+  { icon: 'linkedin', url: 'https://linkedin.com/in/erahimidev', label: 'LinkedIn' },
+  { icon: 'x', url: 'https://x.com/emadrahimidev', label: 'X' }
 ]
-
-const handleResize = () => {
-  isMobile.value = window.innerWidth < 768
-}
-
-const handleMouseMove = (e: MouseEvent) => {
-  mousePosition.value = {
-    x: (e.clientX / window.innerWidth) * 2 - 1,
-    y: (e.clientY / window.innerHeight) * 2 - 1
-  }
-}
-
-const initializeTyped = () => {
-  if (typedElement.value) {
-    typedInstance = new Typed(typedElement.value, {
-      strings: [
-        'Full-Stack Developer',
-        'Vue.js Artist',
-        'Rails Architect',
-        'Problem Solver',
-        'Nature Explorer',
-        'Coffee-to-Code Converter'
-      ],
-      typeSpeed: 80,
-      backSpeed: 60,
-      backDelay: 2500,
-      loop: true,
-      smartBackspace: true
-    })
-  }
-}
-
-const destroyTyped = () => {
-  typedInstance?.destroy()
-  typedInstance = null
-}
-
-const initializeWithSequence = () => {
-  heroVisible.value = true
-  void nextTick(() => {
-    typingTimer = window.setTimeout(initializeTyped, isMobile.value ? 600 : 1000)
-  })
-}
-
-const scrollToSection = (sectionId: NavItemName): void => {
-  const element = document.getElementById(sectionId)
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })
-    navigation.setActiveSection(sectionId)
-  }
-}
-
-onMounted(() => {
-  handleResize()
-  window.addEventListener('resize', handleResize)
-  window.addEventListener('mousemove', handleMouseMove)
-
-  entranceTimer = window.setTimeout(initializeWithSequence, 100)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', handleResize)
-  window.removeEventListener('mousemove', handleMouseMove)
-  window.clearTimeout(entranceTimer)
-  window.clearTimeout(typingTimer)
-  destroyTyped()
-})
-
-const getAnimationDelay = (index: number) => {
-  return { '--el-index': isMobile.value ? index * 0.5 : index }
-}
-
-const bgOffset = computed(() => {
-  if (isMobile.value) return { transform: 'none' }
-
-  const offsetX = mousePosition.value.x * 5
-  const offsetY = mousePosition.value.y * 5
-
-  return {
-    transform: `translate(${offsetX}px, ${offsetY}px)`
-  }
-})
 </script>
 
 <template>
-  <section id="home" class="hero-section min-h-screen">
-    <!-- Background elements -->
-    <div class="hero-background">
-      <div class="gradient-bg"></div>
+  <section id="home" class="hero-surface relative isolate flex min-h-svh overflow-hidden">
+    <div class="hero-glow" aria-hidden="true" />
+    <div class="hero-grid" aria-hidden="true" />
 
-      <!-- Subtle grid -->
-      <div class="grid-pattern"></div>
-
-      <div
-        class="absolute left-20 top-10 md:h-64 md:w-64 h-32 w-32 rounded-full bg-teal-400/10 blur-3xl animate-float-reverse glow"
-        :style="bgOffset"
-      ></div>
-      <div
-        class="absolute -right-2 bottom-1/4 md:h-72 md:w-72 h-40 w-40 rounded-full bg-indigo-500/10 blur-3xl animate-float-delay glow indigo-glow"
-        :style="bgOffset"
-      ></div>
-
-      <div class="orb orb-accent" :style="bgOffset"></div>
-
-      <div class="backdrop-mesh"></div>
-    </div>
-
-    <!-- Hero content -->
-    <div class="hero-container">
-      <div class="hero-content">
-        <div class="hero-split mt-10 sm:mt-24">
-          <div class="hero-left">
-            <transition-group appear name="stagger-fade" tag="div" class="content-wrapper">
-              <!-- Badge -->
-              <div
-                v-if="heroVisible"
-                key="badge"
-                class="hero-badge px-2 py-1 sm:px-4 sm:py-2 -mb-2"
-                :style="getAnimationDelay(0)"
-              >
-                <div class="flex justify-center items-center badge-text">
-                  <span
-                    class="w-1 h-1 bg-teal-400 rounded-full mr-1 sm:-mb-0.5 inline-block animate-pulse"
-                  ></span>
-                  <span class="max-sm:text-[11px]">Available for Work</span>
-                </div>
-              </div>
-
-              <h1 v-if="heroVisible" key="name" class="hero-name" :style="getAnimationDelay(1)">
-                Emad Rahimi
-              </h1>
-
-              <div v-if="heroVisible" key="role" class="hero-role" :style="getAnimationDelay(2)">
-                I'm a&nbsp;<span ref="typedElement" class="typed-text"></span>
-              </div>
-
-              <p
-                v-if="heroVisible"
-                key="description"
-                class="hero-description hidden sm:block"
-                :style="getAnimationDelay(3)"
-              >
-                Crafting exceptional digital experiences that combine
-                <span class="highlight">elegant design</span> with
-                <span class="highlight">powerful functionality</span>.
-              </p>
-
-              <!-- Mobile version -->
-              <p
-                v-if="heroVisible"
-                key="description-mobile"
-                class="hero-description-mobile block sm:hidden"
-                :style="getAnimationDelay(3)"
-              >
-                Crafting exceptional <span class="highlight">digital experiences</span>.
-              </p>
-
-              <!-- CTA buttons -->
-              <div v-if="heroVisible" key="cta" class="hero-cta" :style="getAnimationDelay(4)">
-                <button @click="scrollToSection('projects')" class="btn-primary">
-                  <span>View Projects</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </button>
-                <button @click="scrollToSection('contact')" class="btn-secondary">
-                  Contact Me
-                </button>
-              </div>
-            </transition-group>
-          </div>
-
-          <!-- Right content area - visual element -->
-          <div class="hero-right">
-            <div v-if="heroVisible" class="hero-visual" :style="getAnimationDelay(1)">
-              <div class="code-container">
-                <div class="code-header">
-                  <div class="code-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div class="code-title">talent.js</div>
-                </div>
-                <div class="code-content">
-                  <pre><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {
-  <span class="code-property">name</span>: <span class="code-string">'Emad Rahimi'</span>,
-  <span class="code-property">role</span>: <span class="code-string">'Full-Stack Dev'</span>,
-  <span class="code-property">expertise</span>: [<span class="code-string">'Ruby On Rails'</span>, <span class="code-string">'Vue'</span>],
-  <span class="code-property">available</span>: <span class="code-boolean">true</span>
-};</code></pre>
-                </div>
-                <div class="cv-download-container code-footer">
-                  <a href="/emad_rahimi_cv.pdf" download class="cv-download-button group">
-                    <div class="cv-download-frame"></div>
-                    <div class="cv-download-content">
-                      <div class="cv-download-glow"></div>
-                      <div class="cv-download-icon">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        >
-                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                          <polyline points="7 10 12 15 17 10"></polyline>
-                          <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                      </div>
-                      <span class="cv-download-text">Download CV</span>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <div class="visual-decoration"></div>
-            </div>
-          </div>
+    <div
+      class="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 px-5 pb-20 pt-28 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:px-12 lg:py-24"
+    >
+      <div class="hero-copy">
+        <div
+          class="mb-6 inline-flex items-center gap-2 rounded-full border border-teal-400/20 bg-teal-400/10 px-3 py-1.5 text-xs font-medium text-teal-300 sm:text-sm"
+        >
+          <span class="size-1.5 rounded-full bg-teal-300 shadow-[0_0_12px_rgba(94,234,212,0.8)]" />
+          Available for thoughtful work
         </div>
 
-        <!-- Social links in footer -->
-        <div v-if="heroVisible" :style="getAnimationDelay(6)">
-          <div class="social-links">
-            <a
-              v-for="{ icon, url, label, color, hoverGlow } in socialLinks"
-              :key="url"
-              :href="url"
-              :aria-label="label"
-              rel="noopener noreferrer"
-              target="_blank"
-              class="social-link group relative flex items-center justify-center overflow-hidden rounded-xl border border-slate-700/50 bg-slate-800/30 backdrop-blur-sm transition-all duration-300 hover:border-teal-400/30"
-              :style="`--hover-glow: ${hoverGlow}`"
-            >
-              <div
-                class="absolute inset-0 opacity-0 transition-all duration-500 group-hover:opacity-20"
-                :class="`bg-gradient-to-br ${color}`"
-              ></div>
-              <base-icon
-                :name="icon"
-                class="relative z-10 text-slate-300 transition-all duration-300 group-hover:text-teal-400"
-              />
+        <p class="mb-2 text-sm font-medium tracking-[0.18em] text-slate-400 uppercase">
+          Full-stack developer
+        </p>
+        <h1
+          class="hero-name font-Outfit text-5xl font-semibold tracking-[-0.04em] sm:text-6xl lg:text-7xl"
+        >
+          Emad Rahimi
+        </h1>
+        <p class="mt-6 max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
+          I build web products end to end—from reliable Rails systems and APIs to Vue interfaces
+          that feel quick, clear, and considered.
+        </p>
 
-              <!-- Circular ripple effect on hover -->
-              <div
-                class="absolute inset-0 rounded-xl bg-teal-500/5 opacity-0 transition-transform duration-700 ease-out group-hover:opacity-100 group-hover:scale-[2.5]"
-              ></div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="#projects"
+            class="inline-flex items-center gap-2 rounded-xl bg-teal-500 px-5 py-3 font-medium text-slate-950 shadow-[0_14px_35px_rgba(20,184,166,0.2)] transition hover:-translate-y-0.5 hover:bg-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-300"
+          >
+            View projects
+            <svg
+              class="size-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+          <a
+            href="#contact"
+            class="inline-flex items-center rounded-xl border border-slate-700 bg-slate-900/60 px-5 py-3 font-medium text-slate-200 backdrop-blur transition hover:-translate-y-0.5 hover:border-slate-600 hover:bg-slate-800/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-300"
+          >
+            Contact me
+          </a>
+        </div>
+
+        <div class="mt-9 flex items-center gap-3">
+          <a
+            v-for="link in socialLinks"
+            :key="link.url"
+            :href="link.url"
+            :aria-label="link.label"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex size-11 items-center justify-center rounded-xl border border-slate-700/80 bg-slate-900/60 text-slate-400 transition hover:-translate-y-0.5 hover:border-teal-400/40 hover:text-teal-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-300"
+          >
+            <BaseIcon :name="link.icon" class="size-5 transition-transform group-hover:scale-105" />
+          </a>
+        </div>
+      </div>
+
+      <aside class="hero-card relative mx-auto w-full max-w-lg" aria-label="Developer profile">
+        <div class="card-shadow" aria-hidden="true" />
+        <div
+          class="relative overflow-hidden rounded-2xl border border-slate-700/70 bg-slate-900/80 shadow-2xl shadow-black/30 backdrop-blur-xl"
+        >
+          <div class="flex items-center justify-between border-b border-slate-700/70 px-4 py-3">
+            <div class="flex gap-1.5" aria-hidden="true">
+              <span class="size-2.5 rounded-full bg-rose-400" />
+              <span class="size-2.5 rounded-full bg-amber-300" />
+              <span class="size-2.5 rounded-full bg-emerald-400" />
+            </div>
+            <span class="font-mono text-xs text-slate-500">profile.ts</span>
+          </div>
+
+          <pre
+            class="overflow-x-auto p-5 font-mono text-[12px] leading-7 text-slate-300 sm:p-7 sm:text-sm"
+          ><code><span class="code-purple">const</span> <span class="code-blue">emad</span> = {
+  <span class="code-green">worksWith</span>: [<span class="code-rose">'Rails'</span>, <span class="code-rose">'Vue'</span>],
+  <span class="code-green">caresAbout</span>: [<span class="code-rose">'clarity'</span>, <span class="code-rose">'speed'</span>],
+  <span class="code-green">ships</span>: <span class="code-orange">true</span>
+}</code></pre>
+
+          <div
+            class="flex items-center justify-between gap-4 border-t border-slate-700/70 px-5 py-4"
+          >
+            <span class="hidden text-sm text-slate-500 sm:block">A closer look at my work</span>
+            <a
+              href="/emad_rahimi_cv.pdf"
+              download
+              class="inline-flex items-center gap-2 rounded-lg border border-teal-400/20 bg-teal-400/10 px-3.5 py-2 text-sm font-medium text-teal-300 transition hover:border-teal-400/40 hover:bg-teal-400/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-300"
+            >
+              <svg
+                class="size-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14" />
+              </svg>
+              Download CV
             </a>
           </div>
         </div>
-
-        <button
-          type="button"
-          class="scroll-indicator cursor-pointer"
-          @click="scrollToSection('about')"
-        >
-          <span>Scroll Down</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M12 5v14M19 12l-7 7-7-7" />
-          </svg>
-        </button>
-      </div>
+      </aside>
     </div>
+
+    <a
+      href="#about"
+      class="absolute bottom-5 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-1 text-xs text-slate-500 transition hover:text-teal-300 sm:flex"
+    >
+      Explore
+      <svg
+        class="size-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <path d="m7 10 5 5 5-5" />
+      </svg>
+    </a>
   </section>
 </template>
+
 <style scoped>
-/* Main layout */
-.hero-section {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-background {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.gradient-bg {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 10% 20%, #0f172a 0%, #020617 100%);
-}
-
-.grid-pattern {
-  position: absolute;
-  inset: 0;
+.hero-surface {
   background:
-    conic-gradient(
-      from 0deg at 50% 50%,
-      rgba(56, 189, 248, 0.03) 0%,
-      rgba(20, 184, 166, 0.03) 25%,
-      rgba(168, 85, 247, 0.03) 50%,
-      rgba(244, 114, 182, 0.03) 75%,
-      rgba(56, 189, 248, 0.03) 100%
-    ),
-    repeating-linear-gradient(
-      to right,
-      transparent,
-      transparent calc(3vmin - 1px),
-      rgba(255, 255, 255, 0.03) calc(3vmin - 1px),
-      rgba(255, 255, 255, 0.03) 3vmin
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      transparent,
-      transparent calc(3vmin - 1px),
-      rgba(255, 255, 255, 0.03) calc(3vmin - 1px),
-      rgba(255, 255, 255, 0.03) 3vmin
-    );
-
-  mask-image: radial-gradient(
-    ellipse at center,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.8) 70%,
-    rgba(0, 0, 0, 0) 100%
-  );
-
-  animation: grid-rotate 60s linear infinite;
+    radial-gradient(circle at 15% 20%, rgba(13, 148, 136, 0.14), transparent 32rem),
+    radial-gradient(circle at 85% 75%, rgba(30, 64, 175, 0.12), transparent 30rem), #020617;
 }
 
-@keyframes grid-rotate {
-  0% {
-    background-position:
-      0% 0%,
-      0 0,
-      0 0;
-  }
-  100% {
-    background-position:
-      100% 0%,
-      50px 50px,
-      50px 50px;
-  }
+.hero-glow {
+  position: absolute;
+  top: 12%;
+  right: 15%;
+  width: min(32rem, 60vw);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: rgba(20, 184, 166, 0.08);
+  filter: blur(100px);
 }
-.grid-pattern {
+
+.hero-grid {
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(
-      circle at 50% 50%,
-      transparent 0%,
-      transparent 80%,
-      rgba(20, 184, 166, 0.05) 80%,
-      rgba(20, 184, 166, 0.05) 100%
-    ),
-    radial-gradient(
-      circle at 0% 0%,
-      transparent 0%,
-      transparent 80%,
-      rgba(56, 189, 248, 0.05) 80%,
-      rgba(56, 189, 248, 0.05) 100%
-    ),
-    radial-gradient(
-      circle at 100% 0%,
-      transparent 0%,
-      transparent 80%,
-      rgba(168, 85, 247, 0.05) 80%,
-      rgba(168, 85, 247, 0.05) 100%
-    ),
-    radial-gradient(
-      circle at 0% 100%,
-      transparent 0%,
-      transparent 80%,
-      rgba(244, 114, 182, 0.05) 80%,
-      rgba(244, 114, 182, 0.05) 100%
-    ),
-    radial-gradient(
-      circle at 100% 100%,
-      transparent 0%,
-      transparent 80%,
-      rgba(251, 146, 60, 0.05) 80%,
-      rgba(251, 146, 60, 0.05) 100%
-    ),
-    linear-gradient(to right, rgba(226, 232, 240, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(226, 232, 240, 0.02) 1px, transparent 1px);
-
-  background-size:
-    150% 150%,
-    150% 150%,
-    150% 150%,
-    150% 150%,
-    150% 150%,
-    clamp(10px, 2vw, 20px) clamp(10px, 2vw, 20px);
-
-  opacity: 0.6;
-
-  animation: perspective-shift 25s ease-in-out infinite alternate;
-  transform-origin: center;
-  transform-style: preserve-3d;
-}
-
-@keyframes perspective-shift {
-  0%,
-  100% {
-    background-position:
-      0% 0%,
-      0% 0%,
-      0% 0%,
-      0% 0%,
-      0% 0%,
-      0 0;
-    background-size:
-      150% 150%,
-      150% 150%,
-      150% 150%,
-      150% 150%,
-      150% 150%,
-      clamp(10px, 2vw, 20px) clamp(10px, 2vw, 20px);
-  }
-  50% {
-    background-position:
-      100% 100%,
-      100% 0%,
-      0% 100%,
-      100% 100%,
-      0% 0%,
-      5px 5px;
-    background-size:
-      100% 100%,
-      100% 100%,
-      100% 100%,
-      100% 100%,
-      100% 100%,
-      clamp(15px, 2.5vw, 25px) clamp(15px, 2.5vw, 25px);
-  }
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.5;
-  transition: transform 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-.orb-primary {
-  width: 50vh;
-  height: 50vh;
-  top: -15vh;
-  right: -15vh;
-  background: radial-gradient(circle at center, rgba(14, 165, 233, 0.15), rgba(56, 189, 248, 0));
-  animation: float-slow 20s infinite alternate;
-}
-
-.orb-secondary {
-  width: 40vh;
-  height: 40vh;
-  bottom: -10vh;
-  left: -10vh;
-  background: radial-gradient(circle at center, rgba(20, 184, 166, 0.15), rgba(45, 212, 191, 0));
-  animation: float-slow 25s infinite alternate-reverse;
-}
-
-.orb-accent {
-  width: 30vh;
-  height: 30vh;
-  top: 40%;
-  left: 60%;
-  background: radial-gradient(circle at center, rgba(168, 85, 247, 0.1), rgba(192, 132, 252, 0));
-  animation: float-slow 18s infinite alternate;
-}
-
-.backdrop-mesh {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(226, 232, 240, 0.1) 1px, transparent 1px);
-  background-size: 30px 30px;
-  background-position: -15px -15px;
-  opacity: 0.3;
-}
-
-.hero-container {
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 1rem;
-  z-index: 10;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-@media (min-width: 768px) {
-  .hero-container {
-    padding-left: calc(60px + 1.5rem);
-    padding-right: 1.5rem;
-  }
-}
-
-.hero-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.hero-split {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-}
-
-@media (min-width: 1024px) {
-  .hero-split {
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-  }
-}
-
-.hero-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.hero-right {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-@media (min-width: 768px) {
-  .content-wrapper {
-    gap: 1.5rem;
-  }
-}
-
-.hero-badge {
-  display: inline-flex;
-  background: rgba(20, 184, 166, 0.1);
-  border: 1px solid rgba(20, 184, 166, 0.2);
-  border-radius: 9999px;
-  backdrop-filter: blur(8px);
-  width: fit-content;
-}
-
-.badge-text {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #2dd4bf;
+    linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black 35%, transparent 95%);
 }
 
 .hero-name {
-  font-size: 2.25rem;
-  font-weight: 700;
-  line-height: 1.2;
-  background: linear-gradient(to right, #2dd4bf, #5eead4);
-  -webkit-background-clip: text;
-  background-clip: text;
+  width: fit-content;
   color: transparent;
-  margin: 0;
-}
-
-@media (min-width: 640px) {
-  .hero-name {
-    font-size: 3rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .hero-name {
-    font-size: 3.5rem;
-  }
-}
-
-.hero-role {
-  display: flex;
-  font-size: 1.125rem;
-  font-weight: 500;
-  color: #e2e8f0;
-}
-
-@media (min-width: 640px) {
-  .hero-role {
-    font-size: 1.5rem;
-  }
-}
-
-.typed-text {
-  color: #2dd4bf;
-  font-weight: 600;
-}
-
-.hero-description {
-  max-width: 36rem;
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: #94a3b8;
-  margin: 0;
-}
-
-@media (min-width: 640px) {
-  .hero-description {
-    font-size: 1.125rem;
-  }
-}
-
-.highlight {
-  color: #2dd4bf;
-  font-weight: 500;
-  position: relative;
-}
-
-.highlight::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 0.25rem;
-  background: rgba(45, 212, 191, 0.2);
-  border-radius: 4px;
-  z-index: -1;
-}
-
-.hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-.btn-primary {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 1.25rem;
-  background: linear-gradient(to right, #0f766e, #0d9488);
-  color: white;
-  font-weight: 500;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 15px -3px rgba(15, 118, 110, 0.2);
-  position: relative;
-  overflow: hidden;
-  font-size: 0.875rem;
-  cursor: pointer;
-  border: none;
-  outline: none;
-}
-
-@media (min-width: 640px) {
-  .btn-primary {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-  }
-}
-
-.btn-primary::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
   background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.3) 50%,
-    rgba(255, 255, 255, 0) 100%
+    110deg,
+    #f8fafc 0%,
+    #cbd5e1 24%,
+    #5eead4 46%,
+    #818cf8 68%,
+    #f8fafc 100%
   );
-  transform: rotate(30deg);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  background-size: 240% 100%;
+  background-clip: text;
+  animation: name-shift 8s ease-in-out infinite;
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 15px 20px -3px rgba(15, 118, 110, 0.3);
+.hero-copy,
+.hero-card {
+  animation: hero-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.btn-primary:hover::after {
-  animation: shine 1.5s ease;
+.hero-card {
+  animation-delay: 100ms;
 }
 
-.btn-secondary {
-  padding: 0.625rem 1.25rem;
-  background: rgba(30, 41, 59, 0.5);
-  color: #e2e8f0;
-  font-weight: 500;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(71, 85, 105, 0.3);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(8px);
-  font-size: 0.875rem;
-  cursor: pointer;
-  outline: none;
-}
-
-@media (min-width: 640px) {
-  .btn-secondary {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-  }
-}
-
-.btn-secondary:hover {
-  background: rgba(30, 41, 59, 0.7);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
-}
-
-/* Code visual */
-.hero-visual {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  opacity: 0;
-  animation: fade-in-up 1s forwards;
-  animation-delay: 0.3s;
-  scale: 0.85;
-  transform-origin: center;
-}
-
-@media (min-width: 480px) {
-  .hero-visual {
-    scale: 0.9;
-  }
-}
-
-@media (min-width: 640px) {
-  .hero-visual {
-    scale: 0.95;
-    max-width: 90%;
-  }
-}
-
-@media (min-width: 768px) {
-  .hero-visual {
-    scale: 1;
-    max-width: 420px;
-  }
-}
-
-.code-container {
-  background: rgba(15, 23, 42, 0.7);
-  border-radius: 0.75rem;
-  overflow: hidden;
-  box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 8px 10px -6px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(51, 65, 85, 0.5);
-  transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
-  transition: transform 0.3s ease;
-}
-
-.code-container:hover {
-  transform: perspective(1000px) rotateY(-2deg) rotateX(1deg) translateY(-5px);
-}
-
-.code-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.625rem 0.75rem;
-  background: rgba(30, 41, 59, 0.7);
-  border-bottom: 1px solid rgba(51, 65, 85, 0.7);
-}
-
-@media (min-width: 640px) {
-  .code-header {
-    padding: 0.75rem 1rem;
-  }
-}
-
-.code-dots {
-  display: flex;
-  gap: 0.375rem;
-}
-
-.code-dots span {
-  width: 0.625rem;
-  height: 0.625rem;
-  border-radius: 50%;
-}
-
-@media (min-width: 640px) {
-  .code-dots span {
-    width: 0.75rem;
-    height: 0.75rem;
-  }
-}
-
-.code-dots span:nth-child(1) {
-  background-color: #f87171;
-}
-
-.code-dots span:nth-child(2) {
-  background-color: #facc15;
-}
-
-.code-dots span:nth-child(3) {
-  background-color: #4ade80;
-}
-
-.code-title {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #cbd5e1;
-}
-
-@media (min-width: 640px) {
-  .code-title {
-    font-size: 0.875rem;
-  }
-}
-
-.code-content {
-  padding: 1rem;
-  font-family: 'Monaco', 'Consolas', monospace;
-  font-size: 0.75rem;
-  line-height: 1.7;
-  color: #e2e8f0;
-}
-
-@media (min-width: 640px) {
-  .code-content {
-    padding: 1.5rem;
-    font-size: 0.875rem;
-  }
-}
-
-.code-keyword {
-  color: #c084fc;
-}
-
-.code-variable {
-  color: #38bdf8;
-}
-
-.code-property {
-  color: #4ade80;
-}
-
-.code-string {
-  color: #fb7185;
-}
-
-.code-boolean {
-  color: #fb923c;
-}
-
-.visual-decoration {
+.card-shadow {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 1.5rem;
-  left: 1.5rem;
-  background: linear-gradient(to bottom right, rgba(20, 184, 166, 0.2), rgba(56, 189, 248, 0.2));
-  border-radius: 0.75rem;
+  inset: 1.25rem -1rem -1.25rem 1.25rem;
   z-index: -1;
-  opacity: 0.7;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.18), rgba(37, 99, 235, 0.1));
+  filter: blur(1px);
 }
 
-.social-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+.code-purple {
+  color: #c4b5fd;
 }
 
-.social-link {
-  width: 3rem;
-  height: 3rem;
-  box-shadow:
-    0 10px 15px -3px var(--hover-glow),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  transform: translateY(-5px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(20, 184, 166, 0.3);
-  background: rgba(30, 41, 59, 0.7);
-  backdrop-filter: blur(8px);
+.code-blue {
+  color: #7dd3fc;
 }
 
-.social-link svg {
-  color: #2dd4bf;
-  animation: icon-pulse 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
-  position: relative;
-  z-index: 10;
+.code-green {
+  color: #6ee7b7;
 }
 
-.social-link .absolute {
-  opacity: 0.2;
+.code-rose {
+  color: #fda4af;
 }
 
-.social-link .bg-gradient-to-br {
-  position: absolute;
-  inset: 0;
-  opacity: 0.2;
+.code-orange {
+  color: #fdba74;
 }
 
-.social-link .rounded-xl {
-  position: absolute;
-  inset: 0;
-  background: rgba(20, 184, 166, 0.05);
-  opacity: 1;
-  transform: scale(2.5);
-}
-
-@keyframes icon-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.15);
-  }
-}
-
-@media (min-width: 640px) {
-  .social-link {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-}
-
-.group:hover svg {
-  animation: icon-pulse 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
-}
-
-@keyframes icon-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.15);
-  }
-}
-
-.scroll-indicator {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
-  color: #94a3b8;
-  font-size: 0.75rem;
-  animation: bounce 2s infinite;
-}
-
-@media (min-width: 640px) {
-  .scroll-indicator {
-    font-size: 0.875rem;
-  }
-}
-
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(20px, -20px);
-  }
-}
-
-@keyframes shine {
-  0% {
-    opacity: 1;
-    transform: translateX(-100%) rotate(30deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(100%) rotate(30deg);
-  }
-}
-
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
-}
-
-@keyframes fade-in-up {
+@keyframes hero-enter {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(18px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.stagger-fade-enter-active {
-  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--el-index, 0) * 0.1s);
-}
-
-.stagger-fade-enter-from {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.typed-cursor {
-  color: #2dd4bf !important;
-  font-weight: 600;
-}
-
-.cv-download-container {
-  position: relative;
-  margin-top: 1.5rem;
-  width: 100%;
-  perspective: 1000px;
-}
-
-.cv-download-button {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  width: fit-content;
-  transform: rotate(-5deg);
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.cv-download-button:hover {
-  transform: rotate(-8deg) translateY(-5px);
-}
-
-.cv-download-frame {
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  border: 1px dashed rgba(20, 184, 166, 0.4);
-  border-radius: 12px;
-  transform: rotate(2deg);
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.cv-download-button:hover .cv-download-frame {
-  transform: rotate(-1deg) scale(1.05);
-  border-color: rgba(20, 184, 166, 0.8);
-}
-
-.cv-download-content {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.25rem;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.4));
-  border: 1px solid rgba(51, 65, 85, 0.5);
-  border-radius: 8px;
-  backdrop-filter: blur(8px);
-  overflow: hidden;
-  box-shadow:
-    0 4px 15px -3px rgba(0, 0, 0, 0.1),
-    0 2px 8px -2px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-}
-
-.cv-download-button:hover .cv-download-content {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.5));
-  border-color: rgba(20, 184, 166, 0.3);
-}
-
-.cv-download-glow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.15), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.cv-download-button:hover .cv-download-glow {
-  opacity: 1;
-}
-
-.cv-download-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: rgba(20, 184, 166, 0.1);
-  border-radius: 8px;
-  border: 1px solid rgba(20, 184, 166, 0.2);
-  color: #2dd4bf;
-  transition: all 0.3s ease;
-}
-
-.cv-download-button:hover .cv-download-icon {
-  background: rgba(20, 184, 166, 0.2);
-  border-color: rgba(20, 184, 166, 0.4);
-  transform: translateY(-2px);
-}
-
-.cv-download-text {
-  font-weight: 500;
-  font-size: 0.9rem;
-  color: #e2e8f0;
-  letter-spacing: 0.02em;
-  transition: all 0.3s ease;
-}
-
-.cv-download-button:hover .cv-download-text {
-  color: #2dd4bf;
-}
-
-.cv-download-button:hover .cv-download-icon svg {
-  animation: pulse-download 1.5s infinite;
-}
-
-@keyframes pulse-download {
+@keyframes name-shift {
   0%,
   100% {
-    transform: translateY(0);
+    background-position: 0% 50%;
   }
+
   50% {
-    transform: translateY(2px);
+    background-position: 100% 50%;
   }
 }
 
-@media (max-width: 640px) {
-  .cv-download-container {
-    margin-top: 0.75rem;
+@media (prefers-reduced-motion: reduce) {
+  .hero-name,
+  .hero-copy,
+  .hero-card {
+    animation: none;
   }
-
-  .cv-download-content {
-    padding: 0.5rem 0.75rem;
-  }
-
-  .cv-download-icon {
-    width: 24px;
-    height: 24px;
-  }
-
-  .cv-download-text {
-    font-size: 0.75rem;
-  }
-}
-
-.code-footer {
-  margin-top: 0;
-  padding: 0.75rem;
-  border-top: 1px solid rgba(51, 65, 85, 0.7);
-  background: rgba(15, 23, 42, 0.6);
-  display: flex;
-  justify-content: center;
-}
-
-.code-footer .cv-download-container {
-  margin-top: 0;
-  width: auto;
-}
-
-.cv-download-button {
-  transform: none;
-}
-
-.cv-download-button:hover {
-  transform: translateY(-2px);
 }
 </style>

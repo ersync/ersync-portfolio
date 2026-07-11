@@ -4,42 +4,13 @@ import SkillCard from '@/ui/SkillCard.vue'
 import SectionHeader from '@/ui/SectionHeader.vue'
 import HighlightGrid from '@/ui/base/HighlightGrid.vue'
 import FadeUpOnScroll from '@/ui/FadeUpOnScroll.vue'
+import SectionBackdrop from '@/ui/SectionBackdrop.vue'
 </script>
 
 <template>
   <div id="about" class="relative min-h-screen w-full overflow-hidden py-16 sm:py-20">
-    <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-slate-900"></div>
+    <SectionBackdrop />
 
-      <div
-        class="absolute -left-20 top-1/4 md:h-64 md:w-64 h-32 w-32 rounded-full bg-teal-400/10 blur-3xl animate-float-reverse glow"
-      ></div>
-      <div
-        class="absolute -right-20 bottom-1/4 md:h-72 md:w-72 h-40 w-40 rounded-full bg-indigo-500/10 blur-3xl animate-float-delay glow indigo-glow"
-      ></div>
-
-      <!-- Grid pattern -->
-      <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
-
-      <div class="absolute bottom-0 left-0 h-[200px] w-full overflow-hidden">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="h-full w-full opacity-10">
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C0,0,0,2,0,3.38Z"
-            fill="url(#bottomGradient)"
-            class="shape-fill"
-          ></path>
-          <defs>
-            <linearGradient id="bottomGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#0d9488" stop-opacity="0.3" />
-              <stop offset="50%" stop-color="#14b8a6" stop-opacity="0.4" />
-              <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0.3" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Content -->
     <div class="container relative z-10">
       <FadeUpOnScroll>
         <SectionHeader title="About Me" subtitle="" />
@@ -197,65 +168,6 @@ import FadeUpOnScroll from '@/ui/FadeUpOnScroll.vue'
 </template>
 
 <style scoped>
-.bg-grid-pattern {
-  background-image:
-    linear-gradient(to right, rgba(100, 100, 100, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(100, 100, 100, 0.1) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-.glow {
-  filter: blur(40px);
-  animation: glow-pulse 12s ease-in-out infinite;
-  will-change: opacity, filter;
-}
-
-.indigo-glow {
-  box-shadow: 0 0 60px 15px rgba(99, 102, 241, 0.12);
-}
-
-@keyframes glow-pulse {
-  0%,
-  100% {
-    opacity: 0.5;
-    filter: blur(40px);
-  }
-  50% {
-    opacity: 0.3;
-    filter: blur(50px);
-  }
-}
-
-@keyframes float-reverse {
-  0%,
-  100% {
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    transform: translateY(20px) translateX(-15px);
-  }
-}
-
-@keyframes float-delay {
-  0%,
-  100% {
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    transform: translateY(-20px) translateX(15px);
-  }
-}
-
-.animate-float-reverse {
-  animation: float-reverse 24s ease-in-out infinite;
-  will-change: transform;
-}
-
-.animate-float-delay {
-  animation: float-delay 30s ease-in-out infinite;
-  will-change: transform;
-}
-
 .skill-card {
   transition: all 0.3s ease;
   border: 1px solid rgba(51, 65, 85, 0.5);

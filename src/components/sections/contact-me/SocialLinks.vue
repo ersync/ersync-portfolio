@@ -72,20 +72,4 @@ const socialLinks = [
     0 10px 15px -3px var(--hover-glow),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
-
-.group:hover .fa-github,
-.group:hover .fa-linkedin,
-.group:hover .fa-x-twitter {
-  animation: icon-pulse 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
-}
-
-@keyframes icon-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.15);
-  }
-}
 </style>

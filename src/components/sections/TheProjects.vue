@@ -1,25 +1,14 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed } from 'vue'
 import type { Project } from '@/types/project'
 import { projects } from '@/data/projects'
 import type { FilterCategory } from '@/types/projectCategory'
 import { isProjectCategory, categories } from '@/types/projectCategory'
 import SectionHeader from '@/ui/SectionHeader.vue'
 import FadeUpOnScroll from '@/ui/FadeUpOnScroll.vue'
+import SectionBackdrop from '@/ui/SectionBackdrop.vue'
 
 const selectedCategory = ref<FilterCategory>('all')
-const isLoaded = ref(false)
-let loadTimer: number | undefined
-
-onMounted(() => {
-  loadTimer = window.setTimeout(() => {
-    isLoaded.value = true
-  }, 200)
-})
-
-onUnmounted(() => {
-  window.clearTimeout(loadTimer)
-})
 
 const filteredProjects = computed<Project[]>(() => {
   const category = selectedCategory.value
@@ -52,42 +41,7 @@ const getCategoryColor = (category: FilterCategory) => {
 
 <template>
   <section id="projects" class="relative min-h-screen w-full overflow-hidden py-16 sm:py-20">
-    <!-- Background elements -->
-    <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-slate-900"></div>
-
-      <!-- Animated orbs -->
-      <div
-        class="absolute -left-20 top-1/4 md:h-64 md:w-64 h-32 w-32 rounded-full bg-teal-400/10 blur-3xl animate-float-reverse glow"
-      ></div>
-      <div
-        class="absolute -right-20 bottom-1/4 md:h-72 md:w-72 h-40 w-40 rounded-full bg-indigo-500/10 blur-3xl animate-float-delay glow indigo-glow"
-      ></div>
-      <div
-        class="absolute right-1/3 top-2/3 md:h-48 md:w-48 h-24 w-24 rounded-full bg-amber-400/10 blur-3xl animate-float glow amber-glow"
-      ></div>
-
-      <!-- Grid pattern -->
-      <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
-
-      <!-- Decorative waves -->
-      <div class="absolute bottom-0 left-0 h-[200px] w-full overflow-hidden">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="h-full w-full opacity-10">
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C0,0,0,2,0,3.38Z"
-            fill="url(#bottomGradient)"
-            class="shape-fill"
-          ></path>
-          <defs>
-            <linearGradient id="bottomGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#0d9488" stop-opacity="0.3" />
-              <stop offset="50%" stop-color="#14b8a6" stop-opacity="0.4" />
-              <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0.3" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-    </div>
+    <SectionBackdrop />
 
     <div class="container relative z-10">
       <!-- Header -->
@@ -132,11 +86,6 @@ const getCategoryColor = (category: FilterCategory) => {
             v-for="project in filteredProjects"
             :key="project.id"
             class="group relative mx-auto w-full max-w-[330px] overflow-hidden rounded-2xl border border-slate-700/30 bg-slate-800/60 shadow-lg shadow-teal-500/5 backdrop-blur-md transition-all duration-500 hover:shadow-xl hover:shadow-teal-500/20"
-            :style="{
-              opacity: isLoaded ? '1' : '0',
-              transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
-              transitionDelay: `${300 + filteredProjects.indexOf(project) * 100}ms`
-            }"
           >
             <!-- Project Image container -->
             <div class="relative h-[200px] overflow-hidden">
@@ -225,77 +174,6 @@ const getCategoryColor = (category: FilterCategory) => {
     linear-gradient(to right, rgba(100, 100, 100, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(100, 100, 100, 0.1) 1px, transparent 1px);
   background-size: 40px 40px;
-}
-
-.glow {
-  filter: blur(40px);
-  animation: glow-pulse 12s ease-in-out infinite;
-  will-change: opacity, filter;
-}
-
-.indigo-glow {
-  box-shadow: 0 0 60px 15px rgba(99, 102, 241, 0.12);
-}
-
-.amber-glow {
-  box-shadow: 0 0 60px 15px rgba(251, 191, 36, 0.12);
-}
-
-@keyframes glow-pulse {
-  0%,
-  100% {
-    opacity: 0.5;
-    filter: blur(40px);
-  }
-  50% {
-    opacity: 0.3;
-    filter: blur(50px);
-  }
-}
-
-@keyframes float-reverse {
-  0%,
-  100% {
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    transform: translateY(20px) translateX(-15px);
-  }
-}
-
-@keyframes float-delay {
-  0%,
-  100% {
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    transform: translateY(-20px) translateX(15px);
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    transform: translateY(15px) translateX(10px);
-  }
-}
-
-.animate-float-reverse {
-  animation: float-reverse 24s ease-in-out infinite;
-  will-change: transform;
-}
-
-.animate-float-delay {
-  animation: float-delay 30s ease-in-out infinite;
-  will-change: transform;
-}
-
-.animate-float {
-  animation: float 18s ease-in-out infinite;
-  will-change: transform;
 }
 
 .list-enter-active,

@@ -129,7 +129,6 @@
 .heart-icon {
   display: inline-block;
   color: #fb7185;
-  animation: pulse 2s infinite;
   margin: 0 0.25rem;
 }
 
@@ -141,18 +140,6 @@
 @media (min-width: 640px) {
   .rights-text {
     font-size: 0.75rem;
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.2);
   }
 }
 </style>
