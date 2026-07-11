@@ -1,28 +1,31 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 import MileStoneCard from '@/components/sections/journey/JourneyTimeline/MileStoneCard.vue'
 import { usePhaseStore } from '@/stores/phaseStore'
 
 const phase = usePhaseStore()
 const timelineRef = ref<HTMLElement | null>(null)
 const isVisible = ref(false)
+let animationTimer: number | undefined
+let observer: IntersectionObserver | undefined
 
 watch(
   () => phase.selectedPhase.value,
   () => {
     isVisible.value = false
-    setTimeout(() => {
+    window.clearTimeout(animationTimer)
+    animationTimer = window.setTimeout(() => {
       isVisible.value = true
     }, 50)
   }
 )
 
 onMounted(() => {
-  const observer = new IntersectionObserver(
+  observer = new IntersectionObserver(
     (entries) => {
       if (entries[0].isIntersecting) {
         isVisible.value = true
-        observer.disconnect()
+        observer?.disconnect()
       }
     },
     { threshold: 0.2 }
@@ -31,6 +34,11 @@ onMounted(() => {
   if (timelineRef.value) {
     observer.observe(timelineRef.value)
   }
+})
+
+onUnmounted(() => {
+  window.clearTimeout(animationTimer)
+  observer?.disconnect()
 })
 </script>
 

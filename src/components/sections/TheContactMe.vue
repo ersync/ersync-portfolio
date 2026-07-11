@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import SectionHeader from '@/ui/SectionHeader.vue'
 import FadeUpOnScroll from '@/ui/FadeUpOnScroll.vue'
 import ContactInfoCard from '@/components/sections/contact-me/ContactInfoCard.vue'
@@ -7,24 +7,16 @@ import SocialLinks from '@/components/sections/contact-me/SocialLinks.vue'
 import ContactForm from '@/components/sections/contact-me/ContactForm.vue'
 
 const isLoaded = ref(false)
-
-const isMobile = ref(window.innerWidth < 768)
-
-const handleResize = () => {
-  isMobile.value = window.innerWidth < 768
-}
+let loadTimer: number | undefined
 
 onMounted(() => {
-  setTimeout(() => {
+  loadTimer = window.setTimeout(() => {
     isLoaded.value = true
   }, 200)
+})
 
-  handleResize()
-  window.addEventListener('resize', handleResize)
-
-  return () => {
-    window.removeEventListener('resize', handleResize)
-  }
+onUnmounted(() => {
+  window.clearTimeout(loadTimer)
 })
 </script>
 
@@ -131,7 +123,8 @@ onMounted(() => {
 
 <style scoped>
 .bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(100, 100, 100, 0.1) 1px, transparent 1px),
+  background-image:
+    linear-gradient(to right, rgba(100, 100, 100, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(100, 100, 100, 0.1) 1px, transparent 1px);
   background-size: 40px 40px;
 }

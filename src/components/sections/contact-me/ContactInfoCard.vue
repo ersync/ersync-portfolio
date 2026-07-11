@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { MapPinIcon, EnvelopeIcon } from '@heroicons/vue/24/outline'
+import MapPinIcon from '@heroicons/vue/24/outline/MapPinIcon.js'
+import EnvelopeIcon from '@heroicons/vue/24/outline/EnvelopeIcon.js'
 import FadeUpOnScroll from '@/ui/FadeUpOnScroll.vue'
 defineProps<{
   type: 'email' | 'location'

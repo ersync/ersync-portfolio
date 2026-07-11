@@ -1,6 +1,8 @@
 <template>
-  <div
+  <button
     v-show="isOpen"
+    type="button"
+    aria-label="Close navigation menu"
     @click="$emit('click')"
     class="fixed inset-0 z-40 bg-black/5 backdrop-blur-sm transition-opacity duration-300"
     :class="isOpen ? 'opacity-100' : 'opacity-0'"

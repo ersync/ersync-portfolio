@@ -1,5 +1,9 @@
 <template>
   <button
+    type="button"
+    :aria-label="isOpen ? 'Close navigation menu' : 'Open navigation menu'"
+    :aria-expanded="isOpen"
+    aria-controls="mobile-navigation-panel"
     @click="$emit('toggle')"
     class="flex items-center justify-center px-1.5 transition-all duration-300"
   >

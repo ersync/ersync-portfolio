@@ -12,6 +12,8 @@ const typedElement = ref<HTMLElement | null>(null)
 const isMobile = ref(window.innerWidth < 768)
 const mousePosition = ref({ x: 0, y: 0 })
 let typedInstance: Typed | null = null
+let entranceTimer: number | undefined
+let typingTimer: number | undefined
 
 const socialLinks = [
   {
@@ -73,13 +75,11 @@ const destroyTyped = () => {
   typedInstance = null
 }
 
-const initializeWithSequence = async () => {
+const initializeWithSequence = () => {
   heroVisible.value = true
-  await nextTick()
-
-  if (typedElement.value) {
-    setTimeout(initializeTyped, isMobile.value ? 600 : 1000)
-  }
+  void nextTick(() => {
+    typingTimer = window.setTimeout(initializeTyped, isMobile.value ? 600 : 1000)
+  })
 }
 
 const scrollToSection = (sectionId: NavItemName): void => {
@@ -95,12 +95,14 @@ onMounted(() => {
   window.addEventListener('resize', handleResize)
   window.addEventListener('mousemove', handleMouseMove)
 
-  setTimeout(initializeWithSequence, 100)
+  entranceTimer = window.setTimeout(initializeWithSequence, 100)
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
   window.removeEventListener('mousemove', handleMouseMove)
+  window.clearTimeout(entranceTimer)
+  window.clearTimeout(typingTimer)
   destroyTyped()
 })
 
@@ -301,7 +303,11 @@ const bgOffset = computed(() => {
           </div>
         </div>
 
-        <div class="scroll-indicator cursor-pointer" @click="scrollToSection('about')">
+        <button
+          type="button"
+          class="scroll-indicator cursor-pointer"
+          @click="scrollToSection('about')"
+        >
           <span>Scroll Down</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -316,7 +322,7 @@ const bgOffset = computed(() => {
           >
             <path d="M12 5v14M19 12l-7 7-7-7" />
           </svg>
-        </div>
+        </button>
       </div>
     </div>
   </section>
@@ -347,7 +353,8 @@ const bgOffset = computed(() => {
 .grid-pattern {
   position: absolute;
   inset: 0;
-  background: conic-gradient(
+  background:
+    conic-gradient(
       from 0deg at 50% 50%,
       rgba(56, 189, 248, 0.03) 0%,
       rgba(20, 184, 166, 0.03) 25%,
@@ -397,7 +404,8 @@ const bgOffset = computed(() => {
 .grid-pattern {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(
+  background-image:
+    radial-gradient(
       circle at 50% 50%,
       transparent 0%,
       transparent 80%,

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import { Project } from '@/types/project'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import type { Project } from '@/types/project'
 import { projects } from '@/data/projects'
 import type { FilterCategory } from '@/types/projectCategory'
 import { isProjectCategory, categories } from '@/types/projectCategory'
@@ -9,25 +9,16 @@ import FadeUpOnScroll from '@/ui/FadeUpOnScroll.vue'
 
 const selectedCategory = ref<FilterCategory>('all')
 const isLoaded = ref(false)
-const hoveredProjectImage = ref<string | number | null>(null)
-
-const isMobile = ref(window.innerWidth < 768)
-
-const handleResize = () => {
-  isMobile.value = window.innerWidth < 768
-}
+let loadTimer: number | undefined
 
 onMounted(() => {
-  handleResize()
-  window.addEventListener('resize', handleResize)
-
-  setTimeout(() => {
+  loadTimer = window.setTimeout(() => {
     isLoaded.value = true
   }, 200)
+})
 
-  return () => {
-    window.removeEventListener('resize', handleResize)
-  }
+onUnmounted(() => {
+  window.clearTimeout(loadTimer)
 })
 
 const filteredProjects = computed<Project[]>(() => {
@@ -56,10 +47,6 @@ const getCategoryColor = (category: FilterCategory) => {
   }
 
   return colorMap[category as keyof typeof colorMap] || colorMap.all
-}
-
-const setHoveredImage = (id: string | number | null) => {
-  hoveredProjectImage.value = id
 }
 </script>
 
@@ -152,32 +139,22 @@ const setHoveredImage = (id: string | number | null) => {
             }"
           >
             <!-- Project Image container -->
-            <div
-              class="relative h-[200px] overflow-hidden cursor-pointer"
-              @mouseenter="setHoveredImage(project.id)"
-              @mouseleave="setHoveredImage(null)"
-            >
+            <div class="relative h-[200px] overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-white/5"></div>
 
               <img
                 :src="getProjectImage(project.image)"
                 :alt="project.title"
                 loading="lazy"
-                class="size-full object-cover transition-all duration-700"
-                :class="{
-                  'scale-[1.08] blur-sm':
-                    hoveredProjectImage === project.id && hoveredProjectImage !== null
-                }"
+                class="size-full object-cover transition-all duration-700 group-hover:scale-[1.08] group-hover:blur-sm group-focus-within:scale-[1.08] group-focus-within:blur-sm"
               />
 
               <div
-                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-500 z-20"
-                :class="{ 'opacity-100': hoveredProjectImage === project.id }"
-              ></div>
+                class="absolute inset-0 z-20 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100"
+              />
 
               <div
-                class="absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-500 z-30"
-                :class="{ 'opacity-100': hoveredProjectImage === project.id }"
+                class="absolute inset-0 z-30 flex items-center justify-center opacity-0 transition-all duration-500 group-hover:opacity-100 group-focus-within:opacity-100"
               >
                 <h3 class="text-2xl font-bold text-white drop-shadow-lg">{{ project.title }}</h3>
               </div>
@@ -244,7 +221,8 @@ const setHoveredImage = (id: string | number | null) => {
 
 <style scoped>
 .bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(100, 100, 100, 0.1) 1px, transparent 1px),
+  background-image:
+    linear-gradient(to right, rgba(100, 100, 100, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(100, 100, 100, 0.1) 1px, transparent 1px);
   background-size: 40px 40px;
 }

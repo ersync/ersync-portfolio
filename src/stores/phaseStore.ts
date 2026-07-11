@@ -1,13 +1,11 @@
 import { ref, computed } from 'vue'
 import type { PhaseId, PhaseSummary, PhaseDetails } from '@/types/journey'
-import {
-  WindowIcon,
-  CodeBracketIcon,
-  CommandLineIcon,
-  CogIcon,
-  BeakerIcon,
-  RocketLaunchIcon
-} from '@heroicons/vue/24/outline'
+import WindowIcon from '@heroicons/vue/24/outline/WindowIcon.js'
+import CodeBracketIcon from '@heroicons/vue/24/outline/CodeBracketIcon.js'
+import CommandLineIcon from '@heroicons/vue/24/outline/CommandLineIcon.js'
+import CogIcon from '@heroicons/vue/24/outline/CogIcon.js'
+import BeakerIcon from '@heroicons/vue/24/outline/BeakerIcon.js'
+import RocketLaunchIcon from '@heroicons/vue/24/outline/RocketLaunchIcon.js'
 
 const selectedPhase = ref<PhaseId>('frontend')
 export type JourneyStatus = 'Completed' | 'In Progress' | 'Not Started'

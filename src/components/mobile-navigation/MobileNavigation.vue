@@ -15,6 +15,9 @@
     <MenuBackdrop :is-open="isOpen" @click="toggleMenu" />
 
     <nav
+      id="mobile-navigation-panel"
+      :aria-hidden="!isOpen"
+      :inert="!isOpen"
       class="ease-out-cubic fixed left-0 top-0 z-50 h-full w-[67%] max-w-[350px] transition-all duration-500"
       :class="[
         isOpen ? 'translate-x-0' : '-translate-x-full',
@@ -90,6 +93,7 @@ const isOpen = ref(false)
 const isVisible = ref(true)
 const lastScrollTop = ref(0)
 const isNavigating = ref(false)
+let navigationTimer: number | undefined
 
 const handleScroll = () => {
   if (isNavigating.value) return
@@ -117,7 +121,7 @@ const handleNavigation = (itemName: NavItemName) => {
   if (targetSection) {
     targetSection.scrollIntoView({ behavior: 'smooth' })
 
-    setTimeout(() => {
+    navigationTimer = window.setTimeout(() => {
       lastScrollTop.value = window.pageYOffset || document.documentElement.scrollTop
       isNavigating.value = false
     }, NAVIGATION_DELAY)
@@ -142,6 +146,8 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  window.clearTimeout(navigationTimer)
+  document.body.style.overflow = ''
 })
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const isVisible = ref(false)
 const activeCard = ref(0)
@@ -37,17 +37,19 @@ const getCardClasses = (index: number) => {
     : 'bg-slate-800/40 shadow inactive-card'
 }
 
-onMounted(() => {
-  isVisible.value = true
-})
-
 const rotateFocus = () => {
-  activeCard.value = (activeCard.value + 1) % 4
+  activeCard.value = (activeCard.value + 1) % skillItems.length
 }
 
-// Start rotation every 3 seconds
+let rotationTimer: number | undefined
+
 onMounted(() => {
-  setInterval(rotateFocus, 3000)
+  isVisible.value = true
+  rotationTimer = window.setInterval(rotateFocus, 3000)
+})
+
+onUnmounted(() => {
+  window.clearInterval(rotationTimer)
 })
 </script>
 
@@ -179,7 +181,8 @@ onMounted(() => {
 }
 
 .bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 8px 8px;
 }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePhaseStore } from '@/stores/phaseStore'
-const phase = usePhaseStore()
+const phaseStore = usePhaseStore()
 
 const props = defineProps<{
   modelValue: string
@@ -31,14 +31,16 @@ const emit = defineEmits<{
         </div>
       </div>
 
-      <div v-for="(phase, index) in phase.phasesSummaries.value" :key="index">
+      <div v-for="(phase, index) in phaseStore.phasesSummaries.value" :key="index">
         <div class="block md:hidden">
-          <div
+          <button
+            type="button"
             class="relative z-10 cursor-pointer transition-all duration-300"
             :class="[
               phase.id === props.modelValue ? 'scale-110' : 'scale-100 hover:scale-105',
               index == 1 ? '-ml-4' : ''
             ]"
+            :aria-pressed="phase.id === props.modelValue"
             @click="emit('update:modelValue', phase.id)"
           >
             <div class="relative size-14">
@@ -113,13 +115,15 @@ const emit = defineEmits<{
                 {{ phase.period }}
               </span>
             </div>
-          </div>
+          </button>
         </div>
 
         <div class="hidden md:block">
-          <div
+          <button
+            type="button"
             class="relative z-10 cursor-pointer transition-all duration-300"
             :class="[phase.id === props.modelValue ? 'scale-110' : 'scale-100 hover:scale-105']"
+            :aria-pressed="phase.id === props.modelValue"
             @click="emit('update:modelValue', phase.id)"
           >
             <div class="relative size-20">
@@ -194,7 +198,7 @@ const emit = defineEmits<{
                 {{ phase.period }}
               </span>
             </div>
-          </div>
+          </button>
         </div>
       </div>
     </div>

@@ -6,7 +6,6 @@ import type { NavItemName } from '@/stores/navigationStore'
 
 interface Props {
   name: NavItemName
-  isSidebarExpanded?: boolean
 }
 
 const props = defineProps<Props>()
@@ -44,55 +43,47 @@ const textClasses = computed(() =>
 )
 </script>
 <template>
-  <li @click="handleClick" :class="containerClasses" class="py-2 px-3 w-full">
-    <div :class="indicatorClasses"></div>
-    <div class="flex items-center gap-3 pl-3">
-      <div class="relative">
-        <BaseIcon
-          :name="name"
-          class="size-5 transition-transform duration-300 group-hover:scale-110 z-10"
-          :class="{
-            'text-teal-400': isActive,
-            'text-gray-400 group-hover:text-gray-200': !isActive
-          }"
-        />
-        <div
-          v-if="isActive"
-          class="absolute inset-0 bg-teal-400/20 blur-md rounded-full size-5"
-        ></div>
-      </div>
-      <span
-        :class="textClasses"
-        :style="{
-          opacity: isSidebarExpanded ? '1' : '0',
-          transform: isSidebarExpanded ? 'translateX(0)' : 'translateX(-10px)',
-          width: isSidebarExpanded ? 'auto' : '0',
-          transition: 'opacity 150ms ease-out, transform 200ms, width 200ms',
-          transitionProperty: isSidebarExpanded ? 'all' : 'opacity, transform, width',
-          transitionDuration: isSidebarExpanded ? '200ms' : '100ms'
-        }"
-      >
-        {{ capitalizedName }}
+  <li class="w-full">
+    <button
+      type="button"
+      :class="containerClasses"
+      class="w-full px-3 py-2 text-left"
+      :aria-current="isActive ? 'page' : undefined"
+      @click="handleClick"
+    >
+      <span :class="indicatorClasses" />
+      <span class="flex items-center gap-3 pl-3">
+        <div class="relative">
+          <BaseIcon
+            :name="name"
+            class="size-5 transition-transform duration-300 group-hover:scale-110 z-10"
+            :class="{
+              'text-teal-400': isActive,
+              'text-gray-400 group-hover:text-gray-200': !isActive
+            }"
+          />
+          <div
+            v-if="isActive"
+            class="absolute inset-0 bg-teal-400/20 blur-md rounded-full size-5"
+          ></div>
+        </div>
+        <span
+          :class="textClasses"
+          class="navigation-label transition-[opacity,transform,width] duration-200"
+        >
+          {{ capitalizedName }}
+        </span>
       </span>
-    </div>
+    </button>
   </li>
 </template>
 <style scoped>
-li {
+button {
   position: relative;
   transition: all 0.3s ease;
 }
-li:hover {
+button:hover,
+button:focus-visible {
   transform: translateX(2px);
-}
-li.active::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 3px;
-  background: theme('colors.teal.400');
-  border-radius: 0 4px 4px 0;
 }
 </style>

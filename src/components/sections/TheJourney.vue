@@ -5,7 +5,6 @@ import JourneyStats from '@/components/sections/journey/JourneyStats.vue'
 import JourneyTimeline from '@/components/sections/journey/JourneyTimeline/JourneyTimeline.vue'
 import FadeUpOnScroll from '@/ui/FadeUpOnScroll.vue'
 import { usePhaseStore } from '@/stores/phaseStore'
-import { ref, onMounted } from 'vue'
 
 const phase = usePhaseStore()
 const stats = [
@@ -14,21 +13,6 @@ const stats = [
   { value: '1000+', label: 'Learning Hours' },
   { value: '300+', label: 'GitHub Contributions' }
 ]
-
-const isMobile = ref(window.innerWidth < 768)
-
-const handleResize = () => {
-  isMobile.value = window.innerWidth < 768
-}
-
-onMounted(() => {
-  handleResize()
-  window.addEventListener('resize', handleResize)
-
-  return () => {
-    window.removeEventListener('resize', handleResize)
-  }
-})
 </script>
 
 <template>
@@ -105,7 +89,8 @@ onMounted(() => {
 
 <style scoped>
 .bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(100, 100, 100, 0.1) 1px, transparent 1px),
+  background-image:
+    linear-gradient(to right, rgba(100, 100, 100, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(100, 100, 100, 0.1) 1px, transparent 1px);
   background-size: 40px 40px;
 }

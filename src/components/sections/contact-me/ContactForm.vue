@@ -48,8 +48,11 @@ const handleSubmit = async (e: Event) => {
     >
       <div class="space-y-6">
         <div>
-          <label class="mb-2 block text-sm font-medium text-slate-300">Name</label>
+          <label for="contact-name" class="mb-2 block text-sm font-medium text-slate-300">
+            Name
+          </label>
           <input
+            id="contact-name"
             type="text"
             name="name"
             class="w-full rounded-lg border border-slate-700 bg-slate-800/80 px-4 py-2 text-slate-200 outline-none transition-all duration-300 focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20"
@@ -58,8 +61,11 @@ const handleSubmit = async (e: Event) => {
           />
         </div>
         <div>
-          <label class="mb-2 block text-sm font-medium text-slate-300">Email</label>
+          <label for="contact-email" class="mb-2 block text-sm font-medium text-slate-300">
+            Email
+          </label>
           <input
+            id="contact-email"
             type="email"
             name="email"
             class="w-full rounded-lg border border-slate-700 bg-slate-800/80 px-4 py-2 text-slate-200 outline-none transition-all duration-300 focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20"
@@ -68,8 +74,11 @@ const handleSubmit = async (e: Event) => {
           />
         </div>
         <div>
-          <label class="mb-2 block text-sm font-medium text-slate-300">Message</label>
+          <label for="contact-message" class="mb-2 block text-sm font-medium text-slate-300">
+            Message
+          </label>
           <textarea
+            id="contact-message"
             name="message"
             class="h-32 w-full rounded-lg border border-slate-700 bg-slate-800/80 px-4 py-2 text-slate-200 outline-none transition-all duration-300 focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20"
             placeholder="Your message"

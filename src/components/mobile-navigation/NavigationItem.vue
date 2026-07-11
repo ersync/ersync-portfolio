@@ -1,11 +1,14 @@
 <template>
-  <li @click="$emit('navigate', item.name)">
-    <a
-      class="group cursor-pointer flex items-center space-x-3 rounded-xl p-3 transition-all duration-300 hover:shadow-sm"
+  <li>
+    <button
+      type="button"
+      class="group flex w-full items-center space-x-3 rounded-xl p-3 text-left transition-all duration-300 hover:shadow-sm"
       :class="[
         activeSection === item.name ? 'bg-white/5' : '',
         'hover:bg-white/5 hover:shadow-teal-900/30'
       ]"
+      :aria-current="activeSection === item.name ? 'page' : undefined"
+      @click="$emit('navigate', item.name)"
     >
       <div
         class="flex size-8 items-center justify-center rounded-xl border border-teal-900/30 bg-gradient-to-br from-gray-800 to-gray-900/40 shadow-[0_2px_8px_-1px_rgba(0,0,0,0.10)] transition-all duration-300 group-hover:border-teal-800 group-hover:shadow-md"
@@ -24,7 +27,7 @@
           {{ item.text }}
         </span>
       </div>
-    </a>
+    </button>
   </li>
 </template>
 
