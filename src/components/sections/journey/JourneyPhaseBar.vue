@@ -67,16 +67,13 @@ const emit = defineEmits<{
       </span>
 
       <span class="min-w-0 flex-1">
-        <span class="flex items-center justify-between gap-3 pr-12">
-          <span class="text-[10px] font-semibold tracking-[0.14em] text-slate-500 uppercase">
-            {{ phase.period }}
-          </span>
+        <span class="flex justify-end pr-12">
           <span class="font-mono text-[10px]" :style="{ color: phase.color }">
             {{ phase.progress }}%
           </span>
         </span>
         <span
-          class="mt-1.5 block text-sm font-semibold transition-colors"
+          class="mt-2 block text-sm font-semibold transition-colors"
           :class="
             modelValue === phase.id ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'
           "

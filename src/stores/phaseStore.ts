@@ -15,7 +15,6 @@ const phasesSummaries = ref<PhaseSummary[]>([
     id: 'basics',
     label: 'Web Basics',
     icon: WindowIcon,
-    period: '2022',
     progress: 100,
     color: '#22d3ee'
   },
@@ -23,7 +22,6 @@ const phasesSummaries = ref<PhaseSummary[]>([
     id: 'frontend',
     label: 'Frontend Mastery',
     icon: CodeBracketIcon,
-    period: '2023',
     progress: 45,
     color: '#a78bfa'
   },
@@ -31,7 +29,6 @@ const phasesSummaries = ref<PhaseSummary[]>([
     id: 'backend',
     label: 'Backend Mastery',
     icon: CommandLineIcon,
-    period: '2024',
     progress: 60,
     color: '#f59e0b'
   }
@@ -44,29 +41,25 @@ const phasesContent = ref<Record<PhaseId, PhaseDetails>>({
         title: 'HTML & CSS',
         status: 'Completed',
         description: 'Modern semantic HTML5 and CSS3 fundamentals including Flexbox and Grid',
-        technologies: ['HTML5', 'CSS3', 'Flexbox/Grid'],
-        timeframe: '3 months'
+        technologies: ['HTML5', 'CSS3', 'Flexbox/Grid']
       },
       {
         title: 'JavaScript Core',
         status: 'Completed',
         description: 'Core JS concepts including ES6+, DOM manipulation, and async programming',
-        technologies: ['JavaScript', 'ES6+', 'Async/Await'],
-        timeframe: '3 months'
+        technologies: ['JavaScript', 'ES6+', 'Async/Await']
       },
       {
         title: 'Build Tools',
         status: 'Completed',
         description: 'Modern development workflow with npm, Git, and build tools',
-        technologies: ['Vite', 'Webpack', 'npm'],
-        timeframe: '2 months'
+        technologies: ['Vite', 'Webpack', 'npm']
       },
       {
         title: 'Web APIs',
         status: 'Completed',
         description: 'Browser APIs, local storage, and modern web capabilities',
-        technologies: ['REST', 'LocalStorage', 'Web APIs'],
-        timeframe: '2 months'
+        technologies: ['REST', 'LocalStorage', 'Web APIs']
       }
     ],
     tools: [
@@ -82,29 +75,25 @@ const phasesContent = ref<Record<PhaseId, PhaseDetails>>({
         title: 'Tailwind CSS',
         status: 'Completed',
         description: 'Utility-first CSS framework for rapid UI development',
-        technologies: ['Tailwind', 'PostCSS', 'Responsive Design'],
-        timeframe: '2 months'
+        technologies: ['Tailwind', 'PostCSS', 'Responsive Design']
       },
       {
         title: 'Vue.js',
         status: 'In Progress',
         description: 'Component architecture, state management, and Vue ecosystem',
-        technologies: ['Vue 3', 'Pinia', 'Vue Router'],
-        timeframe: '4 months'
+        technologies: ['Vue 3', 'Pinia', 'Vue Router']
       },
       {
         title: 'React',
         status: 'Not Started',
         description: 'React fundamentals, hooks, and state management patterns',
-        technologies: ['React', 'Redux', 'Hooks'],
-        timeframe: '4 months'
+        technologies: ['React', 'Redux', 'Hooks']
       },
       {
         title: 'Advanced TypeScript',
         status: 'Not Started',
         description: 'Advanced types, generics, and design patterns',
-        technologies: ['TypeScript', 'Design Patterns', 'Type Systems'],
-        timeframe: '2 months'
+        technologies: ['TypeScript', 'Design Patterns', 'Type Systems']
       }
     ],
     tools: [
@@ -120,29 +109,25 @@ const phasesContent = ref<Record<PhaseId, PhaseDetails>>({
         title: 'PostgreSQL',
         status: 'Completed',
         description: 'Advanced database design and SQL optimization',
-        technologies: ['PostgreSQL', 'SQL', 'Database Design'],
-        timeframe: '2 months'
+        technologies: ['PostgreSQL', 'SQL', 'Database Design']
       },
       {
         title: 'Ruby on Rails MVC',
         status: 'Completed',
         description: 'Rails architecture, ActiveRecord, and testing',
-        technologies: ['Ruby', 'Rails', 'RSpec'],
-        timeframe: '4 months'
+        technologies: ['Ruby', 'Rails', 'RSpec']
       },
       {
         title: 'API Development',
         status: 'In Progress',
         description: 'RESTful APIs, authentication, and GraphQL',
-        technologies: ['REST', 'GraphQL', 'JWT'],
-        timeframe: '3 months'
+        technologies: ['REST', 'GraphQL', 'JWT']
       },
       {
         title: 'Advanced Backend',
         status: 'Not Started',
         description: 'Caching, background jobs, and performance optimization',
-        technologies: ['Redis', 'Sidekiq', 'Performance'],
-        timeframe: '3 months'
+        technologies: ['Redis', 'Sidekiq', 'Performance']
       }
     ],
     tools: [

@@ -3,8 +3,7 @@ import BaseIcon from '@/ui/base/BaseIcon.vue'
 
 const socialLinks = [
   { icon: 'github', url: 'https://github.com/ersync', label: 'GitHub' },
-  { icon: 'linkedin', url: 'https://linkedin.com/in/erahimidev', label: 'LinkedIn' },
-  { icon: 'x', url: 'https://x.com/emadrahimidev', label: 'X' }
+  { icon: 'linkedin', url: 'https://linkedin.com/in/erahimidev', label: 'LinkedIn' }
 ]
 </script>
 

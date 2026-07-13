@@ -35,7 +35,7 @@ const projectImage = (image: Project['image']) => (Array.isArray(image) ? image[
       <FadeUpOnScroll :delay="100">
         <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
           <div
-            class="inline-flex rounded-xl border border-white/[0.07] bg-slate-950/45 p-1 backdrop-blur-xl"
+            class="inline-flex rounded-xl border border-white/[0.12] bg-[#091526] p-1 shadow-lg shadow-black/10"
             aria-label="Filter projects"
           >
             <button
@@ -46,7 +46,7 @@ const projectImage = (image: Project['image']) => (Array.isArray(image) ? image[
               :class="
                 selectedCategory === category
                   ? 'bg-white text-slate-950 shadow-sm'
-                  : 'text-slate-500 hover:bg-white/[0.05] hover:text-slate-200'
+                  : 'text-slate-300 hover:bg-white/[0.07] hover:text-white'
               "
               :aria-pressed="selectedCategory === category"
               @click="selectedCategory = category"
@@ -54,7 +54,7 @@ const projectImage = (image: Project['image']) => (Array.isArray(image) ? image[
               {{ category }}
             </button>
           </div>
-          <p class="font-mono text-[10px] tracking-[0.16em] text-slate-600 uppercase">
+          <p class="text-xs font-semibold tracking-[0.08em] text-slate-400 uppercase">
             {{ filteredProjects.length.toString().padStart(2, '0') }} projects
           </p>
         </div>
@@ -65,21 +65,29 @@ const projectImage = (image: Project['image']) => (Array.isArray(image) ? image[
           <article
             v-for="(project, index) in filteredProjects"
             :key="project.id"
-            class="project-card group relative overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-slate-950/55 shadow-2xl shadow-black/20 backdrop-blur-xl"
-            :class="index === 0 ? 'md:col-span-2 lg:grid lg:grid-cols-[1.22fr_0.78fr]' : ''"
+            class="project-card group relative overflow-hidden rounded-[1.75rem] border border-white/[0.13] bg-[#081322] shadow-[0_24px_70px_rgba(0,0,0,0.32)]"
+            :class="
+              index === 0
+                ? 'featured-project md:col-span-2 lg:grid lg:grid-cols-[1.22fr_0.78fr]'
+                : ''
+            "
           >
             <div
               class="relative overflow-hidden bg-slate-900"
-              :class="index === 0 ? 'min-h-64 lg:min-h-[25rem]' : 'aspect-[16/10]'"
+              :class="
+                index === 0
+                  ? 'min-h-64 border-b border-white/10 lg:min-h-[25rem] lg:border-b-0 lg:border-r'
+                  : 'aspect-[16/10] border-b border-white/10'
+              "
             >
               <img
                 :src="projectImage(project.image)"
                 :alt="`${project.title} project preview`"
                 loading="lazy"
-                class="absolute inset-0 size-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.025]"
+                class="absolute inset-0 size-full object-cover object-top saturate-[1.05] transition-transform duration-500 group-hover:scale-[1.025]"
               />
               <div
-                class="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-white/[0.03]"
+                class="absolute inset-0 bg-gradient-to-t from-[#081322]/75 via-transparent to-black/10"
                 aria-hidden="true"
               />
               <div class="absolute left-4 top-4 flex items-center gap-2">
@@ -134,7 +142,7 @@ const projectImage = (image: Project['image']) => (Array.isArray(image) ? image[
                 </div>
 
                 <p
-                  class="mt-4 text-sm leading-6 text-slate-400"
+                  class="mt-4 text-sm leading-6 text-slate-300"
                   :class="index === 0 ? 'max-w-md sm:text-base' : ''"
                 >
                   {{ project.description }}
@@ -146,7 +154,7 @@ const projectImage = (image: Project['image']) => (Array.isArray(image) ? image[
                   <li
                     v-for="tech in project.technologies"
                     :key="tech"
-                    class="font-mono text-[10px] text-slate-500 before:mr-1.5 before:text-violet-400 before:content-['+']"
+                    class="font-mono text-xs font-medium text-slate-200 before:mr-1.5 before:text-violet-300 before:content-['+']"
                   >
                     {{ tech }}
                   </li>
@@ -154,21 +162,11 @@ const projectImage = (image: Project['image']) => (Array.isArray(image) ? image[
 
                 <a
                   :href="project.githubLink"
-                  class="mt-6 inline-flex items-center gap-2 text-xs font-semibold text-slate-300 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-300"
+                  class="mt-6 inline-flex rounded-lg border border-white/10 px-3.5 py-2 text-xs font-semibold text-slate-300 transition-colors hover:border-violet-300/35 hover:bg-violet-400/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-300"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   View source
-                  <svg
-                    class="size-3.5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14m-5-5 5 5-5 5" />
-                  </svg>
                 </a>
               </div>
             </div>
@@ -187,6 +185,24 @@ const projectImage = (image: Project['image']) => (Array.isArray(image) ? image[
   content: '';
   border-radius: inherit;
   box-shadow: inset 0 1px rgba(255, 255, 255, 0.035);
+}
+
+.featured-project {
+  border-color: rgba(196, 181, 253, 0.38);
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.38),
+    0 0 38px rgba(139, 92, 246, 0.09);
+}
+
+.featured-project::before {
+  position: absolute;
+  inset: 0 auto auto 0;
+  z-index: 30;
+  width: 45%;
+  height: 2px;
+  pointer-events: none;
+  content: '';
+  background: linear-gradient(90deg, #a78bfa, #22d3ee, transparent);
 }
 
 .project-list-enter-active,

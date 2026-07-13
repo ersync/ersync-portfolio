@@ -7,7 +7,6 @@ export interface PhaseSummary {
   id: PhaseId
   label: string
   icon: Component
-  period: string
   progress: number
   color: string
 }
@@ -22,7 +21,6 @@ export interface Milestone {
   status: MilestoneStatus
   description: string
   technologies: string[]
-  timeframe: string
 }
 
 export interface Tool {

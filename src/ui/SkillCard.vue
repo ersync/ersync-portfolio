@@ -20,7 +20,7 @@ const accents = {
 
 <template>
   <article
-    class="group flex min-h-32 flex-col justify-between rounded-2xl border border-white/[0.07] bg-slate-950/45 p-4 backdrop-blur-xl transition-colors duration-300 hover:border-white/[0.13] hover:bg-slate-900/70 sm:p-5"
+    class="group flex min-h-32 flex-col justify-between rounded-2xl border border-white/[0.12] bg-[#091526] p-4 shadow-lg shadow-black/10 transition-colors duration-300 hover:border-white/20 hover:bg-[#0d1d31] sm:p-5"
   >
     <div
       class="flex size-10 items-center justify-center rounded-xl border"
@@ -30,7 +30,7 @@ const accents = {
     </div>
     <div class="mt-5">
       <h4 class="text-sm font-semibold text-slate-100 sm:text-base">{{ title }}</h4>
-      <p class="mt-0.5 text-xs text-slate-500">{{ description }}</p>
+      <p class="mt-0.5 text-xs text-slate-300">{{ description }}</p>
     </div>
   </article>
 </template>

@@ -58,14 +58,14 @@ onUnmounted(() => {
         :style="{ animationDelay: `${index * 100 + 300}ms` }"
       >
         <!-- Timeline node/point -->
-        <div class="timeline-node absolute left-[10px] top-4 z-10">
+        <div class="timeline-node absolute left-[11px] top-4 z-10">
           <div
-            class="timeline-point relative size-3"
+            class="timeline-point relative size-2.5"
             :style="{ color: phase.currentPhaseColor.value }"
           >
             <span class="absolute inset-0 rounded-full bg-white" />
-            <span class="absolute -inset-1.5 rounded-full border-2 border-current bg-current/15" />
-            <span class="absolute -inset-3 rounded-full border border-current/25" />
+            <span class="absolute -inset-1 rounded-full border-2 border-current bg-current/15" />
+            <span class="absolute -inset-2 rounded-full border border-current/30" />
           </div>
         </div>
 

@@ -9,11 +9,6 @@ const socialLinks = [
     icon: 'linkedin',
     url: 'https://linkedin.com/in/erahimidev',
     label: 'LinkedIn'
-  },
-  {
-    icon: 'x-twitter',
-    url: 'https://x.com/emadrahimidev',
-    label: 'X'
   }
 ]
 </script>

@@ -19,13 +19,13 @@ const links = [
     <div class="container relative py-10 sm:py-14">
       <div class="grid items-end gap-8 border-b border-white/[0.07] pb-9 md:grid-cols-[1fr_auto]">
         <div>
-          <p class="font-mono text-[10px] tracking-[0.18em] text-teal-300 uppercase">
+          <p class="font-display text-xs font-semibold tracking-[0.06em] text-teal-200 uppercase">
             End of page, not the conversation
           </p>
           <p
             class="mt-3 max-w-2xl font-display text-2xl font-semibold tracking-[-0.035em] text-white sm:text-3xl"
           >
-            Built thoughtfully. Kept curious.
+            Thanks for making it this far.
           </p>
         </div>
 
@@ -60,7 +60,7 @@ const links = [
           </span>
           <span>
             <span class="block text-sm font-semibold text-slate-200">Emad Rahimi</span>
-            <span class="block text-[11px] text-slate-600">Full-stack developer</span>
+            <span class="block text-[11px] text-slate-400">Full-stack developer</span>
           </span>
         </a>
 
@@ -69,14 +69,14 @@ const links = [
             v-for="link in links"
             :key="link.href"
             :href="link.href"
-            class="text-xs font-medium text-slate-500 transition-colors hover:text-slate-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-300"
+            class="text-xs font-medium text-slate-400 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-300"
           >
             {{ link.label }}
           </a>
         </nav>
 
-        <p class="font-mono text-[10px] tracking-[0.08em] text-slate-600 uppercase">
-          © {{ year }} · Tehran, IR
+        <p class="font-mono text-[10px] tracking-[0.08em] text-slate-400 uppercase">
+          © {{ year }} · Iran
         </p>
       </div>
     </div>

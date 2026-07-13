@@ -4,6 +4,7 @@ import IconSprite from '@/ui/base/IconSprite.vue'
 import TheHero from '@/components/sections/TheHero.vue'
 import TheAbout from '@/components/sections/TheAbout.vue'
 import TheProjects from '@/components/sections/TheProjects.vue'
+import WorkPrinciples from '@/components/sections/WorkPrinciples.vue'
 import TheJourney from '@/components/sections/TheJourney.vue'
 import TheContactMe from '@/components/sections/TheContactMe.vue'
 import TheFooter from '@/components/sections/TheFooter.vue'
@@ -18,6 +19,7 @@ import MobileNavigation from '@/components/mobile-navigation/MobileNavigation.vu
     <TheHero />
     <TheAbout />
     <TheProjects />
+    <WorkPrinciples />
     <TheJourney />
     <TheContactMe />
     <TheFooter />

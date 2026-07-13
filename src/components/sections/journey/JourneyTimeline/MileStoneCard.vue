@@ -33,9 +33,6 @@ import type { Milestone } from '@/types/journey'
         {{ tech }}
       </span>
     </div>
-    <div class="mt-3 text-center text-xs text-slate-400">
-      {{ milestoneData.timeframe }}
-    </div>
   </div>
 </template>
 

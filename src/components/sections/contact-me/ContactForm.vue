@@ -89,70 +89,74 @@ const handleSubmit = async (event: SubmitEvent) => {
       :aria-busy="isLoading"
       @submit.prevent="handleSubmit"
     >
-      <div class="space-y-6">
-        <div>
-          <label
-            for="contact-name"
-            class="mb-2 block text-xs font-bold tracking-wider text-slate-400 uppercase"
-          >
-            Name
-          </label>
-          <input
-            id="contact-name"
-            type="text"
-            name="name"
-            class="w-full rounded-xl border border-white/[0.06] bg-white/[0.01] px-4 py-3 text-sm text-slate-100 outline-none transition duration-300 placeholder:text-slate-600 focus:border-teal-400/40 focus:bg-white/[0.03] focus:ring-4 focus:ring-teal-400/5"
-            placeholder="Your name"
-            autocomplete="name"
-            required
-            @focus="activeField = 'name'"
-            @blur="activeField = null"
-          />
-        </div>
+      <div>
+        <h3 class="font-display text-2xl font-semibold tracking-tight text-white">Send a note.</h3>
+        <p class="mt-2 text-sm leading-6 text-slate-300">
+          A few details are enough to get started.
+        </p>
 
-        <div>
-          <label
-            for="contact-email"
-            class="mb-2 block text-xs font-bold tracking-wider text-slate-400 uppercase"
+        <div class="mt-8 grid gap-x-6 gap-y-7 sm:grid-cols-2">
+          <div
+            class="field-group relative border-b border-white/15 pb-1 focus-within:border-teal-300/70"
           >
-            Email address
-          </label>
-          <input
-            id="contact-email"
-            type="email"
-            name="email"
-            class="w-full rounded-xl border border-white/[0.06] bg-white/[0.01] px-4 py-3 text-sm text-slate-100 outline-none transition duration-300 placeholder:text-slate-600 focus:border-teal-400/40 focus:bg-white/[0.03] focus:ring-4 focus:ring-teal-400/5"
-            placeholder="you@example.com"
-            autocomplete="email"
-            required
-            @focus="activeField = 'email'"
-            @blur="activeField = null"
-          />
-        </div>
+            <label for="contact-name" class="block text-xs font-semibold text-slate-300">
+              Name
+            </label>
+            <input
+              id="contact-name"
+              type="text"
+              name="name"
+              class="w-full border-0 bg-transparent px-0 py-2.5 text-base text-white outline-none placeholder:text-slate-500"
+              placeholder="Jane Smith"
+              autocomplete="name"
+              required
+              @focus="activeField = 'name'"
+              @blur="activeField = null"
+            />
+          </div>
 
-        <div>
-          <label
-            for="contact-message"
-            class="mb-2 block text-xs font-bold tracking-wider text-slate-400 uppercase"
+          <div
+            class="field-group relative border-b border-white/15 pb-1 focus-within:border-teal-300/70"
           >
-            Message
-          </label>
-          <textarea
-            id="contact-message"
-            name="message"
-            class="h-32 w-full resize-none rounded-xl border border-white/[0.06] bg-white/[0.01] px-4 py-3 text-sm text-slate-100 outline-none transition duration-300 placeholder:text-slate-600 focus:border-teal-400/40 focus:bg-white/[0.03] focus:ring-4 focus:ring-teal-400/5"
-            placeholder="Tell me a little about your idea"
-            required
-            @focus="activeField = 'message'"
-            @blur="activeField = null"
-          />
+            <label for="contact-email" class="block text-xs font-semibold text-slate-300">
+              Email address
+            </label>
+            <input
+              id="contact-email"
+              type="email"
+              name="email"
+              class="w-full border-0 bg-transparent px-0 py-2.5 text-base text-white outline-none placeholder:text-slate-500"
+              placeholder="jane@example.com"
+              autocomplete="email"
+              required
+              @focus="activeField = 'email'"
+              @blur="activeField = null"
+            />
+          </div>
+
+          <div
+            class="field-group relative border-b border-white/15 pb-1 focus-within:border-teal-300/70 sm:col-span-2"
+          >
+            <label for="contact-message" class="block text-xs font-semibold text-slate-300">
+              Message
+            </label>
+            <textarea
+              id="contact-message"
+              name="message"
+              class="h-36 w-full resize-none border-0 bg-transparent px-0 py-2.5 text-base leading-6 text-white outline-none placeholder:text-slate-500"
+              placeholder="What are you hoping to build?"
+              required
+              @focus="activeField = 'message'"
+              @blur="activeField = null"
+            />
+          </div>
         </div>
       </div>
 
       <div class="mt-8 space-y-4">
         <button
           type="submit"
-          class="flex w-full items-center justify-center rounded-xl bg-teal-400 px-5 py-3.5 text-sm font-bold text-slate-950 shadow-[0_4px_15px_rgba(45,212,191,0.2)] transition duration-300 hover:-translate-y-0.5 hover:bg-teal-300 hover:shadow-[0_6px_25px_rgba(45,212,191,0.35)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-300 disabled:cursor-wait disabled:opacity-70"
+          class="flex w-full items-center justify-center rounded-xl bg-teal-300 px-5 py-3.5 text-sm font-bold text-slate-950 shadow-[0_8px_28px_rgba(45,212,191,0.22)] transition duration-300 hover:-translate-y-0.5 hover:bg-teal-200 hover:shadow-[0_10px_32px_rgba(45,212,191,0.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-300 disabled:cursor-wait disabled:opacity-70"
           :disabled="isLoading"
         >
           <svg
@@ -194,7 +198,7 @@ const handleSubmit = async (event: SubmitEvent) => {
         </p>
 
         <div
-          class="flex items-center justify-between pt-2 text-[10px] font-semibold tracking-wider text-slate-500 uppercase"
+          class="flex items-center justify-between pt-2 text-[10px] font-semibold tracking-wide text-slate-400 uppercase"
         >
           <span>Protected by reCAPTCHA</span>
           <a

@@ -18,87 +18,68 @@ import MapPinIcon from '@heroicons/vue/24/outline/MapPinIcon.js'
           eyebrow="04 / Contact"
           title="Let’s make it real."
           subtitle="Have a useful idea, an interesting problem, or a team that values thoughtful work? My inbox is open."
+          subtitle-emphasis
         />
       </FadeUpOnScroll>
 
       <div
-        class="mx-auto mt-10 flex max-w-5xl flex-col items-stretch justify-center gap-8 lg:flex-row lg:gap-10"
+        class="mx-auto mt-10 flex max-w-5xl flex-col items-stretch justify-center gap-6 lg:flex-row"
       >
-        <FadeUpOnScroll :delay="150" class="w-full shrink-0 grow lg:max-w-[420px]">
-          <div
-            class="flex h-full flex-col justify-between rounded-3xl border border-white/[0.08] bg-[#0c0f1e]/80 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-colors duration-300 hover:border-white/[0.12] sm:p-8"
+        <FadeUpOnScroll :delay="120" class="w-full shrink-0 grow lg:max-w-[420px]">
+          <aside
+            class="flex h-full flex-col justify-between rounded-[2rem] border border-white/[0.13] bg-[#091526] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.35)] sm:p-8"
           >
-            <div class="space-y-6">
-              <div>
-                <h3 class="font-display text-xl font-bold text-white tracking-tight">Reach out</h3>
-                <p class="mt-2 text-sm leading-relaxed text-slate-400">
-                  Whether you have a project in mind, want to collaborate, or just say hello, I'd
-                  love to hear from you.
-                </p>
-              </div>
+            <div>
+              <h3 class="font-display text-2xl font-semibold tracking-tight text-white">
+                Reach out directly.
+              </h3>
+              <p class="mt-3 max-w-sm text-sm leading-6 text-slate-300">
+                Projects, collaborations, questions, or a simple hello are all welcome.
+              </p>
 
-              <div class="space-y-4">
-                <div
-                  class="group relative overflow-hidden rounded-2xl border border-white/[0.05] bg-white/[0.005] p-5 transition-colors duration-300 hover:border-white/[0.08] hover:bg-white/[0.015]"
-                >
-                  <div class="flex items-center space-x-4">
-                    <div
-                      class="rounded-xl bg-teal-500/10 border border-teal-500/20 p-2.5 text-teal-400"
-                    >
-                      <EnvelopeIcon class="size-5" />
-                    </div>
-                    <div>
-                      <h4
-                        class="text-[10px] font-extrabold uppercase tracking-widest text-slate-500"
-                      >
-                        Email Address
-                      </h4>
-                      <a
-                        href="mailto:contact@emadrahimi.dev"
-                        class="mt-0.5 block text-sm font-semibold text-slate-200 transition-colors hover:text-teal-300"
-                      >
-                        contact@emadrahimi.dev
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  class="group relative overflow-hidden rounded-2xl border border-white/[0.05] bg-white/[0.005] p-5 transition-colors duration-300 hover:border-white/[0.08] hover:bg-white/[0.015]"
-                >
-                  <div class="flex items-center space-x-4">
-                    <div
-                      class="rounded-xl bg-teal-500/10 border border-teal-500/20 p-2.5 text-teal-400"
-                    >
-                      <MapPinIcon class="size-5" />
-                    </div>
-                    <div>
-                      <h4
-                        class="text-[10px] font-extrabold uppercase tracking-widest text-slate-500"
-                      >
-                        Location
-                      </h4>
-                      <p class="mt-0.5 text-sm font-semibold text-slate-200">Tehran, Iran</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-8 border-t border-white/[0.05] pt-6">
-              <h4
-                class="mb-4 text-[10px] font-extrabold tracking-widest text-slate-500 uppercase select-none"
+              <a
+                href="mailto:contact@emadrahimi.dev"
+                class="group mt-8 block rounded-2xl border border-teal-300/25 bg-teal-300/[0.08] p-5 transition-colors hover:border-teal-200/50 hover:bg-teal-300/[0.12] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-300"
               >
-                Connect elsewhere
-              </h4>
-              <SocialLinks />
+                <span class="flex items-start justify-between gap-4">
+                  <span
+                    class="flex size-10 items-center justify-center rounded-xl bg-teal-300/15 text-teal-200"
+                  >
+                    <EnvelopeIcon class="size-5" />
+                  </span>
+                  <svg
+                    class="size-4 text-teal-200 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path d="M7 17 17 7M8 7h9v9" />
+                  </svg>
+                </span>
+                <span class="mt-5 block text-sm text-teal-100/80">Email is the fastest way</span>
+                <span class="mt-1 block break-all font-display text-lg font-semibold text-white">
+                  contact@emadrahimi.dev
+                </span>
+              </a>
             </div>
-          </div>
+
+            <div class="mt-10 border-t border-white/10 pt-6">
+              <p class="flex items-center gap-2 text-sm text-slate-300">
+                <MapPinIcon class="size-4 text-teal-200" />
+                Based in Kurdistan, Iran
+              </p>
+              <div class="mt-5">
+                <SocialLinks />
+              </div>
+            </div>
+          </aside>
         </FadeUpOnScroll>
 
-        <FadeUpOnScroll :delay="220" class="w-full grow lg:max-w-[580px]">
+        <FadeUpOnScroll :delay="180" class="w-full grow lg:max-w-[580px]">
           <div
-            class="h-full overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0f1e]/80 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-colors duration-300 hover:border-white/[0.12] sm:p-8"
+            class="h-full overflow-hidden rounded-[2rem] border border-white/[0.13] bg-[#091526] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.35)] sm:p-8"
           >
             <ContactForm />
           </div>

@@ -65,14 +65,12 @@ onUnmounted(() => {
         >
           <div class="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
             <div
-              class="timeline-point relative size-3"
+              class="timeline-point relative size-2.5"
               :style="{ color: phase.currentPhaseColor.value }"
             >
               <span class="absolute inset-0 rounded-full bg-white" />
-              <span
-                class="absolute -inset-1.5 rounded-full border-2 border-current bg-current/15"
-              />
-              <span class="absolute -inset-3 rounded-full border border-current/25" />
+              <span class="absolute -inset-1 rounded-full border-2 border-current bg-current/15" />
+              <span class="absolute -inset-2 rounded-full border border-current/30" />
             </div>
           </div>
 
