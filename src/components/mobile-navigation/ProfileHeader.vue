@@ -1,6 +1,12 @@
 <template>
-  <div class="-ml-3">
-    <img src="@/assets/images/logos/logo.png" class="block mb-2 h-12 opacity-80" alt="" />
-    <p class="text-sm font-medium text-teal-400"><span>•</span> Full Stack Developer</p>
+  <div>
+    <img
+      src="@/assets/images/logos/er-mark.svg"
+      class="mb-4 size-14 drop-shadow-[0_10px_30px_rgba(45,212,191,0.16)]"
+      alt="Emad Rahimi"
+    />
+    <p class="text-sm font-medium text-teal-300">
+      <span aria-hidden="true">•</span> Full Stack Developer
+    </p>
   </div>
 </template>

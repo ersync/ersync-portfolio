@@ -5,9 +5,17 @@
       class="mobile-nav fixed inset-x-0 z-50 flex h-[60px] items-center justify-between bg-[#1b1b1fdd] px-4 shadow-[0_0_15px_rgba(20,184,166,0.1)] backdrop-blur-lg min-[1350px]:hidden"
       :class="{ 'nav-up': !isVisible }"
     >
-      <div class="w-20 md:ml-0">
-        <img src="@/assets/images/logos/logo.png" class="w-full block" alt="" />
-      </div>
+      <a
+        href="#home"
+        class="block rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-300"
+        aria-label="Emad Rahimi, home"
+      >
+        <img
+          src="@/assets/images/logos/er-mark.svg"
+          class="size-10 drop-shadow-[0_7px_18px_rgba(45,212,191,0.14)]"
+          alt=""
+        />
+      </a>
 
       <MenuButton :is-open="isOpen" @toggle="toggleMenu" />
     </nav>

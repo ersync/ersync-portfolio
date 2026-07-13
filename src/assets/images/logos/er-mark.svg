@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title description">
+  <title id="title">Emad Rahimi monogram</title>
+  <desc id="description">A polished ER monogram with a teal accent.</desc>
+
+  <defs>
+    <linearGradient id="surface" x1="24" y1="18" x2="136" y2="144" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1D2B" />
+      <stop offset="0.55" stop-color="#07111E" />
+      <stop offset="1" stop-color="#090D1A" />
+    </linearGradient>
+    <linearGradient id="edge" x1="20" y1="8" x2="145" y2="152" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C5FFF7" />
+      <stop offset="0.38" stop-color="#54E6DA" />
+      <stop offset="0.74" stop-color="#258E96" />
+      <stop offset="1" stop-color="#44506A" />
+    </linearGradient>
+    <linearGradient id="metal" x1="38" y1="40" x2="128" y2="122" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" />
+      <stop offset="0.48" stop-color="#EEF3F7" />
+      <stop offset="0.72" stop-color="#C7D1DB" />
+      <stop offset="1" stop-color="#FFFFFF" />
+    </linearGradient>
+    <linearGradient id="accent" x1="33" y1="79" x2="81" y2="79" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#47EFE1" />
+      <stop offset="0.62" stop-color="#A8FFF7" />
+      <stop offset="1" stop-color="#F7FFFF" />
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#000814" flood-opacity="0.55" />
+    </filter>
+    <filter id="glow" x="-40%" y="-80%" width="180%" height="260%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feFlood flood-color="#44E8DD" flood-opacity="0.55" />
+      <feComposite in2="blur" operator="in" />
+      <feMerge>
+        <feMergeNode />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="9" y="9" width="142" height="142" rx="38" fill="url(#surface)" />
+  <rect x="9.75" y="9.75" width="140.5" height="140.5" rx="37.25" fill="none" stroke="url(#edge)" stroke-width="1.5" />
+  <path d="M28 27H132" stroke="#D8FFF9" stroke-opacity="0.12" stroke-linecap="round" />
+
+  <g filter="url(#shadow)">
+    <path d="M31 48C31 43.6 34.6 40 39 40H78V43C78 49.1 73.1 54 67 54H31V48Z" fill="url(#metal)" />
+    <path d="M31 73C31 68.6 34.6 65 39 65H75V68C75 74.1 70.1 79 64 79H31V73Z" fill="url(#accent)" filter="url(#glow)" />
+    <path d="M31 98C31 93.6 34.6 90 39 90H78V93C78 99.1 73.1 104 67 104H31V98Z" fill="url(#metal)" />
+
+    <path
+      d="M85 40H110C125.5 40 136 50.2 136 65C136 76.2 129.4 84.5 119.7 88.2L140 120H120.5L101.7 91H85V77H109.5C116.4 77 120.5 72.6 120.5 65.6C120.5 58.6 116.1 54 109.2 54H85V40Z"
+      fill="url(#metal)"
+    />
+  </g>
+</svg>

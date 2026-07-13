@@ -53,11 +53,11 @@ const links = [
 
       <div class="flex flex-col gap-7 pt-7 sm:flex-row sm:items-center sm:justify-between">
         <a href="#home" class="group flex w-fit items-center gap-3" aria-label="Emad Rahimi, home">
-          <span
-            class="flex size-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] font-display text-sm font-bold text-white transition-colors group-hover:border-teal-300/30 group-hover:text-teal-200"
-          >
-            ER
-          </span>
+          <img
+            src="@/assets/images/logos/er-mark.svg"
+            class="size-10 transition-transform duration-300 group-hover:-translate-y-0.5"
+            alt=""
+          />
           <span>
             <span class="block text-sm font-semibold text-slate-200">Emad Rahimi</span>
             <span class="block text-[11px] text-slate-400">Full-stack developer</span>
