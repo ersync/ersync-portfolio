@@ -58,15 +58,14 @@ onUnmounted(() => {
         :style="{ animationDelay: `${index * 100 + 300}ms` }"
       >
         <!-- Timeline node/point -->
-        <div class="timeline-node absolute left-2.5 top-4 z-10">
+        <div class="timeline-node absolute left-[10px] top-4 z-10">
           <div
-            class="relative size-4 rounded-full"
-            :style="{ backgroundColor: phase.currentPhaseColor.value }"
+            class="timeline-point relative size-3"
+            :style="{ color: phase.currentPhaseColor.value }"
           >
-            <div
-              class="absolute -left-1/2 -top-1/2 size-8 animate-ping rounded-full opacity-20"
-              :style="{ backgroundColor: phase.currentPhaseColor.value }"
-            />
+            <span class="absolute inset-0 rounded-full bg-white" />
+            <span class="absolute -inset-1.5 rounded-full border-2 border-current bg-current/15" />
+            <span class="absolute -inset-3 rounded-full border border-current/25" />
           </div>
         </div>
 
@@ -97,6 +96,10 @@ onUnmounted(() => {
 .timeline-node {
   opacity: 0;
   transform: scale(0);
+}
+
+.timeline-point {
+  filter: drop-shadow(0 0 7px currentColor);
 }
 
 .milestone-item {

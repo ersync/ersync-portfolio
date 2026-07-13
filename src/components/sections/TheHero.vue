@@ -28,7 +28,7 @@ const socialLinks = [
           Full-stack developer
         </p>
         <h1
-          class="hero-name font-Outfit text-5xl font-semibold tracking-[-0.04em] sm:text-6xl lg:text-7xl"
+          class="hero-name font-display text-5xl font-semibold tracking-[-0.04em] sm:text-6xl lg:text-7xl"
         >
           Emad Rahimi
         </h1>

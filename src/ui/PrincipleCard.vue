@@ -1,49 +1,29 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import BaseIcon from '@/ui/base/BaseIcon.vue'
-type ColorScheme = 'teal' | 'rose' | 'blue'
-interface Props {
+
+defineProps<{
+  index: string
   title: string
   description: string
   iconName: string
-  variant: ColorScheme
-}
-const props = defineProps<Props>()
-const colorSchemes = {
-  teal: {
-    bg: 'bg-[#1A1A1A]/90',
-    iconBg: 'bg-[#172919]',
-    icon: 'text-[#2dd4bf]',
-    shadow: 'shadow-lg shadow-teal-500/5'
-  },
-  rose: {
-    bg: 'bg-[#1A1A1A]/90',
-    iconBg: 'bg-[#291719]',
-    icon: 'text-[#fb7185]',
-    shadow: 'shadow-lg shadow-rose-500/5'
-  },
-  blue: {
-    bg: 'bg-[#1A1A1A]/90',
-    iconBg: 'bg-[#171929]',
-    icon: 'text-[#60a5fa]',
-    shadow: 'shadow-lg shadow-blue-500/5'
-  }
-} as const
-const scheme = computed(() => colorSchemes[props.variant])
+}>()
 </script>
+
 <template>
-  <div class="rounded-lg p-6 backdrop-blur-xl" :class="[scheme.bg, scheme.shadow]">
-    <div
-      class="mb-4 flex size-12 items-center justify-center rounded-lg transition-colors"
-      :class="scheme.iconBg"
-    >
-      <base-icon :name="iconName" :class="scheme.icon" size="24px" :stroke-width="1" />
+  <article
+    class="group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-slate-950/45 p-5 backdrop-blur-xl transition-colors duration-300 hover:border-cyan-300/20 hover:bg-slate-900/70 sm:p-6"
+  >
+    <div class="flex items-center justify-between">
+      <span class="font-mono text-[10px] text-slate-600">{{ index }}</span>
+      <BaseIcon
+        :name="iconName"
+        class="text-slate-600 transition-colors group-hover:text-cyan-300"
+        size="20px"
+        :stroke-width="1"
+      />
     </div>
-    <h4 class="mb-2 font-medium text-gray-100">
-      {{ title }}
-    </h4>
-    <p class="text-[12px] text-gray-400">
-      {{ description }}
-    </p>
-  </div>
+    <div class="mt-9 h-px w-10 bg-slate-700 transition-colors group-hover:bg-cyan-300/60" />
+    <h4 class="mt-4 font-semibold text-slate-100">{{ title }}</h4>
+    <p class="mt-2 text-sm leading-6 text-slate-500">{{ description }}</p>
+  </article>
 </template>

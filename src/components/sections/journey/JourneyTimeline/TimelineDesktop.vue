@@ -63,15 +63,16 @@ onUnmounted(() => {
           class="milestone-item relative w-[170px] first:ml-[60px] last:mr-[60px]"
           :style="{ animationDelay: `${index * 100 + 200}ms` }"
         >
-          <div class="absolute left-[50%] top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+          <div class="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
             <div
-              class="relative size-4 rounded-full"
-              :style="{ backgroundColor: phase.currentPhaseColor.value }"
+              class="timeline-point relative size-3"
+              :style="{ color: phase.currentPhaseColor.value }"
             >
-              <div
-                class="absolute -left-1/2 -top-1/2 size-8 animate-ping rounded-full opacity-20"
-                :style="{ backgroundColor: phase.currentPhaseColor.value }"
+              <span class="absolute inset-0 rounded-full bg-white" />
+              <span
+                class="absolute -inset-1.5 rounded-full border-2 border-current bg-current/15"
               />
+              <span class="absolute -inset-3 rounded-full border border-current/25" />
             </div>
           </div>
 
@@ -124,6 +125,10 @@ onUnmounted(() => {
 .connector {
   transform: scaleY(0);
   transform-origin: top;
+}
+
+.timeline-point {
+  filter: drop-shadow(0 0 7px currentColor);
 }
 
 .timeline-visible .timeline-line {

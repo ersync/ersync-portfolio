@@ -21,7 +21,7 @@
       </div>
       <div>
         <span
-          class="block font-VarelaRound text-sm font-medium"
+          class="block font-display text-sm font-medium"
           :class="[activeSection === item.name ? 'text-teal-400' : 'text-gray-400']"
         >
           {{ item.text }}

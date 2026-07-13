@@ -1,44 +1,33 @@
 <script setup lang="ts">
 const highlights = [
-  { value: 'Rails + Vue', label: 'Core stack', tone: 'text-teal-300' },
-  { value: '4+ years', label: 'Building for the web', tone: 'text-emerald-300' },
-  { value: 'Product minded', label: 'Beyond the ticket', tone: 'text-sky-300' },
-  { value: 'Team player', label: 'Clear collaboration', tone: 'text-violet-300' }
+  { number: '01', title: 'Architecture', detail: 'Make change cheaper' },
+  { number: '02', title: 'Interfaces', detail: 'Make intent obvious' },
+  { number: '03', title: 'Performance', detail: 'Make speed felt' },
+  { number: '04', title: 'Delivery', detail: 'Make the work real' }
 ]
 </script>
 
 <template>
   <aside
-    class="relative w-full overflow-hidden rounded-3xl border border-slate-700/60 bg-slate-900/70 p-5 shadow-xl shadow-black/20 sm:p-6 lg:max-w-[430px]"
-    aria-label="Developer highlights"
+    class="grid min-h-[25rem] grid-cols-2 gap-px overflow-hidden rounded-[2rem] border border-white/[0.08] bg-white/[0.08] shadow-2xl shadow-black/20"
+    aria-label="Areas of focus"
   >
     <div
-      class="absolute -right-16 -top-20 size-48 rounded-full bg-teal-400/10 blur-3xl"
-      aria-hidden="true"
-    />
-    <div
-      class="absolute -bottom-24 -left-12 size-48 rounded-full bg-blue-500/10 blur-3xl"
-      aria-hidden="true"
-    />
-
-    <div class="relative">
-      <p class="text-xs font-medium tracking-[0.18em] text-slate-500 uppercase">At a glance</p>
-      <h3 class="mt-2 text-2xl font-semibold tracking-tight text-slate-100">
-        Full-stack, with a backend bias.
-      </h3>
-      <p class="mt-2 max-w-sm text-sm leading-6 text-slate-400">
-        Comfortable moving from data models and APIs to the details people actually interact with.
-      </p>
-
-      <div class="mt-6 grid grid-cols-2 gap-3">
-        <div
-          v-for="item in highlights"
-          :key="item.value"
-          class="rounded-2xl border border-slate-700/50 bg-slate-800/50 p-4 transition-colors hover:border-slate-600 hover:bg-slate-800/80"
-        >
-          <p class="text-sm font-semibold sm:text-base" :class="item.tone">{{ item.value }}</p>
-          <p class="mt-1 text-xs leading-5 text-slate-500">{{ item.label }}</p>
-        </div>
+      v-for="item in highlights"
+      :key="item.number"
+      class="group relative flex flex-col justify-between overflow-hidden bg-[#07101d]/95 p-5 transition-colors duration-300 hover:bg-[#0a1626] sm:p-6"
+    >
+      <div
+        class="absolute -right-12 -top-12 size-28 rounded-full bg-cyan-400/[0.06] blur-2xl transition-opacity group-hover:opacity-100"
+        aria-hidden="true"
+      />
+      <span class="relative font-mono text-[10px] text-slate-600">{{ item.number }}</span>
+      <div class="relative">
+        <div class="mb-4 h-px w-8 bg-cyan-300/60 transition-all duration-300 group-hover:w-14" />
+        <h3 class="font-display text-base font-semibold text-slate-100 sm:text-lg">
+          {{ item.title }}
+        </h3>
+        <p class="mt-1 text-xs leading-5 text-slate-500 sm:text-sm">{{ item.detail }}</p>
       </div>
     </div>
   </aside>

@@ -6,12 +6,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-        OpenSans: ['Open Sans', 'sans-sarif'],
-        Raleway: ['Raleway', 'sans-sarif'],
-        Poppins: ['Poppins', 'sans-sarif'],
-        VarelaRound: ['Varela Round', 'sans-sarif'],
-        Outfit: ['Outfit', 'sans-sarif']
+        display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
       },
       colors: {
         sage: {

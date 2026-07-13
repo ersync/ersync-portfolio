@@ -18,13 +18,14 @@ const stats = [
 
 <template>
   <section id="journey" class="relative min-h-screen w-full overflow-hidden py-16 sm:py-20">
-    <SectionBackdrop />
+    <SectionBackdrop tone="amber" />
 
     <div class="container relative z-10">
       <FadeUpOnScroll>
         <SectionHeader
-          title="Journey & Growth Path"
-          subtitle="Tracking my evolution from fundamentals to full-stack"
+          eyebrow="03 / Journey"
+          title="Learning in public."
+          subtitle="A practical path from web fundamentals to full-stack product work."
         />
       </FadeUpOnScroll>
 
@@ -33,9 +34,7 @@ const stats = [
       </FadeUpOnScroll>
 
       <FadeUpOnScroll :delay="250">
-        <div
-          class="mb-8 rounded-xl border border-slate-700/50 bg-slate-800/30 p-4 shadow-sm backdrop-blur-sm"
-        >
+        <div class="mb-8">
           <JourneyPhaseBar v-model="phase.selectedPhase.value" />
         </div>
       </FadeUpOnScroll>

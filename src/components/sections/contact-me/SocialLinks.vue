@@ -1,75 +1,35 @@
 <script setup lang="ts">
-import FadeUpOnScroll from '@/ui/FadeUpOnScroll.vue'
-
 const socialLinks = [
   {
     icon: 'github',
     url: 'https://github.com/ersync',
-    label: 'GitHub',
-    color: 'from-slate-700 to-slate-800',
-    hoverGlow: 'rgba(20, 184, 166, 0.2)'
+    label: 'GitHub'
   },
   {
     icon: 'linkedin',
     url: 'https://linkedin.com/in/erahimidev',
-    label: 'LinkedIn',
-    color: 'from-teal-800 to-teal-900',
-    hoverGlow: 'rgba(20, 184, 166, 0.2)'
+    label: 'LinkedIn'
   },
   {
     icon: 'x-twitter',
     url: 'https://x.com/emadrahimidev',
-    label: 'Twitter',
-    color: 'from-slate-700 to-slate-800',
-    hoverGlow: 'rgba(20, 184, 166, 0.2)'
+    label: 'X'
   }
 ]
 </script>
 
 <template>
-  <FadeUpOnScroll :delay="400">
-    <div class="flex flex-wrap gap-4">
-      <a
-        v-for="{ icon, url, label, color, hoverGlow } in socialLinks"
-        :key="url"
-        :href="url"
-        :aria-label="label"
-        rel="noopener noreferrer"
-        target="_blank"
-        class="social-link group relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl border border-slate-700/50 bg-slate-800/30 backdrop-blur-sm transition-all duration-300 hover:border-teal-400/30"
-        :style="`--hover-glow: ${hoverGlow}`"
-      >
-        <div
-          class="absolute inset-0 opacity-0 transition-all duration-500 group-hover:opacity-20"
-          :class="`bg-gradient-to-br ${color}`"
-        ></div>
-
-        <font-awesome-icon
-          class="relative z-10 h-6 w-6 text-slate-300 transition-all duration-300 group-hover:text-teal-400"
-          :icon="['fab', icon]"
-        />
-
-        <div
-          class="absolute inset-0 rounded-xl bg-teal-500/5 opacity-0 transition-transform duration-700 ease-out group-hover:opacity-100 group-hover:scale-[2.5]"
-        ></div>
-      </a>
-    </div>
-  </FadeUpOnScroll>
+  <div class="flex flex-wrap gap-3.5">
+    <a
+      v-for="{ icon, url, label } in socialLinks"
+      :key="url"
+      :href="url"
+      :aria-label="label"
+      rel="noopener noreferrer"
+      target="_blank"
+      class="group relative flex size-12 items-center justify-center overflow-hidden rounded-full border border-white/[0.06] bg-white/[0.01] text-slate-400 backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-teal-400/40 hover:bg-teal-400/5 hover:text-teal-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-300"
+    >
+      <font-awesome-icon class="size-5" :icon="['fab', icon]" />
+    </a>
+  </div>
 </template>
-
-<style scoped>
-.social-link {
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transform: translateY(0);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.social-link:hover {
-  transform: translateY(-5px);
-  box-shadow:
-    0 10px 15px -3px var(--hover-glow),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-</style>

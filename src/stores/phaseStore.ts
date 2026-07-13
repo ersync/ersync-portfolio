@@ -17,7 +17,7 @@ const phasesSummaries = ref<PhaseSummary[]>([
     icon: WindowIcon,
     period: '2022',
     progress: 100,
-    color: '#00DEB6'
+    color: '#22d3ee'
   },
   {
     id: 'frontend',
@@ -25,7 +25,7 @@ const phasesSummaries = ref<PhaseSummary[]>([
     icon: CodeBracketIcon,
     period: '2023',
     progress: 45,
-    color: '#6366F1'
+    color: '#a78bfa'
   },
   {
     id: 'backend',
@@ -33,7 +33,7 @@ const phasesSummaries = ref<PhaseSummary[]>([
     icon: CommandLineIcon,
     period: '2024',
     progress: 60,
-    color: '#F43F5E'
+    color: '#f59e0b'
   }
 ])
 

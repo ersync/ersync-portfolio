@@ -1,145 +1,84 @@
+<script setup lang="ts">
+const year = new Date().getFullYear()
+
+const links = [
+  { label: 'About', href: '#about' },
+  { label: 'Work', href: '#projects' },
+  { label: 'Journey', href: '#journey' },
+  { label: 'Contact', href: '#contact' }
+]
+</script>
+
 <template>
-  <footer class="footer-section">
-    <div class="footer-background">
-      <div class="footer-gradient"></div>
+  <footer class="relative overflow-hidden border-t border-white/[0.06] bg-[#030610]">
+    <div
+      class="pointer-events-none absolute -bottom-40 left-1/2 size-96 -translate-x-1/2 rounded-full bg-teal-400/[0.06] blur-3xl"
+      aria-hidden="true"
+    />
 
-      <div class="footer-grid"></div>
-
-      <div class="footer-orb"></div>
-    </div>
-
-    <div class="footer-container">
-      <div class="footer-content">
-        <div class="quote-section">
-          <p class="quote-text">"Indeed, with hardship comes ease"</p>
-        </div>
-
-        <div class="copyright-section">
-          <p class="crafted-text">
-            Designed & Crafted with
-            <span class="heart-icon">
-              <font-awesome-icon class="w-3" :icon="['fas', 'heart']" />
-            </span>
-            by Emad Rahimi
+    <div class="container relative py-10 sm:py-14">
+      <div class="grid items-end gap-8 border-b border-white/[0.07] pb-9 md:grid-cols-[1fr_auto]">
+        <div>
+          <p class="font-mono text-[10px] tracking-[0.18em] text-teal-300 uppercase">
+            End of page, not the conversation
           </p>
-          <p class="rights-text">© {{ new Date().getFullYear() }} All rights reserved</p>
+          <p
+            class="mt-3 max-w-2xl font-display text-2xl font-semibold tracking-[-0.035em] text-white sm:text-3xl"
+          >
+            Built thoughtfully. Kept curious.
+          </p>
         </div>
+
+        <a
+          href="#home"
+          class="group inline-flex items-center gap-3 text-sm font-semibold text-slate-400 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-300"
+        >
+          Back to top
+          <span
+            class="flex size-10 items-center justify-center rounded-full border border-white/[0.09] transition group-hover:border-teal-300/40 group-hover:bg-teal-400/10 group-hover:text-teal-200"
+          >
+            <svg
+              class="size-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="m7 14 5-5 5 5" />
+            </svg>
+          </span>
+        </a>
+      </div>
+
+      <div class="flex flex-col gap-7 pt-7 sm:flex-row sm:items-center sm:justify-between">
+        <a href="#home" class="group flex w-fit items-center gap-3" aria-label="Emad Rahimi, home">
+          <span
+            class="flex size-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] font-display text-sm font-bold text-white transition-colors group-hover:border-teal-300/30 group-hover:text-teal-200"
+          >
+            ER
+          </span>
+          <span>
+            <span class="block text-sm font-semibold text-slate-200">Emad Rahimi</span>
+            <span class="block text-[11px] text-slate-600">Full-stack developer</span>
+          </span>
+        </a>
+
+        <nav class="flex flex-wrap gap-x-6 gap-y-2" aria-label="Footer navigation">
+          <a
+            v-for="link in links"
+            :key="link.href"
+            :href="link.href"
+            class="text-xs font-medium text-slate-500 transition-colors hover:text-slate-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-300"
+          >
+            {{ link.label }}
+          </a>
+        </nav>
+
+        <p class="font-mono text-[10px] tracking-[0.08em] text-slate-600 uppercase">
+          © {{ year }} · Tehran, IR
+        </p>
       </div>
     </div>
   </footer>
 </template>
-
-<style scoped>
-.footer-section {
-  position: relative;
-  width: 100%;
-  padding: 2.5rem 0;
-  overflow: hidden;
-  border-top: 1px solid rgba(51, 65, 85, 0.5);
-}
-
-.footer-background {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.footer-gradient {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 150%, #0f172a 0%, #020617 100%);
-}
-
-.footer-grid {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(226, 232, 240, 0.08) 1px, transparent 1px);
-  background-size: 20px 20px;
-  opacity: 0.3;
-  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-}
-
-.footer-orb {
-  position: absolute;
-  width: 40vh;
-  height: 40vh;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.1;
-  bottom: -20vh;
-  right: -10vh;
-  background: radial-gradient(circle at center, rgba(20, 184, 166, 0.3), rgba(45, 212, 191, 0));
-}
-
-.footer-container {
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  z-index: 10;
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.quote-section {
-  text-align: center;
-}
-
-.quote-text {
-  font-size: 0.875rem;
-  font-weight: 500;
-  background: linear-gradient(to right, #e2e8f0, #fb7185, #2dd4bf);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin: 0;
-}
-
-@media (min-width: 640px) {
-  .quote-text {
-    font-size: 1.125rem;
-    font-weight: 500;
-  }
-}
-
-.copyright-section {
-  text-align: center;
-}
-
-.crafted-text {
-  font-size: 0.6875rem;
-  color: #94a3b8;
-  margin-bottom: 0.5rem;
-}
-
-@media (min-width: 640px) {
-  .crafted-text {
-    font-size: 0.875rem;
-    margin-bottom: 0.75rem;
-  }
-}
-
-.heart-icon {
-  display: inline-block;
-  color: #fb7185;
-  margin: 0 0.25rem;
-}
-
-.rights-text {
-  font-size: 0.625rem;
-  color: #64748b;
-}
-
-@media (min-width: 640px) {
-  .rights-text {
-    font-size: 0.75rem;
-  }
-}
-</style>

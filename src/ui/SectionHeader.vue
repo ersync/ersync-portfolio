@@ -1,19 +1,29 @@
 <script setup lang="ts">
-defineProps<{
-  title: string
-  subtitle: string
-}>()
+withDefaults(
+  defineProps<{
+    title: string
+    subtitle: string
+    eyebrow?: string
+  }>(),
+  { eyebrow: 'Portfolio' }
+)
 </script>
+
 <template>
-  <div class="mb-12">
-    <div class="mb-1 flex items-center justify-start gap-2">
-      <div class="h-7 w-[2.5px] rounded-md bg-teal-500" />
-      <h2 class="font-VarelaRound text-3xl font-bold text-[#E0E0E0] sm:text-3xl">
+  <header class="mb-12 sm:mb-16">
+    <p class="font-mono text-[11px] font-semibold tracking-[0.2em] text-teal-300 uppercase">
+      {{ eyebrow }}
+    </p>
+    <div class="mt-3 grid items-end gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.55fr)]">
+      <h2
+        class="font-display text-4xl font-semibold tracking-[-0.045em] text-slate-50 sm:text-5xl lg:text-6xl"
+      >
         {{ title }}
       </h2>
+      <p v-if="subtitle" class="max-w-xl text-sm leading-6 text-slate-400 sm:text-base">
+        {{ subtitle }}
+      </p>
     </div>
-    <p class="text-sm text-gray-400/80 sm:text-base">
-      {{ subtitle }}
-    </p>
-  </div>
+    <div class="mt-6 h-px bg-gradient-to-r from-white/15 via-white/[0.04] to-transparent" />
+  </header>
 </template>

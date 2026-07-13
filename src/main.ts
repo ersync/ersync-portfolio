@@ -21,11 +21,13 @@ const app = createApp(App)
 const pinia = createPinia()
 
 app.use(pinia)
-app.use(VueReCaptcha, {
-  siteKey: import.meta.env.VITE_RECAPTCHA_SITE_KEY,
-  loaderOptions: {
-    autoHideBadge: true
-  }
-})
+const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY
+
+if (recaptchaSiteKey) {
+  app.use(VueReCaptcha, {
+    siteKey: recaptchaSiteKey,
+    loaderOptions: { autoHideBadge: true }
+  })
+}
 app.component('FontAwesomeIcon', FontAwesomeIcon)
 app.mount('#app')

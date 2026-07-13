@@ -1,167 +1,178 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import type { Project } from '@/types/project'
+import { computed, ref } from 'vue'
 import { projects } from '@/data/projects'
-import type { FilterCategory } from '@/types/projectCategory'
-import { isProjectCategory, categories } from '@/types/projectCategory'
-import SectionHeader from '@/ui/SectionHeader.vue'
 import FadeUpOnScroll from '@/ui/FadeUpOnScroll.vue'
 import SectionBackdrop from '@/ui/SectionBackdrop.vue'
+import SectionHeader from '@/ui/SectionHeader.vue'
+import type { Project } from '@/types/project'
+import { categories, isProjectCategory } from '@/types/projectCategory'
+import type { FilterCategory } from '@/types/projectCategory'
 
 const selectedCategory = ref<FilterCategory>('all')
 
 const filteredProjects = computed<Project[]>(() => {
   const category = selectedCategory.value
-  if (category === 'all') return projects
-  if (isProjectCategory(category)) {
-    return projects.filter((project) => project.category.includes(category))
-  }
-  return projects
+  if (!isProjectCategory(category)) return projects
+  return projects.filter((project) => project.category.includes(category))
 })
 
-const getProjectImage = (projectImage: string | [string, string]) => {
-  if (Array.isArray(projectImage)) {
-    return projectImage[1]
-  }
-  return projectImage
-}
-
-const getCategoryColor = (category: FilterCategory) => {
-  const colorMap = {
-    all: 'from-teal-500 to-cyan-500',
-    web: 'from-teal-500 to-cyan-500',
-    mobile: 'from-amber-500 to-orange-500',
-    desktop: 'from-emerald-500 to-green-500',
-    backend: 'from-teal-500 to-cyan-500'
-  }
-
-  return colorMap[category as keyof typeof colorMap] || colorMap.all
-}
+const projectImage = (image: Project['image']) => (Array.isArray(image) ? image[1] : image)
 </script>
 
 <template>
   <section id="projects" class="relative min-h-screen w-full overflow-hidden py-16 sm:py-20">
-    <SectionBackdrop />
+    <SectionBackdrop tone="violet" />
 
     <div class="container relative z-10">
-      <!-- Header -->
       <FadeUpOnScroll>
-        <SectionHeader title="Projects" subtitle="Personal development journey" />
+        <SectionHeader
+          eyebrow="02 / Selected work"
+          title="Projects with a pulse."
+          subtitle="A mix of production-minded systems, experiments, and interfaces built to solve something real."
+        />
       </FadeUpOnScroll>
 
-      <!-- Category Filter -->
-      <FadeUpOnScroll :delay="200">
-        <div class="mb-12 flex flex-wrap justify-center gap-3">
-          <button
-            v-for="category in categories"
-            :key="category"
-            @click="selectedCategory = category"
-            class="group relative overflow-hidden rounded-lg border px-5 py-2.5 font-medium transition-all duration-300 backdrop-blur-sm"
-            :class="[
-              selectedCategory === category
-                ? `bg-gradient-to-r ${getCategoryColor(category)} text-white border-transparent shadow-lg shadow-${category === 'all' ? 'teal' : category}-500/20`
-                : 'bg-slate-800/90 text-white border-slate-700 hover:bg-slate-700'
-            ]"
+      <FadeUpOnScroll :delay="100">
+        <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
+          <div
+            class="inline-flex rounded-xl border border-white/[0.07] bg-slate-950/45 p-1 backdrop-blur-xl"
+            aria-label="Filter projects"
           >
-            <span class="relative z-10">{{
-              category.charAt(0).toUpperCase() + category.slice(1)
-            }}</span>
-            <div
-              class="absolute inset-0 bg-grid-pattern opacity-10"
-              :class="selectedCategory === category ? 'opacity-20' : 'opacity-5'"
-            ></div>
-          </button>
+            <button
+              v-for="category in categories"
+              :key="category"
+              type="button"
+              class="rounded-lg px-4 py-2 text-xs font-semibold capitalize transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300"
+              :class="
+                selectedCategory === category
+                  ? 'bg-white text-slate-950 shadow-sm'
+                  : 'text-slate-500 hover:bg-white/[0.05] hover:text-slate-200'
+              "
+              :aria-pressed="selectedCategory === category"
+              @click="selectedCategory = category"
+            >
+              {{ category }}
+            </button>
+          </div>
+          <p class="font-mono text-[10px] tracking-[0.16em] text-slate-600 uppercase">
+            {{ filteredProjects.length.toString().padStart(2, '0') }} projects
+          </p>
         </div>
       </FadeUpOnScroll>
 
-      <!-- Projects Grid -->
-      <FadeUpOnScroll :delay="400">
-        <TransitionGroup
-          tag="div"
-          class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3"
-          name="list"
-          mode="out-in"
-        >
-          <div
-            v-for="project in filteredProjects"
+      <FadeUpOnScroll :delay="160">
+        <TransitionGroup tag="div" name="project-list" class="grid gap-5 md:grid-cols-2">
+          <article
+            v-for="(project, index) in filteredProjects"
             :key="project.id"
-            class="group relative mx-auto w-full max-w-[330px] overflow-hidden rounded-2xl border border-slate-700/30 bg-slate-800/60 shadow-lg shadow-teal-500/5 backdrop-blur-md transition-all duration-500 hover:shadow-xl hover:shadow-teal-500/20"
+            class="project-card group relative overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-slate-950/55 shadow-2xl shadow-black/20 backdrop-blur-xl"
+            :class="index === 0 ? 'md:col-span-2 lg:grid lg:grid-cols-[1.22fr_0.78fr]' : ''"
           >
-            <!-- Project Image container -->
-            <div class="relative h-[200px] overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-white/5"></div>
-
+            <div
+              class="relative overflow-hidden bg-slate-900"
+              :class="index === 0 ? 'min-h-64 lg:min-h-[25rem]' : 'aspect-[16/10]'"
+            >
               <img
-                :src="getProjectImage(project.image)"
-                :alt="project.title"
+                :src="projectImage(project.image)"
+                :alt="`${project.title} project preview`"
                 loading="lazy"
-                class="size-full object-cover transition-all duration-700 group-hover:scale-[1.08] group-hover:blur-sm group-focus-within:scale-[1.08] group-focus-within:blur-sm"
+                class="absolute inset-0 size-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.025]"
               />
-
               <div
-                class="absolute inset-0 z-20 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100"
+                class="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-white/[0.03]"
+                aria-hidden="true"
               />
-
-              <div
-                class="absolute inset-0 z-30 flex items-center justify-center opacity-0 transition-all duration-500 group-hover:opacity-100 group-focus-within:opacity-100"
-              >
-                <h3 class="text-2xl font-bold text-white drop-shadow-lg">{{ project.title }}</h3>
+              <div class="absolute left-4 top-4 flex items-center gap-2">
+                <span
+                  v-if="index === 0"
+                  class="rounded-full border border-white/15 bg-slate-950/70 px-3 py-1 font-mono text-[9px] tracking-[0.14em] text-white uppercase backdrop-blur-xl"
+                >
+                  Featured
+                </span>
+                <span
+                  class="rounded-full border border-white/10 bg-slate-950/60 px-3 py-1 font-mono text-[9px] tracking-[0.12em] text-slate-300 uppercase backdrop-blur-xl"
+                >
+                  {{ project.category.join(' + ') }}
+                </span>
               </div>
             </div>
 
-            <div class="p-6">
-              <h3 class="mb-3 text-xl font-semibold text-slate-100">
-                {{ project.title }}
-              </h3>
-              <p class="mb-5 line-clamp-2 text-sm text-slate-400">
-                {{ project.description }}
-              </p>
+            <div
+              class="flex flex-col p-5 sm:p-7"
+              :class="index === 0 ? 'justify-between lg:p-9' : ''"
+            >
+              <div>
+                <div class="flex items-start justify-between gap-5">
+                  <div>
+                    <p class="font-mono text-[10px] text-violet-300">
+                      {{ (index + 1).toString().padStart(2, '0') }}
+                    </p>
+                    <h3
+                      class="mt-2 font-display text-xl font-semibold tracking-[-0.025em] text-white sm:text-2xl"
+                    >
+                      {{ project.title }}
+                    </h3>
+                  </div>
+                  <a
+                    :href="project.demoLink"
+                    class="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/[0.09] text-slate-400 transition hover:border-violet-300/40 hover:bg-violet-400/10 hover:text-violet-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-300"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    :aria-label="`Open ${project.title}`"
+                  >
+                    <svg
+                      class="size-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      aria-hidden="true"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" />
+                    </svg>
+                  </a>
+                </div>
 
-              <div class="mb-6 flex flex-wrap gap-2">
-                <span
-                  v-for="tech in project.technologies"
-                  :key="tech"
-                  class="rounded-full bg-gradient-to-r from-teal-500/20 to-cyan-500/20 px-3 py-1.5 text-xs font-medium text-teal-300 backdrop-blur-sm"
+                <p
+                  class="mt-4 text-sm leading-6 text-slate-400"
+                  :class="index === 0 ? 'max-w-md sm:text-base' : ''"
                 >
-                  {{ tech }}
-                </span>
+                  {{ project.description }}
+                </p>
               </div>
 
-              <div class="flex gap-3">
-                <a
-                  :href="project.demoLink"
-                  class="project-btn btn-primary flex-1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>Live Demo</span>
-                </a>
+              <div class="mt-7">
+                <ul class="flex flex-wrap gap-x-4 gap-y-2" aria-label="Technologies used">
+                  <li
+                    v-for="tech in project.technologies"
+                    :key="tech"
+                    class="font-mono text-[10px] text-slate-500 before:mr-1.5 before:text-violet-400 before:content-['+']"
+                  >
+                    {{ tech }}
+                  </li>
+                </ul>
 
                 <a
                   :href="project.githubLink"
-                  class="project-btn btn-secondary flex-1"
+                  class="mt-6 inline-flex items-center gap-2 text-xs font-semibold text-slate-300 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-300"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span>Source Code</span>
+                  View source
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-4 w-4 btn-icon"
+                    class="size-3.5"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    aria-hidden="true"
                   >
-                    <path
-                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                    ></path>
+                    <path d="M5 12h14m-5-5 5 5-5 5" />
                   </svg>
                 </a>
               </div>
             </div>
-          </div>
+          </article>
         </TransitionGroup>
       </FadeUpOnScroll>
     </div>
@@ -169,107 +180,25 @@ const getCategoryColor = (category: FilterCategory) => {
 </template>
 
 <style scoped>
-.bg-grid-pattern {
-  background-image:
-    linear-gradient(to right, rgba(100, 100, 100, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(100, 100, 100, 0.1) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateY(30px) scale(0.95);
-  filter: blur(4px);
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.project-btn {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.65rem 0.375rem;
-  border-radius: 10px;
-  font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  text-align: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-}
-
-.btn-primary {
-  background: rgba(15, 23, 42, 0.3);
-  color: #fff;
-  border: 1px solid rgba(20, 184, 166, 0.3);
-  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.12);
-  backdrop-filter: blur(8px);
-}
-
-.btn-primary:hover {
-  border-color: rgba(20, 184, 166, 0.8);
-  box-shadow: 0 6px 16px rgba(20, 184, 166, 0.25);
-  transform: translateY(-2px);
-}
-
-.btn-secondary {
-  background: rgba(15, 23, 42, 0.5);
-  border: 1px solid rgba(100, 116, 139, 0.3);
-  color: #e2e8f0;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.btn-secondary:hover {
-  background: rgba(30, 41, 59, 0.7);
-  border-color: rgba(148, 163, 184, 0.4);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-.btn-secondary::before {
-  content: '';
+.project-card::after {
   position: absolute;
   inset: 0;
-  border-radius: 10px;
-  padding: 1px;
-  background: linear-gradient(95deg, rgba(56, 189, 248, 0.5), rgba(20, 184, 166, 0.5));
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  pointer-events: none;
+  content: '';
+  border-radius: inherit;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.035);
+}
+
+.project-list-enter-active,
+.project-list-leave-active {
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.project-list-enter-from,
+.project-list-leave-to {
   opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.btn-secondary:hover::before {
-  opacity: 1;
-}
-
-.btn-icon {
-  transition: transform 0.3s ease;
-}
-
-.project-btn:hover .btn-icon {
-  transform: translateX(3px);
+  transform: translateY(10px);
 }
 </style>

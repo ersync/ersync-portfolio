@@ -1,229 +1,147 @@
 <script setup lang="ts">
-import PrincipleCard from '@/ui/PrincipleCard.vue'
-import SkillCard from '@/ui/SkillCard.vue'
-import SectionHeader from '@/ui/SectionHeader.vue'
-import HighlightGrid from '@/ui/base/HighlightGrid.vue'
 import FadeUpOnScroll from '@/ui/FadeUpOnScroll.vue'
+import PrincipleCard from '@/ui/PrincipleCard.vue'
 import SectionBackdrop from '@/ui/SectionBackdrop.vue'
+import SectionHeader from '@/ui/SectionHeader.vue'
+import SkillCard from '@/ui/SkillCard.vue'
+import HighlightGrid from '@/ui/base/HighlightGrid.vue'
+
+const workStages = [
+  {
+    number: '01',
+    title: 'Find the signal',
+    description: 'Strip the problem down to what matters.'
+  },
+  {
+    number: '02',
+    title: 'Build the spine',
+    description: 'Shape reliable data, APIs, and components.'
+  },
+  {
+    number: '03',
+    title: 'Refine the feel',
+    description: 'Tune speed, accessibility, and interaction.'
+  }
+]
+
+const skills = [
+  { title: 'Ruby on Rails', description: 'Systems & APIs', iconName: 'rails', variant: 'red' },
+  { title: 'Vue.js', description: 'Product interfaces', iconName: 'vue', variant: 'green' },
+  { title: 'TypeScript', description: 'Safer frontends', iconName: 'typescript', variant: 'blue' },
+  { title: 'PostgreSQL', description: 'Durable data', iconName: 'postgresql', variant: 'cyan' }
+] as const
+
+const principles = [
+  {
+    index: '01',
+    title: 'Clarity over cleverness',
+    description: 'Code should explain itself before a comment has to.',
+    iconName: 'lightning'
+  },
+  {
+    index: '02',
+    title: 'Useful beats impressive',
+    description: 'A polished solution still starts with the right problem.',
+    iconName: 'setting'
+  },
+  {
+    index: '03',
+    title: 'Small details compound',
+    description: 'Speed, copy, spacing, and states all shape trust.',
+    iconName: 'clock'
+  }
+]
 </script>
 
 <template>
-  <div id="about" class="relative min-h-screen w-full overflow-hidden py-16 sm:py-20">
-    <SectionBackdrop />
+  <section id="about" class="relative min-h-screen w-full overflow-hidden py-16 sm:py-20">
+    <SectionBackdrop tone="blue" />
 
     <div class="container relative z-10">
       <FadeUpOnScroll>
-        <SectionHeader title="About Me" subtitle="" />
+        <SectionHeader
+          eyebrow="01 / About"
+          title="Built with intent."
+          subtitle="A full-stack perspective shaped by backend depth, interface care, and product thinking."
+        />
       </FadeUpOnScroll>
 
-      <!-- Intro Section -->
-      <FadeUpOnScroll :delay="200">
-        <div
-          class="mt-4 flex flex-wrap items-start justify-center gap-8 lg:flex-nowrap lg:justify-between"
-        >
-          <div
-            class="space-y-4 sm:space-y-5 backdrop-blur-sm rounded-xl p-4 sm:p-6 bg-slate-800/30 border border-slate-700/50 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] hover:shadow-[0_15px_30px_-5px_rgba(15,118,110,0.1),0_10px_15px_-6px_rgba(15,118,110,0.05)] transition-shadow duration-300"
+      <FadeUpOnScroll :delay="100">
+        <div class="grid items-stretch gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+          <article
+            class="relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-slate-950/55 p-6 shadow-2xl shadow-black/20 backdrop-blur-xl sm:p-9"
           >
-            <div class="space-y-3">
-              <div
-                class="flex items-center text-lg sm:text-xl"
-                style="font-family: 'Plus Jakarta Sans', sans-serif"
-              >
-                Hello there! I'm
-                <span
-                  class="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-400 mx-1 font-medium"
-                >
-                  Emad
-                </span>
-                <span class="text-teal-500 ml-0.5">👋🏻</span>
-              </div>
+            <div
+              class="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full bg-blue-500/10 blur-3xl"
+              aria-hidden="true"
+            />
 
-              <p
-                class="text-base leading-relaxed text-slate-300"
-                style="font-family: 'Inter', sans-serif"
-              >
-                A web developer from Iran with a passion for transforming ideas into elegant digital
-                experiences. I craft
-                <span class="relative inline-block px-1.5 py-0.5 mx-0.5 group">
-                  <span
-                    class="absolute inset-0 bg-teal-500/10 rounded-md transform group-hover:scale-105 transition duration-200"
-                  ></span>
-                  <span class="relative text-teal-400">Ruby on Rails</span>
-                </span>
-                and
-                <span class="relative inline-block px-1.5 py-0.5 mx-0.5 group">
-                  <span
-                    class="absolute inset-0 bg-teal-500/10 rounded-md transform group-hover:scale-105 transition duration-200"
-                  ></span>
-                  <span class="relative text-teal-400">Vue.js</span>
-                </span>
-                solutions that solve real problems and enhance user experiences.
+            <div class="relative">
+              <p class="text-xs font-semibold tracking-[0.18em] text-cyan-300 uppercase">
+                From the database to the last 8 pixels
               </p>
-            </div>
+              <h3
+                class="mt-4 max-w-2xl font-display text-2xl font-semibold leading-tight tracking-[-0.035em] text-white sm:text-4xl"
+              >
+                I turn fuzzy ideas into web products that feel clear, quick, and dependable.
+              </h3>
+              <p class="mt-4 max-w-xl text-sm leading-6 text-slate-400 sm:text-base">
+                I’m Emad, a full-stack developer in Tehran. I’m happiest where product decisions,
+                backend systems, and interface details meet.
+              </p>
 
-            <p
-              class="text-sm leading-relaxed text-slate-400"
-              style="font-family: 'Inter', sans-serif"
-            >
-              My approach combines <span class="text-slate-300">technical precision</span> with
-              <span class="text-slate-300">creative problem-solving</span>, resulting in code that's
-              not just functional but thoughtfully crafted. When I'm not immersed in code, you'll
-              find me cheering at live sporting events, engaging with developer communities, and
-              exploring emerging technologies that push the boundaries of what's possible on the
-              web.
+              <ol class="mt-8 divide-y divide-white/[0.06] border-y border-white/[0.06]">
+                <li
+                  v-for="stage in workStages"
+                  :key="stage.number"
+                  class="grid gap-2 py-4 sm:grid-cols-[2.5rem_11rem_1fr] sm:items-center"
+                >
+                  <span class="font-mono text-[10px] text-cyan-300">{{ stage.number }}</span>
+                  <span class="text-sm font-semibold text-slate-200">{{ stage.title }}</span>
+                  <span class="text-sm text-slate-500">{{ stage.description }}</span>
+                </li>
+              </ol>
+            </div>
+          </article>
+
+          <HighlightGrid />
+        </div>
+      </FadeUpOnScroll>
+
+      <FadeUpOnScroll :delay="160">
+        <div class="mt-14">
+          <div class="mb-6 flex items-end justify-between gap-4">
+            <div>
+              <p class="font-mono text-[10px] tracking-[0.18em] text-slate-500 uppercase">
+                Daily toolkit
+              </p>
+              <h3 class="mt-1 text-xl font-semibold text-slate-100">The four I trust</h3>
+            </div>
+            <p class="hidden text-sm text-slate-500 sm:block">Small stack. Deep familiarity.</p>
+          </div>
+          <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
+            <SkillCard v-for="skill in skills" :key="skill.title" v-bind="skill" />
+          </div>
+        </div>
+      </FadeUpOnScroll>
+
+      <FadeUpOnScroll :delay="220">
+        <div class="mt-14">
+          <div class="mb-6">
+            <p class="font-mono text-[10px] tracking-[0.18em] text-slate-500 uppercase">
+              Working principles
             </p>
-
-            <div class="pt-1 sm:pt-2 flex items-center justify-start space-x-2">
-              <div class="h-1 w-1 rounded-full bg-teal-400"></div>
-              <div class="h-1 w-1 rounded-full bg-teal-400"></div>
-              <div
-                class="h-1 w-12 sm:w-16 rounded-full bg-gradient-to-r from-teal-500 to-teal-400"
-              ></div>
-            </div>
+            <h3 class="mt-1 text-xl font-semibold text-slate-100">A quiet operating system</h3>
           </div>
-
-          <!-- Grid Content -->
-          <HighlightGrid class="glow-container" />
-        </div>
-      </FadeUpOnScroll>
-
-      <!-- Skills Section -->
-      <FadeUpOnScroll :delay="400">
-        <div class="mt-16">
-          <h3
-            class="mb-8 text-xl font-semibold text-slate-200 text-center sm:text-left relative inline-block"
-          >
-            <span class="relative z-10">Core Technologies</span>
-            <span class="absolute -bottom-1 left-0 w-full h-1 bg-teal-500/20 rounded-full"></span>
-          </h3>
-          <div class="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-            <SkillCard
-              title="RoR"
-              description="backend"
-              icon-name="rails"
-              variant="red"
-              class="skill-card"
-            />
-            <SkillCard
-              title="Vue.js"
-              description="frontend"
-              icon-name="vue"
-              variant="green"
-              class="skill-card"
-            />
-            <SkillCard
-              title="TypeScript"
-              description="language"
-              icon-name="typescript"
-              variant="blue"
-              class="skill-card"
-            />
-            <SkillCard
-              title="PostgreSQL"
-              description="database"
-              icon-name="postgresql"
-              variant="cyan"
-              class="skill-card"
-            />
-          </div>
-        </div>
-      </FadeUpOnScroll>
-
-      <!-- Development Principles Section -->
-      <FadeUpOnScroll :delay="600">
-        <div class="mt-20">
-          <h3
-            class="mb-8 text-xl font-semibold text-slate-200 text-center sm:text-left relative inline-block"
-          >
-            <span class="relative z-10">Development Principles</span>
-            <span class="absolute -bottom-1 left-0 w-full h-1 bg-teal-500/20 rounded-full"></span>
-          </h3>
-          <div class="grid gap-6 md:grid-cols-3">
+          <div class="grid gap-3 md:grid-cols-3">
             <PrincipleCard
-              title="Clean Code"
-              icon-name="lightning"
-              description="Writing maintainable, well-documented code that stands the test of time"
-              variant="teal"
-              class="principle-card"
-            />
-            <PrincipleCard
-              title="Problem Solving"
-              icon-name="setting"
-              description="Breaking down complex challenges into manageable solutions."
-              variant="rose"
-              class="principle-card"
-            />
-            <PrincipleCard
-              title="Continuous Learning"
-              icon-name="clock"
-              description="Staying current with best practices and emerging technologies."
-              variant="blue"
-              class="principle-card"
+              v-for="principle in principles"
+              :key="principle.title"
+              v-bind="principle"
             />
           </div>
         </div>
       </FadeUpOnScroll>
     </div>
-  </div>
+  </section>
 </template>
-
-<style scoped>
-.skill-card {
-  transition: all 0.3s ease;
-  border: 1px solid rgba(51, 65, 85, 0.5);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(8px);
-}
-
-.skill-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px -5px rgba(15, 118, 110, 0.15);
-}
-
-.principle-card {
-  transition: all 0.3s ease;
-  border: 1px solid rgba(51, 65, 85, 0.5);
-  backdrop-filter: blur(8px);
-  background: rgba(30, 41, 59, 0.5);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-}
-
-.principle-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.15);
-}
-
-.glow-container {
-  position: relative;
-}
-
-.glow-container::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(45, 212, 191, 0.1) 0%, transparent 70%);
-  z-index: -1;
-  border-radius: 50%;
-  filter: blur(30px);
-}
-
-.tag-highlight {
-  display: inline-block;
-  padding: 0px 3px;
-  background: rgba(45, 212, 191, 0.1);
-  border: 1px solid rgba(45, 212, 191, 0.2);
-  border-radius: 0.375rem;
-  font-weight: 500;
-  color: #2dd4bf;
-  transition: all 0.2s ease;
-}
-
-.tag-highlight:hover {
-  background: rgba(45, 212, 191, 0.15);
-  transform: translateY(-1px);
-}
-</style>

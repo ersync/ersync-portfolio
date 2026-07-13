@@ -1,4 +1,3 @@
-// Import all images at the top
 import skeletonLoader from '@/assets/images/projects/skeleton-loader.png'
 import cinemad from '@/assets/images/projects/cinemad.png'
 import portfolio from '@/assets/images/projects/portfolio.png'
@@ -13,7 +12,7 @@ export const projects: Project[] = [
     id: 1,
     title: 'Cinemad',
     description:
-      'Feature-rich film discovery application built with Ruby on Rails and Vue.js, offering comprehensive movie database and personalized user experience',
+      'A full-stack film discovery product with a deep movie catalogue and a personalized browsing experience.',
     technologies: ['Vue.js', 'Ruby on Rails', 'PostgreSQL', 'Vite'],
     demoLink: 'https://cinemad.emadrahimi.dev',
     githubLink: 'https://github.com/ersync/cinemad',
@@ -23,7 +22,8 @@ export const projects: Project[] = [
   {
     id: 2,
     title: 'Personal Portfolio',
-    description: 'Responsive Vue portfolio featuring dark mode and smooth animated transitions',
+    description:
+      'A fast, responsive portfolio built as an evolving home for my work and experiments.',
     technologies: ['Vue.js', 'Tailwind CSS', 'TypeScript', 'Vite'],
     demoLink: 'https://emadrahimi.dev',
     githubLink: 'https://github.com/ersync',
@@ -34,7 +34,7 @@ export const projects: Project[] = [
     id: 3,
     title: 'Skeleton Loader Gem',
     description:
-      'A Ruby gem that generates skeleton loading screens directly from backend code without JavaScript dependencies',
+      'A Ruby gem that creates skeleton loading screens from backend code, without a JavaScript dependency.',
     technologies: ['Ruby', 'Ruby on Rails', 'CSS', 'Javascript'],
     demoLink: 'https://rubygems.org/gems/skeleton-loader',
     githubLink: 'https://github.com/ersync/skeleton-loader',
@@ -44,7 +44,7 @@ export const projects: Project[] = [
   {
     id: 4,
     title: 'Persogen API',
-    description: 'Rails API service for generating realistic personal testing data',
+    description: 'A Rails API for generating realistic personal data for development and testing.',
     technologies: ['Ruby on Rails', 'REST API', 'RSpec', 'JWT Auth'],
     demoLink: 'https://github.com/ersync/persogen',
     githubLink: 'https://github.com/ersync/persogen',
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     id: 5,
     title: 'Persian Coffeeshop',
     description:
-      'Modern Persian coffee shop website featuring RTL design and responsive Tailwind layouts',
+      'A responsive Persian coffee shop experience designed from the start for right-to-left reading.',
     technologies: ['HTML', 'Tailwind CSS', 'JavaScript', 'Git'],
     demoLink: 'https://coffeeshop.emadrahimi.dev',
     githubLink: 'https://github.com/ersync/coffeeshop-responsive-website',
@@ -65,7 +65,7 @@ export const projects: Project[] = [
   {
     id: 6,
     title: 'Vue Chatlog',
-    description: 'Vue demo showcasing mobile chat UI with customizable themes',
+    description: 'A compact Vue experiment exploring mobile chat patterns and customizable themes.',
     technologies: ['Vue.js', 'HTML', 'Tailwind CSS', 'Vite'],
     demoLink: 'https://chatlog.emadrahimi.dev',
     githubLink: 'https://github.com/ersync?tab=repositories',
