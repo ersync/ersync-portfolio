@@ -43,7 +43,7 @@
   <rect x="9.75" y="9.75" width="140.5" height="140.5" rx="37.25" fill="none" stroke="url(#edge)" stroke-width="1.5" />
   <path d="M28 27H132" stroke="#D8FFF9" stroke-opacity="0.12" stroke-linecap="round" />
 
-  <g filter="url(#shadow)">
+  <g filter="url(#shadow)" transform="translate(-3.5 6)">
     <path d="M31 48C31 43.6 34.6 40 39 40H78V43C78 49.1 73.1 54 67 54H31V48Z" fill="url(#metal)" />
     <path d="M31 73C31 68.6 34.6 65 39 65H75V68C75 74.1 70.1 79 64 79H31V73Z" fill="url(#accent)" filter="url(#glow)" />
     <path d="M31 98C31 93.6 34.6 90 39 90H78V93C78 99.1 73.1 104 67 104H31V98Z" fill="url(#metal)" />
