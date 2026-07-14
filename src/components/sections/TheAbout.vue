@@ -81,7 +81,7 @@ const skills = [
           <h3 class="mb-6 font-display text-2xl font-semibold tracking-tight text-white">
             Core stack
           </h3>
-          <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
             <SkillCard v-for="skill in skills" :key="skill.title" v-bind="skill" />
           </div>
         </div>
