@@ -166,6 +166,32 @@
       />
     </symbol>
 
+    <symbol
+      id="icon-react"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+    >
+      <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" />
+      <ellipse cx="12" cy="12" rx="10" ry="4" />
+      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
+    </symbol>
+
+    <symbol
+      id="icon-svelte"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M17 5.3a6.1 6.1 0 0 0-7.3.8L6.6 9.2a2.9 2.9 0 0 0 .5 4.5 3.2 3.2 0 0 0 4-.4l3-3" />
+      <path d="M7 18.7a6.1 6.1 0 0 0 7.3-.8l3.1-3.1a2.9 2.9 0 0 0-.5-4.5 3.2 3.2 0 0 0-4 .4l-3 3" />
+    </symbol>
+
     <symbol id="icon-typescript" viewBox="0 0 24 24">
       <path
         fill="currentColor"

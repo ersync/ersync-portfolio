@@ -89,10 +89,10 @@ const filteredProjects = computed<Project[]>(() => {
                 fetchpriority="low"
                 class="absolute inset-0 size-full object-cover object-top saturate-[1.05] transition-transform duration-500 group-hover:scale-[1.025]"
               />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-[#081322]/75 via-transparent to-black/10"
-                aria-hidden="true"
-              />
+			  <div
+				class="absolute inset-0 bg-slate-950/15"
+				aria-hidden="true"
+			  />
               <div class="absolute left-4 top-4 flex items-center gap-2">
                 <span
                   v-if="index === 0"

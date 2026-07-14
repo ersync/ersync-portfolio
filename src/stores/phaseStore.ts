@@ -85,7 +85,7 @@ const phasesContent = ref<Record<PhaseId, PhaseDetails>>({
       },
       {
         title: 'React',
-        status: 'Not Started',
+        status: 'In Progress',
         description: 'React fundamentals, hooks, and state management patterns',
         technologies: ['React', 'Redux', 'Hooks']
       },

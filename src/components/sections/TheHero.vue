@@ -37,11 +37,10 @@ const capabilities = [
           </h1>
         </div>
 
-        <div class="hero-body">
-          <p class="max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
-            I design and build complete web products—reliable Rails foundations, expressive Vue
-            interfaces, and the details that make both feel effortless.
-          </p>
+		<div class="hero-body">
+		  <p class="max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
+			I build complete web products, from reliable backends to polished interfaces.
+		  </p>
 
           <div class="mt-9 flex flex-wrap gap-3">
             <a
@@ -144,7 +143,7 @@ const capabilities = [
             <a
               href="/emad_rahimi_cv.pdf"
               download
-              class="group mt-5 flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 text-sm font-semibold text-slate-200 transition hover:border-teal-200/30 hover:bg-teal-300/[0.08] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-200 sm:mt-6 sm:py-3.5"
+              class="group mt-5 flex items-center justify-between rounded-xl border border-teal-200/25 bg-gradient-to-r from-teal-300/[0.06] to-indigo-400/[0.04] px-4 py-3 text-sm font-semibold text-slate-200 shadow-[inset_0_1px_rgba(255,255,255,0.06),0_12px_30px_rgba(45,212,191,0.06)] transition hover:border-teal-200/40 hover:from-teal-300/[0.1] hover:to-indigo-400/[0.07] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-200 sm:mt-6 sm:py-3.5"
             >
               Download CV
               <svg
@@ -209,8 +208,8 @@ const capabilities = [
   display: grid;
   grid-template-areas:
     'intro'
-    'console'
-    'body';
+    'body'
+    'console';
   gap: 2.5rem;
   align-items: center;
 }
@@ -316,6 +315,23 @@ const capabilities = [
 @media (max-width: 1023px) {
   .console-panel {
     transform: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .hero-surface {
+    background:
+      radial-gradient(circle at 72% 28%, rgba(20, 184, 166, 0.11), transparent 24rem),
+      radial-gradient(circle at 88% 84%, rgba(124, 58, 237, 0.11), transparent 26rem),
+      linear-gradient(145deg, #020611 0%, #04101c 52%, #050816 100%);
+  }
+
+  .hero-beam {
+    background: linear-gradient(to right, transparent, rgba(94, 234, 212, 0.045), transparent);
+  }
+
+  .hero-orbit {
+    border-color: rgba(94, 234, 212, 0.055);
   }
 }
 

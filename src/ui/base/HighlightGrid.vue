@@ -9,20 +9,20 @@ const highlights = [
 
 <template>
   <aside
-    class="grid min-h-[25rem] grid-cols-2 gap-px overflow-hidden rounded-[2rem] border border-white/[0.13] bg-white/[0.12] shadow-[0_24px_70px_rgba(0,0,0,0.35)]"
+    class="grid min-h-[25rem] grid-cols-2 gap-px overflow-hidden rounded-[2rem] border border-white/[0.16] bg-white/[0.16] shadow-[0_24px_70px_rgba(0,0,0,0.35)]"
     aria-label="Areas of focus"
   >
     <div
       v-for="item in highlights"
       :key="item.number"
-      class="group relative flex flex-col justify-between overflow-hidden bg-[#091526] p-5 transition-colors duration-300 hover:bg-[#0d1d31] sm:p-6"
+      class="group relative flex flex-col justify-between overflow-hidden bg-[#0b192b] p-5 transition-colors duration-300 hover:bg-[#102238] sm:p-6"
     >
       <div
         class="absolute -right-12 -top-12 size-28 rounded-full bg-cyan-400/[0.06] blur-2xl transition-opacity group-hover:opacity-100"
         aria-hidden="true"
       />
       <span
-        class="relative font-display text-3xl font-semibold tracking-[-0.06em] text-cyan-200/75 sm:text-4xl"
+        class="relative font-display text-3xl font-semibold tracking-[-0.06em] text-cyan-200/85 sm:text-4xl"
       >
         {{ item.number }}
       </span>
@@ -31,7 +31,7 @@ const highlights = [
         <h3 class="font-display text-base font-semibold text-slate-100 sm:text-lg">
           {{ item.title }}
         </h3>
-        <p class="mt-1 text-xs leading-5 text-slate-300 sm:text-sm">{{ item.detail }}</p>
+        <p class="mt-1 text-xs leading-5 text-slate-200 sm:text-sm">{{ item.detail }}</p>
       </div>
     </div>
   </aside>

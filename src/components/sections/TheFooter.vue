@@ -1,6 +1,4 @@
 <script setup lang="ts">
-const year = new Date().getFullYear()
-
 const links = [
   { label: 'About', href: '#about' },
   { label: 'Work', href: '#projects' },
@@ -77,9 +75,7 @@ const links = [
           </a>
         </nav>
 
-        <p class="font-mono text-[10px] tracking-[0.08em] text-slate-400 uppercase">
-          © {{ year }} · Iran
-        </p>
+        <p class="font-mono text-[10px] tracking-[0.08em] text-slate-400 uppercase">© 2026</p>
       </div>
     </div>
   </footer>
