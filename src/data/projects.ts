@@ -1,5 +1,6 @@
 import skeletonLoader from '@/assets/images/projects/skeleton-loader.webp'
 import cinemad from '@/assets/images/projects/cinemad.webp'
+import satryar from '@/assets/images/projects/satryar.webp'
 import portfolio from '@/assets/images/projects/portfolio.webp'
 import persogenApi from '@/assets/images/projects/persogen-api.webp'
 import persianCoffeeshop from '@/assets/images/projects/persian-coffeeshop.webp'
@@ -21,6 +22,16 @@ export const projects: Project[] = [
   },
   {
     id: 2,
+    title: 'SatrYar',
+    description:
+      'A Persian-first document studio that turns raw text and Markdown into polished, paginated Word and PDF files—all locally in the browser.',
+    technologies: ['Svelte 5', 'TypeScript', 'SvelteKit', 'Vite'],
+    demoLink: 'https://satryar.ir',
+    image: satryar,
+    category: ['frontend']
+  },
+  {
+    id: 3,
     title: 'Personal Portfolio',
     description:
       'A fast, responsive portfolio built as an evolving home for my work and experiments.',
@@ -31,7 +42,7 @@ export const projects: Project[] = [
     category: ['frontend']
   },
   {
-    id: 3,
+    id: 4,
     title: 'Skeleton Loader Gem',
     description:
       'A Ruby gem that creates skeleton loading screens from backend code, without a JavaScript dependency.',
@@ -42,7 +53,7 @@ export const projects: Project[] = [
     category: ['backend']
   },
   {
-    id: 4,
+    id: 5,
     title: 'Persogen API',
     description: 'A Rails API for generating realistic personal data for development and testing.',
     technologies: ['Ruby on Rails', 'REST API', 'RSpec', 'JWT Auth'],
@@ -52,7 +63,7 @@ export const projects: Project[] = [
     category: ['backend']
   },
   {
-    id: 5,
+    id: 6,
     title: 'Persian Coffeeshop',
     description:
       'A responsive Persian coffee shop experience designed from the start for right-to-left reading.',
@@ -63,7 +74,7 @@ export const projects: Project[] = [
     category: ['frontend']
   },
   {
-    id: 6,
+    id: 7,
     title: 'Vue Chatlog',
     description: 'A compact Vue experiment exploring mobile chat patterns and customizable themes.',
     technologies: ['Vue.js', 'HTML', 'Tailwind CSS', 'Vite'],

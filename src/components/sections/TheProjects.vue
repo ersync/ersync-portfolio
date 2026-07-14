@@ -164,6 +164,7 @@ const filteredProjects = computed<Project[]>(() => {
                 </ul>
 
                 <a
+                  v-if="project.githubLink"
                   :href="project.githubLink"
                   class="mt-6 inline-flex rounded-lg border border-white/10 px-3.5 py-2 text-xs font-semibold text-slate-300 transition-colors hover:border-violet-300/35 hover:bg-violet-400/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-300"
                   target="_blank"
@@ -171,6 +172,23 @@ const filteredProjects = computed<Project[]>(() => {
                 >
                   View source
                 </a>
+                <span
+                  v-else
+                  class="mt-6 inline-flex w-fit items-center gap-2 rounded-lg border border-emerald-300/20 bg-emerald-300/[0.06] px-3.5 py-2 text-xs font-semibold text-emerald-100"
+                >
+                  <svg
+                    class="size-3.5 text-emerald-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    aria-hidden="true"
+                  >
+                    <rect x="5" y="10" width="14" height="10" rx="2" />
+                    <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+                  </svg>
+                  Closed source
+                </span>
               </div>
             </div>
           </article>

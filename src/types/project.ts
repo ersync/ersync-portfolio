@@ -6,7 +6,7 @@ export interface Project {
   description: string
   technologies: string[]
   demoLink: string
-  githubLink: string
+  githubLink?: string
   image: string
   category: ProjectCategory[]
 }
