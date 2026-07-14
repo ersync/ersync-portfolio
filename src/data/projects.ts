@@ -4,7 +4,6 @@ import satryar from '@/assets/images/projects/satryar.webp'
 import portfolio from '@/assets/images/projects/portfolio.webp'
 import persogenApi from '@/assets/images/projects/persogen-api.webp'
 import persianCoffeeshop from '@/assets/images/projects/persian-coffeeshop.webp'
-import vueChatlog from '@/assets/images/projects/vue-chatlog.webp'
 
 import type { Project } from '@/types/project'
 
@@ -71,16 +70,6 @@ export const projects: Project[] = [
     demoLink: 'https://coffeeshop.emadrahimi.dev',
     githubLink: 'https://github.com/ersync/coffeeshop-responsive-website',
     image: persianCoffeeshop,
-    category: ['frontend']
-  },
-  {
-    id: 7,
-    title: 'Vue Chatlog',
-    description: 'A compact Vue experiment exploring mobile chat patterns and customizable themes.',
-    technologies: ['Vue.js', 'HTML', 'Tailwind CSS', 'Vite'],
-    demoLink: 'https://chatlog.emadrahimi.dev',
-    githubLink: 'https://github.com/ersync?tab=repositories',
-    image: vueChatlog,
     category: ['frontend']
   }
 ]
