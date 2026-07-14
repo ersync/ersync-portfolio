@@ -83,15 +83,14 @@ const NAVIGATION_DELAY = 1000
 interface MenuItem {
   text: string
   name: NavItemName
-  icon: string
 }
 
 const menuItems: MenuItem[] = [
-  { text: 'Home', name: 'home', icon: 'home' },
-  { text: 'About Me', name: 'about', icon: 'user' },
-  { text: 'Projects', name: 'projects', icon: 'code' },
-  { text: 'Journey', name: 'journey', icon: 'road' },
-  { text: 'Contact Me', name: 'contact', icon: 'envelope' }
+  { text: 'Home', name: 'home' },
+  { text: 'About Me', name: 'about' },
+  { text: 'Projects', name: 'projects' },
+  { text: 'Journey', name: 'journey' },
+  { text: 'Contact Me', name: 'contact' }
 ]
 
 const navigation = useNavigationStore()

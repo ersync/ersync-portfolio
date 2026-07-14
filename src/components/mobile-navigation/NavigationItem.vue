@@ -13,10 +13,10 @@
       <div
         class="flex size-8 items-center justify-center rounded-xl border border-teal-900/30 bg-gradient-to-br from-gray-800 to-gray-900/40 shadow-[0_2px_8px_-1px_rgba(0,0,0,0.10)] transition-all duration-300 group-hover:border-teal-800 group-hover:shadow-md"
       >
-        <font-awesome-icon
+        <BaseIcon
           class="size-[14px]"
           :class="[activeSection === item.name ? 'text-teal-400' : 'text-teal-400/30']"
-          :icon="['fas', item.icon]"
+          :name="item.name"
         />
       </div>
       <div>
@@ -32,12 +32,12 @@
 </template>
 
 <script setup lang="ts">
+import BaseIcon from '@/ui/base/BaseIcon.vue'
 import type { NavItemName } from '@/stores/navigationStore'
 
 interface MenuItem {
   text: string
   name: NavItemName
-  icon: string
 }
 
 defineProps<{

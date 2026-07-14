@@ -9,7 +9,10 @@ import MapPinIcon from '@heroicons/vue/24/outline/MapPinIcon.js'
 </script>
 
 <template>
-  <section id="contact" class="relative min-h-screen w-full overflow-hidden py-16 sm:py-20">
+  <section
+    id="contact"
+    class="deferred-section relative min-h-screen w-full overflow-hidden py-16 sm:py-20"
+  >
     <SectionBackdrop tone="teal" />
 
     <div class="container relative z-10">

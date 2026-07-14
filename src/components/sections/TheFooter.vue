@@ -10,7 +10,9 @@ const links = [
 </script>
 
 <template>
-  <footer class="relative overflow-hidden border-t border-white/[0.06] bg-[#030610]">
+  <footer
+    class="page-footer deferred-section relative overflow-hidden border-t border-white/[0.06] bg-[#030610]"
+  >
     <div
       class="pointer-events-none absolute -bottom-40 left-1/2 size-96 -translate-x-1/2 rounded-full bg-teal-400/[0.06] blur-3xl"
       aria-hidden="true"

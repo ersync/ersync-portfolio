@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useIntersectionObserver } from '@vueuse/core'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 const props = defineProps({
   delay: {
@@ -9,11 +8,25 @@ const props = defineProps({
   }
 })
 
-const elementRef = ref(null)
+const elementRef = ref<HTMLElement | null>(null)
 const isVisible = ref(false)
+let observer: IntersectionObserver | undefined
 
-useIntersectionObserver(elementRef, ([{ isIntersecting }]) => {
-  isVisible.value = isIntersecting
+onMounted(() => {
+  if (!elementRef.value || !('IntersectionObserver' in window)) {
+    isVisible.value = true
+    return
+  }
+
+  observer = new IntersectionObserver(([entry]) => {
+    isVisible.value = entry.isIntersecting
+  })
+
+  observer.observe(elementRef.value)
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
 })
 </script>
 

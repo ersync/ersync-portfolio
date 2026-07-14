@@ -16,7 +16,9 @@ const principles = [
 </script>
 
 <template>
-  <aside class="relative overflow-hidden border-y border-white/10 bg-[#06101c] py-12 sm:py-16">
+  <aside
+    class="principles-section deferred-section relative overflow-hidden border-y border-white/10 bg-[#06101c] py-12 sm:py-16"
+  >
     <div
       class="absolute left-1/2 top-0 h-px w-1/2 -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan-300/50 to-transparent"
     />

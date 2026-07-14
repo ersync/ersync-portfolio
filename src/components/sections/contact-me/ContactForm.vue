@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useReCaptcha } from 'vue-recaptcha-v3'
+import { getRecaptchaToken } from '@/services/recaptcha'
 
 type ContactField = 'name' | 'email' | 'message' | null
 
 const activeField = ref<ContactField>(null)
 const isLoading = ref(false)
 const submissionState = ref<'idle' | 'success' | 'error'>('idle')
-const recaptcha = useReCaptcha()
 
 const spotlightStyle = computed(() => {
   const styles = {
@@ -49,9 +48,8 @@ const handleSubmit = async (event: SubmitEvent) => {
   try {
     const formData = new FormData(form)
 
-    if (recaptcha) {
-      await recaptcha.recaptchaLoaded()
-      const token = await recaptcha.executeRecaptcha('contact_form')
+    const token = await getRecaptchaToken('contact_form')
+    if (token) {
       formData.append('g-recaptcha-response', token)
     }
 

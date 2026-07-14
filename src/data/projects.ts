@@ -1,9 +1,9 @@
-import skeletonLoader from '@/assets/images/projects/skeleton-loader.png'
-import cinemad from '@/assets/images/projects/cinemad.png'
-import portfolio from '@/assets/images/projects/portfolio.png'
-import persogenApi from '@/assets/images/projects/persogen-api.png'
-import persianCoffeeshop from '@/assets/images/projects/persian-coffeeshop.png'
-import vueChatlog from '@/assets/images/projects/vue-chatlog.png'
+import skeletonLoader from '@/assets/images/projects/skeleton-loader.webp'
+import cinemad from '@/assets/images/projects/cinemad.webp'
+import portfolio from '@/assets/images/projects/portfolio.webp'
+import persogenApi from '@/assets/images/projects/persogen-api.webp'
+import persianCoffeeshop from '@/assets/images/projects/persian-coffeeshop.webp'
+import vueChatlog from '@/assets/images/projects/vue-chatlog.webp'
 
 import type { Project } from '@/types/project'
 

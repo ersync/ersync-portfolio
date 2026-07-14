@@ -20,7 +20,10 @@ const skills = [
 </script>
 
 <template>
-  <section id="about" class="relative min-h-screen w-full overflow-hidden py-16 sm:py-20">
+  <section
+    id="about"
+    class="deferred-section relative min-h-screen w-full overflow-hidden py-16 sm:py-20"
+  >
     <SectionBackdrop tone="blue" />
 
     <div class="container relative z-10">

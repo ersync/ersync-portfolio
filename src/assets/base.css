@@ -85,6 +85,58 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.deferred-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto var(--deferred-section-size, 1000px);
+}
+
+#about {
+  --deferred-section-size: 1490px;
+}
+
+#projects {
+  --deferred-section-size: 3445px;
+}
+
+.principles-section {
+  --deferred-section-size: 535px;
+}
+
+#journey {
+  --deferred-section-size: 1515px;
+}
+
+#contact {
+  --deferred-section-size: 1375px;
+}
+
+.page-footer {
+  --deferred-section-size: 410px;
+}
+
+@media (min-width: 768px) {
+  #about,
+  #contact {
+    --deferred-section-size: 840px;
+  }
+
+  #projects {
+    --deferred-section-size: 2515px;
+  }
+
+  .principles-section {
+    --deferred-section-size: 175px;
+  }
+
+  #journey {
+    --deferred-section-size: 990px;
+  }
+
+  .page-footer {
+    --deferred-section-size: 290px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;

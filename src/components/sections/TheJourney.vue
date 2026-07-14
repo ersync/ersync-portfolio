@@ -17,7 +17,10 @@ const stats = [
 </script>
 
 <template>
-  <section id="journey" class="relative min-h-screen w-full overflow-hidden py-16 sm:py-20">
+  <section
+    id="journey"
+    class="deferred-section relative min-h-screen w-full overflow-hidden py-16 sm:py-20"
+  >
     <SectionBackdrop tone="amber" />
 
     <div class="container relative z-10">

@@ -1,47 +1,36 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { useEventListener, useThrottleFn } from '@vueuse/core'
+import { onMounted, onUnmounted } from 'vue'
 import NavigationItem from '@/components/desktop-navigation/NavigationItem.vue'
 import { useNavigationStore } from '@/stores/navigationStore'
 import type { NavItemName } from '@/stores/navigationStore'
-import { useDeviceDetection } from '@/composables/useDeviceDetection'
 
 const navigation = useNavigationStore()
-const { isMobileDevice } = useDeviceDetection()
 const sections: NavItemName[] = ['home', 'about', 'projects', 'journey', 'contact']
-
-const handleScroll = (): void => {
-  sections.forEach((sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const rect = element.getBoundingClientRect()
-      if (rect.top <= 50 && rect.bottom >= 50) {
-        navigation.setActiveSection(sectionId)
-      }
-    }
-  })
-}
-
-const throttledScroll = useThrottleFn(handleScroll, 150)
-
-useEventListener(
-  window,
-  'scroll',
-  () => {
-    void throttledScroll()
-  },
-  { passive: true }
-)
+let observer: IntersectionObserver | undefined
 
 onMounted(() => {
-  handleScroll()
+  observer = new IntersectionObserver(
+    (entries) => {
+      const activeEntry = entries.find((entry) => entry.isIntersecting)
+      if (!activeEntry) return
+
+      navigation.setActiveSection(activeEntry.target.id as NavItemName)
+    },
+    { rootMargin: '-50px 0px -90% 0px' }
+  )
+
+  sections.forEach((sectionId) => {
+    const section = document.getElementById(sectionId)
+    if (section) observer?.observe(section)
+  })
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
 })
 </script>
 <template>
-  <header
-    v-show="!isMobileDevice"
-    class="fixed left-6 top-1/2 z-50 -translate-y-1/2 hidden min-[1350px]:block"
-  >
+  <header class="fixed left-6 top-1/2 z-50 -translate-y-1/2 hidden min-[1350px]:block">
     <nav
       aria-label="Primary navigation"
       class="navigation-panel rounded-2xl border border-gray-800 bg-gray-900/80 px-4 py-6 shadow-xl shadow-teal-500/10 backdrop-blur-md transition-transform duration-300"

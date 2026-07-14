@@ -15,12 +15,13 @@ const filteredProjects = computed<Project[]>(() => {
   if (!isProjectCategory(category)) return projects
   return projects.filter((project) => project.category.includes(category))
 })
-
-const projectImage = (image: Project['image']) => (Array.isArray(image) ? image[1] : image)
 </script>
 
 <template>
-  <section id="projects" class="relative min-h-screen w-full overflow-hidden py-16 sm:py-20">
+  <section
+    id="projects"
+    class="deferred-section relative min-h-screen w-full overflow-hidden py-16 sm:py-20"
+  >
     <SectionBackdrop tone="violet" />
 
     <div class="container relative z-10">
@@ -81,9 +82,11 @@ const projectImage = (image: Project['image']) => (Array.isArray(image) ? image[
               "
             >
               <img
-                :src="projectImage(project.image)"
+                :src="project.image"
                 :alt="`${project.title} project preview`"
                 loading="lazy"
+                decoding="async"
+                fetchpriority="low"
                 class="absolute inset-0 size-full object-cover object-top saturate-[1.05] transition-transform duration-500 group-hover:scale-[1.025]"
               />
               <div
