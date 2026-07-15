@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { getRecaptchaToken } from '@/services/recaptcha'
+import { getRecaptchaToken, isRecaptchaEnabled } from '@/services/recaptcha'
 
 type ContactField = 'name' | 'email' | 'message' | null
 
@@ -88,10 +88,12 @@ const handleSubmit = async (event: SubmitEvent) => {
       @submit.prevent="handleSubmit"
     >
       <div>
-        <h3 class="font-display text-2xl font-semibold tracking-tight text-white">Send a note.</h3>
-        <p class="mt-2 text-sm leading-6 text-slate-300">
-          A few details are enough to get started.
+        <p class="font-mono text-[10px] font-semibold tracking-[0.12em] text-teal-200 uppercase">
+          Message
         </p>
+        <h3 class="mt-3 font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+          What’s on your mind?
+        </h3>
 
         <div class="mt-8 grid gap-x-6 gap-y-7 sm:grid-cols-2">
           <div
@@ -142,7 +144,7 @@ const handleSubmit = async (event: SubmitEvent) => {
               id="contact-message"
               name="message"
               class="h-36 w-full resize-none border-0 bg-transparent px-0 py-2.5 text-base leading-6 text-white outline-none placeholder:text-slate-500"
-              placeholder="What are you hoping to build?"
+              placeholder="What would you like to discuss?"
               required
               @focus="activeField = 'message'"
               @blur="activeField = null"
@@ -178,7 +180,7 @@ const handleSubmit = async (event: SubmitEvent) => {
               d="M4 12a8 8 0 0 1 8-8V0C5.4 0 0 5.4 0 12h4Z"
             />
           </svg>
-          {{ isLoading ? 'Sending…' : 'Send message' }}
+          {{ isLoading ? 'Sending…' : 'Send the note →' }}
         </button>
 
         <p
@@ -198,14 +200,14 @@ const handleSubmit = async (event: SubmitEvent) => {
         <div
           class="flex items-center justify-between pt-2 text-[10px] font-semibold tracking-wide text-slate-400 uppercase"
         >
-          <span>Protected by reCAPTCHA</span>
+          <span v-if="isRecaptchaEnabled">Protected by reCAPTCHA</span>
           <a
             href="https://policies.google.com/privacy"
-            class="text-teal-400 transition-colors hover:text-teal-300"
+            class="ml-auto text-teal-400 transition-colors hover:text-teal-300"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Privacy & terms
+            Privacy policy
           </a>
         </div>
       </div>

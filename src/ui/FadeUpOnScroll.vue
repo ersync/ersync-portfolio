@@ -18,9 +18,15 @@ onMounted(() => {
     return
   }
 
-  observer = new IntersectionObserver(([entry]) => {
-    isVisible.value = entry.isIntersecting
-  })
+  observer = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry.isIntersecting) return
+
+      isVisible.value = true
+      observer?.disconnect()
+    },
+    { threshold: 0.12 }
+  )
 
   observer.observe(elementRef.value)
 })
@@ -34,8 +40,8 @@ onUnmounted(() => {
   <div
     ref="elementRef"
     :class="[
-      'transition-all duration-700 ease-out',
-      isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+      'transition-all duration-600 ease-out',
+      isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
     ]"
     :style="{ transitionDelay: `${props.delay}ms` }"
   >

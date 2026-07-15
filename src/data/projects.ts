@@ -1,7 +1,6 @@
 import skeletonLoader from '@/assets/images/projects/skeleton-loader.webp'
 import cinemad from '@/assets/images/projects/cinemad.webp'
 import satryar from '@/assets/images/projects/satryar.webp'
-import portfolio from '@/assets/images/projects/portfolio.webp'
 import persogenApi from '@/assets/images/projects/persogen-api.webp'
 import persianCoffeeshop from '@/assets/images/projects/persian-coffeeshop.webp'
 
@@ -12,9 +11,10 @@ export const projects: Project[] = [
     id: 1,
     title: 'Cinemad',
     description:
-      'A full-stack film discovery product with a deep movie catalogue and a personalized browsing experience.',
+      'A film-discovery product with a Rails and PostgreSQL API and a Vue interface, including search, filtering, authentication, profiles, watchlists, and ratings.',
     technologies: ['Vue.js', 'Ruby on Rails', 'PostgreSQL', 'Vite'],
-    demoLink: 'https://cinemad.emadrahimi.dev',
+    liveLink: 'https://cinemad.emadrahimi.dev',
+    liveLabel: 'Live product',
     githubLink: 'https://github.com/ersync/cinemad',
     image: cinemad,
     category: ['backend', 'frontend']
@@ -25,28 +25,19 @@ export const projects: Project[] = [
     description:
       'A Persian-first document studio that turns raw text and Markdown into polished, paginated Word and PDF files—all locally in the browser.',
     technologies: ['Svelte 5', 'TypeScript', 'SvelteKit', 'Vite'],
-    demoLink: 'https://satryar.ir',
+    liveLink: 'https://satryar.ir',
+    liveLabel: 'Live product',
     image: satryar,
-    category: ['frontend']
-  },
-  {
-    id: 3,
-    title: 'Personal Portfolio',
-    description:
-      'A fast, responsive portfolio built as an evolving home for my work and experiments.',
-    technologies: ['Vue.js', 'Tailwind CSS', 'TypeScript', 'Vite'],
-    demoLink: 'https://emadrahimi.dev',
-    githubLink: 'https://github.com/ersync',
-    image: portfolio,
     category: ['frontend']
   },
   {
     id: 4,
     title: 'Skeleton Loader Gem',
     description:
-      'A Ruby gem that creates skeleton loading screens from backend code, without a JavaScript dependency.',
-    technologies: ['Ruby', 'Ruby on Rails', 'CSS', 'Javascript'],
-    demoLink: 'https://rubygems.org/gems/skeleton-loader',
+      'A Ruby gem for generating skeleton loading states in Rails without client-side dependencies.',
+    technologies: ['Ruby', 'Ruby on Rails', 'CSS', 'JavaScript'],
+    liveLink: 'https://rubygems.org/gems/skeleton-loader',
+    liveLabel: 'RubyGems',
     githubLink: 'https://github.com/ersync/skeleton-loader',
     image: skeletonLoader,
     category: ['backend']
@@ -54,9 +45,9 @@ export const projects: Project[] = [
   {
     id: 5,
     title: 'Persogen API',
-    description: 'A Rails API for generating realistic personal data for development and testing.',
+    description:
+      'A documented API for generating realistic synthetic test identities, with JWT authentication and RSpec test coverage.',
     technologies: ['Ruby on Rails', 'REST API', 'RSpec', 'JWT Auth'],
-    demoLink: 'https://github.com/ersync/persogen',
     githubLink: 'https://github.com/ersync/persogen',
     image: persogenApi,
     category: ['backend']
@@ -67,7 +58,8 @@ export const projects: Project[] = [
     description:
       'A responsive Persian coffee shop experience designed from the start for right-to-left reading.',
     technologies: ['HTML', 'Tailwind CSS', 'JavaScript', 'Git'],
-    demoLink: 'https://coffeeshop.emadrahimi.dev',
+    liveLink: 'https://coffeeshop.emadrahimi.dev',
+    liveLabel: 'Live preview',
     githubLink: 'https://github.com/ersync/coffeeshop-responsive-website',
     image: persianCoffeeshop,
     category: ['frontend']

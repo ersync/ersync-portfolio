@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-export type NavItemName = 'home' | 'about' | 'projects' | 'journey' | 'contact'
+export type NavItemName = 'home' | 'about' | 'projects' | 'experience' | 'contact'
 
 const activeSection = ref<NavItemName>('home')
 

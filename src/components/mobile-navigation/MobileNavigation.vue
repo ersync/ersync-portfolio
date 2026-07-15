@@ -2,7 +2,7 @@
   <div>
     <!-- Mobile Navigatin Bar -->
     <nav
-      class="mobile-nav fixed inset-x-0 z-50 flex h-[60px] items-center justify-between bg-[#1b1b1fdd] px-4 shadow-[0_0_15px_rgba(20,184,166,0.1)] backdrop-blur-lg min-[1350px]:hidden"
+      class="mobile-nav fixed inset-x-0 z-50 flex h-[60px] items-center justify-between border-b border-white/[0.06] bg-[#050a14]/85 px-4 backdrop-blur-xl lg:hidden"
       :class="{ 'nav-up': !isVisible }"
     >
       <a
@@ -54,11 +54,6 @@
           </ul>
         </nav>
 
-        <div class="mt-6 flex items-center justify-center">
-          <span class="text-xs font-light tracking-wider text-gray-400">
-            ersync-portfolio {{ portfolioVersion }}
-          </span>
-        </div>
       </div>
     </nav>
   </div>
@@ -68,7 +63,6 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useNavigationStore } from '@/stores/navigationStore'
 import type { NavItemName } from '@/stores/navigationStore'
-import { version } from '../../../package.json'
 
 import MenuButton from '@/components/mobile-navigation/MenuButton.vue'
 import MenuBackdrop from '@/components/mobile-navigation/MenuBackdrop.vue'
@@ -89,13 +83,11 @@ const menuItems: MenuItem[] = [
   { text: 'Home', name: 'home' },
   { text: 'About Me', name: 'about' },
   { text: 'Projects', name: 'projects' },
-  { text: 'Journey', name: 'journey' },
+  { text: 'Experience', name: 'experience' },
   { text: 'Contact Me', name: 'contact' }
 ]
 
 const navigation = useNavigationStore()
-const portfolioVersion = `v${version}`
-
 const isOpen = ref(false)
 const isVisible = ref(true)
 const lastScrollTop = ref(0)

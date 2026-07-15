@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 
 type BackdropTone = 'teal' | 'violet' | 'amber' | 'blue'
 
@@ -21,11 +21,31 @@ const backdropStyle = computed(() => ({
   '--glow-primary': colors[props.tone][0],
   '--glow-secondary': colors[props.tone][1]
 }))
+const toneClass = computed(() => `tone-${props.tone}`)
+
+const backdrop = ref<HTMLElement>()
+const isVisible = ref(false)
+let observer: IntersectionObserver | undefined
+
+onMounted(() => {
+  observer = new IntersectionObserver(
+    ([entry]) => {
+      isVisible.value = entry?.isIntersecting ?? false
+    },
+    { rootMargin: '0px 0px -16% 0px', threshold: 0.08 }
+  )
+
+  if (backdrop.value) observer.observe(backdrop.value)
+})
+
+onUnmounted(() => observer?.disconnect())
 </script>
 
 <template>
   <div
+    ref="backdrop"
     class="section-backdrop absolute inset-0 z-0 overflow-hidden"
+    :class="[toneClass, { 'is-visible': isVisible }]"
     :style="backdropStyle"
     aria-hidden="true"
   >
@@ -35,10 +55,40 @@ const backdropStyle = computed(() => ({
 
 <style scoped>
 .section-backdrop {
-  background:
-    radial-gradient(circle at 8% 18%, var(--glow-primary), transparent 30rem),
-    radial-gradient(circle at 92% 78%, var(--glow-secondary), transparent 32rem),
-    linear-gradient(180deg, #050816 0%, #07101d 48%, #050914 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(7, 16, 29, 0.72) 48%, transparent 100%);
+}
+
+.section-backdrop::before,
+.section-backdrop::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  opacity: 0;
+  transition:
+    opacity 1.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section-backdrop::before {
+  background: radial-gradient(circle at 8% 18%, var(--glow-primary), transparent 30rem);
+  transform: translate3d(-3rem, 1.5rem, 0) scale(0.9);
+}
+
+.section-backdrop::after {
+  background: radial-gradient(circle at 92% 78%, var(--glow-secondary), transparent 32rem);
+  transform: translate3d(3rem, -1.5rem, 0) scale(0.9);
+}
+
+.section-backdrop.is-visible::before {
+  opacity: 0.45;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition-delay: 320ms;
+}
+
+.section-backdrop.is-visible::after {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition-delay: 620ms;
 }
 
 .section-grid {
@@ -47,5 +97,22 @@ const backdropStyle = computed(() => ({
     linear-gradient(90deg, rgba(148, 163, 184, 0.028) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse at center, black 10%, transparent 74%);
+}
+
+@media (min-width: 640px) {
+  .section-backdrop.is-visible::before {
+    opacity: 1;
+  }
+
+  .section-backdrop.tone-amber::before {
+    background: radial-gradient(circle at 8% 18%, rgba(245, 158, 11, 0.12), transparent 30rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-backdrop::before,
+  .section-backdrop::after {
+    transition: none;
+  }
 }
 </style>

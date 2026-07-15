@@ -1,70 +1,33 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 import { projects } from '@/data/projects'
 import FadeUpOnScroll from '@/ui/FadeUpOnScroll.vue'
 import SectionBackdrop from '@/ui/SectionBackdrop.vue'
 import SectionHeader from '@/ui/SectionHeader.vue'
-import type { Project } from '@/types/project'
-import { categories, isProjectCategory } from '@/types/projectCategory'
-import type { FilterCategory } from '@/types/projectCategory'
-
-const selectedCategory = ref<FilterCategory>('all')
-
-const filteredProjects = computed<Project[]>(() => {
-  const category = selectedCategory.value
-  if (!isProjectCategory(category)) return projects
-  return projects.filter((project) => project.category.includes(category))
-})
 </script>
 
 <template>
-  <section
-    id="projects"
-    class="deferred-section relative min-h-screen w-full overflow-hidden py-16 sm:py-20"
-  >
+  <section id="projects" class="deferred-section relative w-full overflow-hidden py-16 sm:py-24">
     <SectionBackdrop tone="violet" />
 
     <div class="container relative z-10">
       <FadeUpOnScroll>
         <SectionHeader
           eyebrow="02 / Selected work"
-          title="Projects with a pulse."
-          subtitle="A mix of production-minded systems, experiments, and interfaces built to solve something real."
+          title="Selected work."
+          subtitle="Full-stack products, browser tools, and open-source work."
         />
       </FadeUpOnScroll>
 
       <FadeUpOnScroll :delay="100">
-        <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
-          <div
-            class="inline-flex rounded-xl border border-white/[0.12] bg-[#091526] p-1 shadow-lg shadow-black/10"
-            aria-label="Filter projects"
-          >
-            <button
-              v-for="category in categories"
-              :key="category"
-              type="button"
-              class="rounded-lg px-4 py-2 text-xs font-semibold capitalize transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300"
-              :class="
-                selectedCategory === category
-                  ? 'bg-white text-slate-950 shadow-sm'
-                  : 'text-slate-300 hover:bg-white/[0.07] hover:text-white'
-              "
-              :aria-pressed="selectedCategory === category"
-              @click="selectedCategory = category"
-            >
-              {{ category }}
-            </button>
-          </div>
-          <p class="text-xs font-semibold tracking-[0.08em] text-slate-400 uppercase">
-            {{ filteredProjects.length.toString().padStart(2, '0') }} projects
-          </p>
-        </div>
+        <p class="mb-8 font-mono text-xs font-semibold tracking-[0.1em] text-slate-400 uppercase">
+          {{ projects.length.toString().padStart(2, '0') }} projects
+        </p>
       </FadeUpOnScroll>
 
       <FadeUpOnScroll :delay="160">
-        <TransitionGroup tag="div" name="project-list" class="grid gap-5 md:grid-cols-2">
+        <div class="grid gap-5 md:grid-cols-2">
           <article
-            v-for="(project, index) in filteredProjects"
+            v-for="(project, index) in projects"
             :key="project.id"
             class="project-card group relative overflow-hidden rounded-[1.75rem] border border-white/[0.13] bg-[#081322] shadow-[0_24px_70px_rgba(0,0,0,0.32)]"
             :class="
@@ -89,10 +52,7 @@ const filteredProjects = computed<Project[]>(() => {
                 fetchpriority="low"
                 class="absolute inset-0 size-full object-cover object-top saturate-[1.05] transition-transform duration-500 group-hover:scale-[1.025]"
               />
-			  <div
-				class="absolute inset-0 bg-slate-950/15"
-				aria-hidden="true"
-			  />
+              <div class="absolute inset-0 bg-slate-950/15" aria-hidden="true" />
               <div class="absolute left-4 top-4 flex items-center gap-2">
                 <span
                   v-if="index === 0"
@@ -125,7 +85,7 @@ const filteredProjects = computed<Project[]>(() => {
                     </h3>
                   </div>
                   <a
-                    :href="project.demoLink"
+                    :href="project.liveLink ?? project.githubLink"
                     class="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/[0.09] text-slate-400 transition hover:border-violet-300/40 hover:bg-violet-400/10 hover:text-violet-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-300"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -163,36 +123,49 @@ const filteredProjects = computed<Project[]>(() => {
                   </li>
                 </ul>
 
-                <a
-                  v-if="project.githubLink"
-                  :href="project.githubLink"
-                  class="mt-6 inline-flex rounded-lg border border-white/10 px-3.5 py-2 text-xs font-semibold text-slate-300 transition-colors hover:border-violet-300/35 hover:bg-violet-400/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-300"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View source
-                </a>
-                <span
-                  v-else
-                  class="mt-6 inline-flex w-fit items-center gap-2 rounded-lg border border-emerald-300/20 bg-emerald-300/[0.06] px-3.5 py-2 text-xs font-semibold text-emerald-100"
-                >
-                  <svg
-                    class="size-3.5 text-emerald-300"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    aria-hidden="true"
+                <div class="mt-6 flex flex-wrap items-center gap-2">
+                  <a
+                    v-if="project.githubLink"
+                    :href="project.githubLink"
+                    class="inline-flex rounded-lg border border-white/10 px-3.5 py-2 text-xs font-semibold text-slate-300 transition-colors hover:border-violet-300/35 hover:bg-violet-400/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-300"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <rect x="5" y="10" width="14" height="10" rx="2" />
-                    <path d="M8 10V7a4 4 0 0 1 8 0v3" />
-                  </svg>
-                  Closed source
-                </span>
+                    View source
+                  </a>
+                  <span
+                    v-else
+                    class="inline-flex cursor-not-allowed items-center gap-2 rounded-lg border border-white/10 px-3.5 py-2 text-xs font-semibold text-slate-500 opacity-70"
+                    aria-disabled="true"
+                  >
+                    <svg
+                      class="size-3.5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      aria-hidden="true"
+                    >
+                      <rect x="5" y="10" width="14" height="10" rx="2" />
+                      <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+                    </svg>
+                    Closed source
+                  </span>
+
+                  <a
+                    v-if="project.liveLink"
+                    :href="project.liveLink"
+                    class="inline-flex rounded-lg border border-violet-300/20 bg-violet-400/[0.06] px-3.5 py-2 text-xs font-semibold text-violet-100 transition-colors hover:border-violet-300/40 hover:bg-violet-400/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-300"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {{ project.liveLabel }}
+                  </a>
+                </div>
               </div>
             </div>
           </article>
-        </TransitionGroup>
+        </div>
       </FadeUpOnScroll>
     </div>
   </section>
@@ -224,18 +197,5 @@ const filteredProjects = computed<Project[]>(() => {
   pointer-events: none;
   content: '';
   background: linear-gradient(90deg, #a78bfa, #22d3ee, transparent);
-}
-
-.project-list-enter-active,
-.project-list-leave-active {
-  transition:
-    opacity 220ms ease,
-    transform 220ms ease;
-}
-
-.project-list-enter-from,
-.project-list-leave-to {
-  opacity: 0;
-  transform: translateY(10px);
 }
 </style>

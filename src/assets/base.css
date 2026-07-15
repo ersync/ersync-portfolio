@@ -61,7 +61,7 @@
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-background);
+  background: #050816;
   transition:
     color 0.5s,
     background-color 0.5s;
@@ -85,25 +85,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.section-caption {
+  font-family: 'Rubik Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight: 350;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
 .deferred-section {
   content-visibility: auto;
   contain-intrinsic-size: auto var(--deferred-section-size, 1000px);
 }
 
 #about {
-  --deferred-section-size: 1490px;
+  --deferred-section-size: 1200px;
 }
 
 #projects {
-  --deferred-section-size: 3445px;
+  --deferred-section-size: 2860px;
 }
 
-.principles-section {
-  --deferred-section-size: 535px;
-}
-
-#journey {
-  --deferred-section-size: 1515px;
+#experience {
+  --deferred-section-size: 1100px;
 }
 
 #contact {
@@ -117,19 +120,15 @@ body {
 @media (min-width: 768px) {
   #about,
   #contact {
-    --deferred-section-size: 840px;
+    --deferred-section-size: 760px;
   }
 
   #projects {
-    --deferred-section-size: 2515px;
+    --deferred-section-size: 2050px;
   }
 
-  .principles-section {
-    --deferred-section-size: 175px;
-  }
-
-  #journey {
-    --deferred-section-size: 990px;
+  #experience {
+    --deferred-section-size: 760px;
   }
 
   .page-footer {

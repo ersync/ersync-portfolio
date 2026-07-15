@@ -5,7 +5,8 @@ export interface Project {
   title: string
   description: string
   technologies: string[]
-  demoLink: string
+  liveLink?: string
+  liveLabel?: 'Live product' | 'Live preview' | 'RubyGems'
   githubLink?: string
   image: string
   category: ProjectCategory[]

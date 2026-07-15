@@ -2,16 +2,16 @@
 withDefaults(
   defineProps<{
     title: string
-    subtitle: string
+    subtitle?: string
     eyebrow?: string
     subtitleEmphasis?: boolean
   }>(),
-  { eyebrow: 'Portfolio', subtitleEmphasis: false }
+  { eyebrow: 'Portfolio', subtitle: '', subtitleEmphasis: false }
 )
 </script>
 
 <template>
-  <header class="mb-12 sm:mb-16">
+  <header class="mb-10 sm:mb-14">
     <div class="flex items-center gap-3 text-teal-200">
       <span class="h-0.5 w-7 rounded-full bg-current" />
       <p class="font-display text-xs font-semibold tracking-[0.08em] uppercase">{{ eyebrow }}</p>
@@ -24,16 +24,15 @@ withDefaults(
       </h2>
       <p
         v-if="subtitle"
-        class="max-w-xl"
+        class="section-caption max-w-xl lg:justify-self-end lg:text-right"
         :class="
           subtitleEmphasis
-            ? 'font-display text-lg font-medium leading-7 tracking-[-0.015em] text-teal-50 sm:text-xl'
-            : 'text-sm leading-6 text-slate-300 sm:text-base'
+            ? 'text-base leading-6 text-teal-50 sm:text-lg sm:leading-7'
+            : 'text-[0.95rem] leading-6 text-slate-300 sm:text-[1.05rem] sm:leading-7'
         "
       >
         {{ subtitle }}
       </p>
     </div>
-    <div class="mt-6 h-px bg-gradient-to-r from-white/15 via-white/[0.04] to-transparent" />
   </header>
 </template>

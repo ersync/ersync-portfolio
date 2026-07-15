@@ -6,7 +6,7 @@
       alt="Emad Rahimi"
     />
     <p class="text-sm font-medium text-teal-300">
-      <span aria-hidden="true">•</span> Full Stack Developer
+      <span aria-hidden="true">•</span> Full-Stack Product Developer
     </p>
   </div>
 </template>

@@ -6,11 +6,9 @@ const socialLinks = [
   { icon: 'linkedin', url: 'https://linkedin.com/in/erahimidev', label: 'LinkedIn' }
 ]
 
-const capabilities = [
-  { title: 'Backend systems', tools: 'Rails · PostgreSQL' },
-  { title: 'Product interfaces', tools: 'Vue · TypeScript' },
-  { title: 'Experience quality', tools: 'Speed · Accessibility' },
-  { title: 'Shipping work', tools: 'Vite · Git · APIs' }
+const evidence = [
+  { value: '4.8/5', label: 'average client rating' },
+  { value: '100%', label: 'success and on-time delivery' }
 ]
 </script>
 
@@ -27,8 +25,8 @@ const capabilities = [
         <div class="hero-intro">
           <div class="mb-7 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
             <span class="font-semibold text-teal-200">Full-stack developer</span>
-            <span class="h-px w-8 bg-white/20" aria-hidden="true" />
-            <span class="text-slate-300">Kurdistan, Iran</span>
+            <span class="hidden h-px w-8 bg-white/20 sm:block" aria-hidden="true" />
+            <span class="hidden text-slate-300 sm:inline">Kurdistan, Iran</span>
           </div>
 
           <h1 class="font-display font-semibold leading-[0.86] tracking-[-0.075em]">
@@ -37,10 +35,11 @@ const capabilities = [
           </h1>
         </div>
 
-		<div class="hero-body">
-		  <p class="max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
-			I build complete web products, from reliable backends to polished interfaces.
-		  </p>
+        <div class="hero-body">
+          <p class="max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
+            I build complete web products, from backend systems to final interaction. I focus on
+            clarity, reliability, and lasting quality.
+          </p>
 
           <div class="mt-9 flex flex-wrap gap-3">
             <a
@@ -85,7 +84,7 @@ const capabilities = [
               <span
                 class="size-2 rounded-full bg-emerald-300 shadow-[0_0_14px_rgba(110,231,183,0.75)]"
               />
-              Available for thoughtful work
+              Open to product work
             </span>
           </div>
         </div>
@@ -93,22 +92,26 @@ const capabilities = [
 
       <aside
         class="hero-console relative mx-auto w-full max-w-[32rem]"
-        aria-label="Full-stack capabilities"
+        aria-label="Professional delivery record"
       >
-        <div class="console-echo console-echo-back" aria-hidden="true" />
-        <div class="console-echo console-echo-mid" aria-hidden="true" />
-
         <div
           class="console-panel relative overflow-hidden rounded-[2rem] border border-white/15 bg-[#081526]/90 shadow-[0_40px_100px_rgba(0,0,0,0.5)] backdrop-blur-2xl"
         >
           <div class="console-sheen" aria-hidden="true" />
           <div class="relative p-5 sm:p-8">
             <div class="flex items-start justify-between gap-5">
-              <h2
-                class="max-w-xs font-display text-2xl font-semibold leading-[1.08] tracking-[-0.045em] text-white sm:text-4xl"
-              >
-                One developer.<br />Whole product.
-              </h2>
+              <div>
+                <p
+                  class="font-mono text-[10px] font-semibold tracking-[0.14em] text-teal-200 uppercase"
+                >
+                  Independent delivery
+                </p>
+                <h2
+                  class="mt-4 max-w-sm font-display text-2xl font-semibold leading-[1.08] tracking-[-0.045em] text-white sm:text-4xl"
+                >
+                  From architecture to interface. Shipped.
+                </h2>
+              </div>
               <img
                 src="@/assets/images/logos/er-mark.svg"
                 class="size-12 shrink-0 drop-shadow-[0_10px_24px_rgba(45,212,191,0.14)]"
@@ -116,47 +119,37 @@ const capabilities = [
               />
             </div>
 
-            <p
-              class="console-description mt-5 hidden max-w-sm text-sm leading-6 text-slate-300 xs:block"
-            >
-              Comfortable moving through architecture, interface decisions, performance, and
-              delivery without losing the product in between.
-            </p>
-
-            <div
-              class="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:mt-8"
-            >
+            <div class="mt-8 grid grid-cols-2 border-y border-white/10">
               <div
-                v-for="capability in capabilities"
-                :key="capability.title"
-                class="group bg-[#09182a] p-3 transition-colors hover:bg-[#0d2035] sm:p-5"
+                v-for="(item, index) in evidence"
+                :key="item.label"
+                class="py-5"
+                :class="index > 0 ? 'border-l border-white/10 pl-5 sm:pl-7' : 'pr-5 sm:pr-7'"
               >
-                <span class="block text-xs font-semibold text-white sm:text-sm">
-                  {{ capability.title }}
+                <span class="font-display text-3xl font-semibold tracking-[-0.05em] text-teal-200">
+                  {{ item.value }}
                 </span>
-                <span class="mt-1 block text-[11px] leading-4 text-slate-300 sm:text-xs">
-                  {{ capability.tools }}
-                </span>
+                <span class="mt-2 block text-xs leading-5 text-slate-300">{{ item.label }}</span>
               </div>
             </div>
 
-            <a
-              href="/emad_rahimi_cv.pdf"
-              download
-              class="group mt-5 flex items-center justify-between rounded-xl border border-teal-200/25 bg-gradient-to-r from-teal-300/[0.06] to-indigo-400/[0.04] px-4 py-3 text-sm font-semibold text-slate-200 shadow-[inset_0_1px_rgba(255,255,255,0.06),0_12px_30px_rgba(45,212,191,0.06)] transition hover:border-teal-200/40 hover:from-teal-300/[0.1] hover:to-indigo-400/[0.07] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-200 sm:mt-6 sm:py-3.5"
-            >
-              Download CV
-              <svg
-                class="size-4 text-teal-200 transition-transform group-hover:translate-y-0.5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                aria-hidden="true"
+            <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-semibold">
+              <a
+                href="https://www.karlancer.com/profile/932817"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-slate-300 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-200"
               >
-                <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14" />
-              </svg>
-            </a>
+                Public profile ↗
+              </a>
+              <a
+                href="/emad_rahimi_cv.pdf"
+                download
+                class="text-teal-200 transition-colors hover:text-teal-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-200"
+              >
+                Download CV ↓
+              </a>
+            </div>
           </div>
         </div>
       </aside>
@@ -191,6 +184,7 @@ const capabilities = [
   background: linear-gradient(to right, transparent, rgba(94, 234, 212, 0.08), transparent);
   filter: blur(18px);
   transform: rotate(24deg);
+  animation: spotlight-enter 2.2s cubic-bezier(0.16, 1, 0.3, 1) 700ms both;
 }
 
 .hero-orbit {
@@ -259,23 +253,6 @@ const capabilities = [
   animation-delay: 120ms;
 }
 
-.console-echo {
-  position: absolute;
-  border: 1px solid rgba(148, 163, 184, 0.12);
-  border-radius: 2rem;
-  background: linear-gradient(135deg, rgba(15, 118, 110, 0.12), rgba(79, 70, 229, 0.08));
-}
-
-.console-echo-back {
-  inset: 2rem -1.25rem -2rem 1.25rem;
-  transform: rotate(3deg);
-}
-
-.console-echo-mid {
-  inset: 1rem -0.5rem -1rem 0.5rem;
-  transform: rotate(1.25deg);
-}
-
 .console-panel {
   transform: perspective(80rem) rotateY(-2.5deg) rotateX(1deg);
   transform-origin: center;
@@ -298,6 +275,24 @@ const capabilities = [
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes spotlight-enter {
+  from {
+    opacity: 0;
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  82% {
+    opacity: 0.88;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 
@@ -358,8 +353,14 @@ const capabilities = [
   .hero-name,
   .hero-intro,
   .hero-body,
-  .hero-console {
+  .hero-console,
+  .hero-beam {
     animation: none;
+  }
+
+  .hero-beam {
+    opacity: 1;
+    transform: rotate(24deg);
   }
 }
 </style>

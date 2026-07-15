@@ -8,6 +8,7 @@ type RecaptchaWindow = Window & {
 }
 
 const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY
+export const isRecaptchaEnabled = Boolean(siteKey)
 let loader: Promise<RecaptchaApi | null> | undefined
 
 const loadRecaptcha = (): Promise<RecaptchaApi | null> => {

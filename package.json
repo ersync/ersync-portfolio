@@ -16,6 +16,7 @@
     "check": "run-p type-check lint:check build-only"
   },
   "dependencies": {
+    "@fontsource-variable/rubik": "^5.2.8",
     "@heroicons/vue": "^2.2.0",
     "vue": "^3.5.39"
   },
