@@ -1,6 +1,7 @@
 import skeletonLoader from '@/assets/images/projects/skeleton-loader.webp'
 import cinemad from '@/assets/images/projects/cinemad.webp'
 import satryar from '@/assets/images/projects/satryar.webp'
+import retrynaut from '@/assets/images/projects/retrynaut.webp'
 import persogenApi from '@/assets/images/projects/persogen-api.webp'
 import persianCoffeeshop from '@/assets/images/projects/persian-coffeeshop.webp'
 
@@ -23,12 +24,24 @@ export const projects: Project[] = [
     id: 2,
     title: 'SatrYar',
     description:
-      'A Persian-first document studio that turns raw text and Markdown into polished, paginated Word and PDF files—all locally in the browser.',
+      'A Persian-first studio that turns text and Markdown into polished Word and PDF files in the browser.',
     technologies: ['Svelte 5', 'TypeScript', 'SvelteKit', 'Vite'],
     liveLink: 'https://satryar.ir',
     liveLabel: 'Live product',
     image: satryar,
     category: ['frontend']
+  },
+  {
+    id: 3,
+    title: 'Retrynaut',
+    description:
+      'An npm CLI that automatically retries Claude high-traffic failures in the Antigravity 2.x desktop app.',
+    technologies: ['JavaScript', 'Node.js', 'CDP', 'npm'],
+    liveLink: 'https://www.npmjs.com/package/retrynaut',
+    liveLabel: 'npm',
+    githubLink: 'https://github.com/ersync/retrynaut',
+    image: retrynaut,
+    category: ['tooling']
   },
   {
     id: 4,

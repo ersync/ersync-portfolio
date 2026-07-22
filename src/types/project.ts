@@ -6,7 +6,7 @@ export interface Project {
   description: string
   technologies: string[]
   liveLink?: string
-  liveLabel?: 'Live product' | 'Live preview' | 'RubyGems'
+  liveLabel?: 'Live product' | 'Live preview' | 'RubyGems' | 'npm'
   githubLink?: string
   image: string
   category: ProjectCategory[]

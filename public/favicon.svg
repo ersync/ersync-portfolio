@@ -1,9 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="15" fill="#07121F" />
-  <rect x="1" y="1" width="62" height="62" rx="14" fill="none" stroke="#55E6DA" stroke-opacity="0.72" stroke-width="2" />
+  <style>
+    .primary { fill: #F7FAFC; }
+    .accent { fill: #65F2E7; }
 
-  <path d="M10 19H29V21C29 23.2 27.2 25 25 25H10V19Z" fill="#F7FAFC" />
-  <path d="M10 29H28V31C28 33.2 26.2 35 24 35H10V29Z" fill="#65F2E7" />
-  <path d="M10 39H29V41C29 43.2 27.2 45 25 45H10V39Z" fill="#F7FAFC" />
-  <path d="M32 19H43C49.4 19 54 23.1 54 29C54 33.5 51.5 36.8 47.8 38.4L56 49H47.5L40.3 39H32V33H42.5C45.2 33 47 31.5 47 29C47 26.5 45.2 25 42.5 25H32V19Z" fill="#F7FAFC" />
+    @media (prefers-color-scheme: light) {
+      .primary { fill: #07121F; }
+      .accent { fill: #0F766E; }
+    }
+  </style>
+
+  <g transform="matrix(1.391304 0 0 1.391304 -13.91304 -15.30435)">
+    <path class="primary" d="M10 19H29V21C29 23.2 27.2 25 25 25H10V19Z" />
+    <path class="accent" d="M10 29H28V31C28 33.2 26.2 35 24 35H10V29Z" />
+    <path class="primary" d="M10 39H29V41C29 43.2 27.2 45 25 45H10V39Z" />
+    <path class="primary" d="M32 19H43C49.4 19 54 23.1 54 29C54 33.5 51.5 36.8 47.8 38.4L56 49H47.5L40.3 39H32V33H42.5C45.2 33 47 31.5 47 29C47 26.5 45.2 25 42.5 25H32V19Z" />
+  </g>
 </svg>
